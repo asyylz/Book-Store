@@ -7,10 +7,10 @@ export default function BooksPage() {
 
 export async function loaderBooks() {
   const response = await fetch(BASE_URL + apiKey);
-  console.log(response);
-
+  const resData = await response.json();
   if (!response.ok) {
     throw json({ message: 'Could not load books...' }, { status: 500 });
   }
-  return response.json();
+  console.log(resData)
+  return resData
 }
