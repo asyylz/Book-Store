@@ -1,18 +1,27 @@
-import "./App.css";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import BooksPage from "./pages/Bookspage.jsx";
-import HomePage from "./pages/HomePage.jsx";
+import './App.css';
+/* -------------- react-router-dom imports -------------- */
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
+/* --------------------- Route Pages -------------------- */
+import BooksPage from './pages/Bookspage.jsx';
+import HomePage from './pages/HomePage.jsx';
+import RootLayout from './pages/RootLayout.jsx';
+
+/* ------------------- loader imports ------------------- */
+import { loaderBooks } from './pages/Bookspage.jsx';
+
+/* ----------------------- router ----------------------- */
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: BooksPage,
+    path: '/',
+    element: <RootLayout />,
     id: root,
     children: [
-      { index, element: <HomePage /> },
+      { index: true, element: <HomePage /> },
       {
-        path: "books",
+        path: 'books',
         element: <BooksPage />,
+        loader: loaderBooks,
       },
     ],
   },
