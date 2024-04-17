@@ -16,7 +16,7 @@
 
 .customButton:after {
   content: "";
-  background-color: #ffe54c;
+  background-color: #F2CDA0;
   width: 100%;
   z-index: -1;
   position: absolute;
