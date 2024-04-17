@@ -1,4 +1,7 @@
 import * as React from 'react';
+import { createTheme } from '@mui/material/styles';
+
+/* ------------------ component imports ----------------- */
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -14,10 +17,19 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
 /* -------------------- Colour Schema -------------------- */
-create
+const ColourSchema = {
+  pink: '#F2BBD9',
+  pastelPink: '#F2B6C1',
+  blue: '#9ACDD9',
+  green: '#A3D9C5',
+  peach: '#A3D9C5',
+  mint: '#A3D9C5',
+  purpleDark: '#8767BA',
+  purple: '#BE9BF3',
+};
 
 /* ---------------- MainNavigation Links ---------------- */
-const pages = ['Discover', 'BookStore', 'Offers'];
+const pages = ['Discover', 'Book Store', 'Offers'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -40,7 +52,13 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: '#F2BBD9', color: '' }}>
+    <AppBar
+      position="static"
+      sx={{
+        backgroundColor: ColourSchema.pastelPink,
+        color: '#8767BA',
+      }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -61,7 +79,6 @@ function ResponsiveAppBar() {
           >
             LOGO
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -98,6 +115,8 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
+
+          {/* ------------------ For small screen ------------------ */}
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
@@ -121,8 +140,8 @@ function ResponsiveAppBar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                //onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: ColourSchema.purpleDark, display: 'block' }}
               >
                 {page}
               </Button>
