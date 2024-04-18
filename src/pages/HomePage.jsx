@@ -25,29 +25,14 @@ const Item = styled(Paper)(() => ({
   textAlign: 'center',
 }));
 
-var items = [
-  {
-    name: 'Random Name #1',
-    description: 'Probably the most random thing you have ever seen!',
-  },
-  {
-    name: 'Random Name #2',
-    description: 'Hello World!',
-  },
-];
-
 export default function HomePage() {
   const popularBooks = useLoaderData();
-
-  // useEffect(() => {
-  //   fetchPopularBooks();
-  // }, []);
 
   return (
     <Box sx={{ flexGrow: 1, mt: '1rem', ml: '4rem', mr: '4rem' }}>
       <Grid container spacing={2}>
         {/* ------------------------ Left ------------------------*/}
-        <Grid item xs={3}>
+        <Grid item xs={4}>
           {bookSectionLeft.map((section, index) => (
             <Grid item xs={12} key={index}>
               <Item>
@@ -57,13 +42,13 @@ export default function HomePage() {
           ))}
         </Grid>
         {/* ------------------------ Middle ------------------------*/}
-        <Grid item xs={6}>
+        <Grid item xs={4}>
           <Item>
             <CarouselCustom items={popularBooks} />
           </Item>
         </Grid>
         {/* ------------------------ Right ------------------------*/}
-        <Grid item xs={3}>
+        <Grid item xs={4}>
           {bookSectionRight.map((section, index) => (
             <Grid item xs={12} key={index}>
               <Item>
