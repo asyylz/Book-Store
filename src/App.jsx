@@ -27,7 +27,7 @@ const router = createBrowserRouter([
         loader: loaderBooks,
       },
       {
-        path: 'login',
+        path: '',
         element: <AuthenticationPage />,
         //action: authAction,
       },

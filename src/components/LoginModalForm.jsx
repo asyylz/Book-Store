@@ -8,8 +8,22 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { backdropClasses } from '@mui/material';
 
+import {
+  Form,
+  Link,
+  useSearchParams,
+  useActionData,
+  useNavigation,
+} from 'react-router-dom';
+
 export default function LoginModalForm() {
   const [open, setOpen] = React.useState(false);
+
+  const data = useActionData();
+  const navigation = useNavigation();
+  const [searchParams] = useSearchParams();
+  const isLogin = searchParams.get('mode') === 'login';
+  const isSubmitting = navigation.state === 'submitting';
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -31,9 +45,10 @@ export default function LoginModalForm() {
       <Dialog
         open={open}
         onClose={handleClose}
+        method="post"
         PaperProps={{
           component: 'form',
-          sx: { backgroundColor: '#F2BBD9',borderRadius:'20px' },
+          sx: { backgroundColor: '#F2BBD9', borderRadius: '20px' },
           onSubmit: (event) => {
             event.preventDefault();
             const formData = new FormData(event.currentTarget);
@@ -72,7 +87,9 @@ export default function LoginModalForm() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Register</Button>
-          <Button type="submit">Login</Button>
+          <Button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? 'Submitting...' : 'Login'}
+          </Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>
