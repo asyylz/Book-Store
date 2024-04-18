@@ -9,6 +9,7 @@ import RootLayout from './pages/RootLayout.jsx';
 
 /* ------------------- loader imports ------------------- */
 import { loaderBooks } from './pages/Bookspage.jsx';
+import { loaderPopularBooks } from './pages/HomePage.jsx';
 
 /* ----------------------- router ----------------------- */
 const router = createBrowserRouter([
@@ -17,7 +18,8 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     id: root,
     children: [
-      { index: true, element: <HomePage /> },
+      { index: true, element: <HomePage />,
+    loader:loaderPopularBooks },
       {
         path: 'books',
         element: <BooksPage />,

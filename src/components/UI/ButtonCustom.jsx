@@ -1,7 +1,7 @@
 import './Button.css';
 export default function ButtonCustom({ buttonName, id, ...props }) {
   return (
-    <button id={id} class="customButton" role="button">
+    <button id={id} className="customButton" role="button">
       {buttonName}
     </button>
   );
