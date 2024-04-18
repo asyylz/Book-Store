@@ -1,6 +1,7 @@
 import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import { Paper, Button, Box } from '@mui/material';
+
 import './CarouselCustom.css';
 function Item(props) {
   return (
@@ -12,7 +13,7 @@ function Item(props) {
         marginBottom: '10px',
       }}
     >
-      <h2>{props.item.name}</h2>
+      <h2>{props.item.volumeInfo.title}</h2>
       <p>{props.item.description}</p>
       <img
         style={{ height: '70%', width: '70%', padding: '10px' }}
@@ -26,6 +27,7 @@ function Item(props) {
   );
 }
 export default function CarouselCustom({ items, props }) {
+  console.log(items);
   return (
     <Carousel>
       {items.map((item, i) => (

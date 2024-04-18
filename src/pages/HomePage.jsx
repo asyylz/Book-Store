@@ -64,7 +64,7 @@ export default function HomePage() {
 
 export async function loaderPopularBooks() {
   const response = await fetch(
-    'https://www.googleapis.com/books/v1/volumes?q=popular'
+    'https://www.googleapis.com/books/v1/volumes?q=react+subject'
   );
   const resData = await response.json();
   if (!response.ok) {
