@@ -6,12 +6,14 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import BooksPage from './pages/Bookspage.jsx';
 import HomePage from './pages/HomePage.jsx';
 import RootLayout from './pages/RootLayout.jsx';
-import AuthenticationPage from './pages/AuthenticationPage.jsx';
+import LoginPage from './pages/LoginPage.jsx';
 
 /* ------------------- loader imports ------------------- */
 import { loaderBooks } from './pages/Bookspage.jsx';
 import { loaderHomePageBooks } from './pages/HomePage.jsx';
-import { actionLogin } from './pages/AuthenticationPage.jsx';
+import { actionLogin } from './pages/LoginPage.jsx';
+import RegisterPage from './pages/RegisterPage.jsx';
+import AuthPage from './pages/AuthPage.jsx';
 
 /* ----------------------- router ----------------------- */
 const router = createBrowserRouter([
@@ -28,8 +30,8 @@ const router = createBrowserRouter([
         loader: loaderBooks,
       },
       {
-        path: 'login',
-        element: <AuthenticationPage />,
+        path: 'auth',
+        element: <AuthPage />,
         action: actionLogin,
       },
       {

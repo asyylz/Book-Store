@@ -39,10 +39,12 @@ function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const navigation = useNavigation();
-  function handleClick(menuItem) {
-    if (menuItem === 'Login') {
+
+  const handleUserMenuNavigate = (route) => {
+    if (route === 'Login') {
+      return '/auth?mode=login';
     }
-  }
+  };
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -179,7 +181,7 @@ function ResponsiveAppBar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Link to={`/${setting.toLowerCase()}`}>{setting}</Link>
+                  <Link to={handleUserMenuNavigate(setting)}>{setting}</Link>
                 </MenuItem>
               ))}
             </Menu>
