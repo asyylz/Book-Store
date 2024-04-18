@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import ButtonCustom from '../components/UI/ButtonCustom';
+import CarouselCustom from '../components/UI/Carousel';
 
 const bookSectionLeft = ['Children books', 'Thriller books', 'Pshsycolg'];
 const bookSectionRight = ['Children books', 'Thriller books', 'Pshsycolg'];
@@ -32,7 +33,7 @@ export default function HomePage() {
         {/* ------------------------ Middle ------------------------*/}
         <Grid item xs={6}>
           <Item>
-            <image></image>
+            <CarouselCustom />
           </Item>
         </Grid>
         {/* ------------------------ Right ------------------------*/}
