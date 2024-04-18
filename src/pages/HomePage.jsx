@@ -22,7 +22,7 @@ import { useEffect } from 'react';
 
 /* --------------------- url imporst -------------------- */
 const BASE_URL = import.meta.env.VITE_BASE_URL;
-const apiKey = import.meta.env.VITE_APP_apiKey;
+const apiKey = import.meta.env.VITE_APP_apiKeyGoogle;
 
 /* ------------------- section book imports ------------------ */
 const bookSection = [
@@ -44,8 +44,6 @@ const Item = styled(Paper)(() => ({
 
 export default function HomePage() {
   const { newestBooks, popularBooks } = useLoaderData();
-
-  console.log(newestBooks);
 
   return (
     <>

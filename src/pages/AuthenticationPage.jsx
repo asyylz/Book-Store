@@ -1,6 +1,6 @@
-import LoginModalForm from '../components/LoginModalForm';
+import LoginForm from '../components/LoginForm';
 import { json, redirect } from 'react-router-dom';
-
+import { toastSuccessNotify, toastErrorNotify } from '../helper/toastNotify';
 import {
   Form,
   Link,
@@ -18,33 +18,25 @@ import {
   signOut,
   updateProfile,
 } from 'firebase/auth';
+import { auth } from '../auth/firebase';
+
 export default function AuthenticationPage() {
   return (
     <>
-      <LoginModalForm />
+      <LoginForm />
     </>
   );
 }
 
-export async function action({ request }) {
-  const searchParams = new URL(request.url).searchParams;
-  const mode = searchParams.get('mode') || 'login';
-  if (mode !== 'login' && mode !== 'signup') {
-    throw json({ message: 'Unsupported mode' }, { status: 422 });
-  }
-
-  const data = await request.formData();
-  const authData = {
-    email: data.get('email'),
-    password: data.get('password'),
-  };
-
+export async function actionLogin(data) {
   try {
-    await signInWithEmailAndPassword(authData.email, authData.password);
-    //toastSuccessNotify('Logged in!');
+    await signInWithEmailAndPassword(auth, data.email, data.password);
+    toastSuccessNotify('Logged in!');
     return redirect('/');
   } catch (error) {
-    //toastErrorNotify(error.message);
+    console.log('clicked');
+    toastErrorNotify(error.message);
+    console.log(error.message);
     throw json({ message: error.message }, { status: 500 });
   }
 }

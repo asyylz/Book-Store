@@ -15,8 +15,8 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import AuthForm from './LoginModalForm';
-import LoginModalForm from './LoginModalForm';
+import AuthForm from './LoginForm';
+import LoginModalForm from './LoginForm';
 
 /* -------------------- Colour Schema -------------------- */
 const ColourSchema = {
@@ -74,7 +74,6 @@ function ResponsiveAppBar() {
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -180,12 +179,11 @@ function ResponsiveAppBar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  {/* <Link to={`/${setting.toLowerCase()}`}>{setting}</Link> */}
+                  <Link to={`/${setting.toLowerCase()}`}>{setting}</Link>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <LoginModalForm />
         </Toolbar>
       </Container>
     </AppBar>

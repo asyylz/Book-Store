@@ -11,6 +11,7 @@ import AuthenticationPage from './pages/AuthenticationPage.jsx';
 /* ------------------- loader imports ------------------- */
 import { loaderBooks } from './pages/Bookspage.jsx';
 import { loaderHomePageBooks } from './pages/HomePage.jsx';
+import { actionLogin } from './pages/AuthenticationPage.jsx';
 
 /* ----------------------- router ----------------------- */
 const router = createBrowserRouter([
@@ -27,9 +28,9 @@ const router = createBrowserRouter([
         loader: loaderBooks,
       },
       {
-        path: '',
+        path: 'login',
         element: <AuthenticationPage />,
-        //action: authAction,
+        action: actionLogin,
       },
       {
         path: 'logout',
