@@ -37,7 +37,7 @@ var items = [
 ];
 
 export default function HomePage() {
-  const data = useLoaderData();
+  const popularBooks = useLoaderData();
 
   // useEffect(() => {
   //   fetchPopularBooks();
@@ -59,7 +59,7 @@ export default function HomePage() {
         {/* ------------------------ Middle ------------------------*/}
         <Grid item xs={6}>
           <Item>
-            <CarouselCustom items={items} />
+            <CarouselCustom items={popularBooks} />
           </Item>
         </Grid>
         {/* ------------------------ Right ------------------------*/}
