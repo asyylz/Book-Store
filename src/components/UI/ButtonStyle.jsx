@@ -1,4 +1,13 @@
 import styled from '@emotion/styled';
+const ColourSchema = [
+  { name: 'pink', value: '#F2BBD9' },
+  { name: 'blue', value: '#43BDD9' },
+  { name: 'cinnamon', value: '#F29F05' },
+  { name: 'blue', value: '#9ACDD9' },
+  { name: 'purple', value: '#BE9BF3' },
+  { name: 'green', value: '#AAF2A7' },
+
+];
 
 const ButtonStyle = styled.button`
   font-size: 16px;
@@ -9,7 +18,10 @@ const ButtonStyle = styled.button`
   border: 1px solid black;
   cursor: pointer;
   position: relative;
-  background-color: #f2cda0;
+  background-color: ${({ id }) => {
+    const color = ColourSchema.find((_, index) => id === index + 1);
+    return color ? color.value : 'white';
+  }};
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;

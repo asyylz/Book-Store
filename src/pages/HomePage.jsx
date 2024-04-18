@@ -14,8 +14,14 @@ import CarouselCustom from '../components/UI/CarouselCustom';
 import { useEffect } from 'react';
 
 /* ------------------- section imports ------------------ */
-const bookSectionLeft = ['Children books', 'Thriller books', 'Pshsycolg'];
-const bookSectionRight = ['Fantasy books', 'Self help books', 'Fiction books'];
+const bookSection = [
+  { id: 1, name: 'Children books' },
+  { id: 2, name: 'Thriller books' },
+  { id: 3, name: 'Psychology books' },
+  { id: 4, name: 'Fantasy books' },
+  { id: 5, name: 'Self help books' },
+  { id: 6, name: 'Fiction books' },
+];
 
 const Item = styled(Paper)(() => ({
   backgroundColor: 'transparent',
@@ -35,13 +41,15 @@ export default function HomePage() {
         <Grid container spacing={2}>
           {/* ------------------------ Left ------------------------*/}
           <Grid item xs={4}>
-            {bookSectionLeft.map((section, index) => (
-              <Grid item xs={12} key={index}>
-                <Item>
-                  <ButtonCustom buttonName={section} />
-                </Item>
-              </Grid>
-            ))}
+            {bookSection
+              .filter((_, index) => index > 2)
+              .map((book) => (
+                <Grid item xs={12} key={book.id}>
+                  <Item>
+                    <ButtonCustom buttonName={book.name} id={book.id} />
+                  </Item>
+                </Grid>
+              ))}
           </Grid>
           {/* ------------------------ Middle ------------------------*/}
           <Grid item xs={4}>
@@ -51,13 +59,15 @@ export default function HomePage() {
           </Grid>
           {/* ------------------------ Right ------------------------*/}
           <Grid item xs={4}>
-            {bookSectionRight.map((section, index) => (
-              <Grid item xs={12} key={index}>
-                <Item>
-                  <ButtonCustom buttonName={section} />
-                </Item>
-              </Grid>
-            ))}
+            {bookSection
+              .filter((_, index) => index < 3)
+              .map((book) => (
+                <Grid item xs={12} key={book.id}>
+                  <Item>
+                    <ButtonCustom buttonName={book.name} id={book.id} />
+                  </Item>
+                </Grid>
+              ))}
           </Grid>
         </Grid>
       </Box>
