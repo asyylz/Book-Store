@@ -6,6 +6,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import BooksPage from './pages/Bookspage.jsx';
 import HomePage from './pages/HomePage.jsx';
 import RootLayout from './pages/RootLayout.jsx';
+import AuthenticationPage from './pages/AuthenticationPage.jsx';
 
 /* ------------------- loader imports ------------------- */
 import { loaderBooks } from './pages/Bookspage.jsx';
@@ -17,13 +18,22 @@ const router = createBrowserRouter([
     path: '/',
     element: <RootLayout />,
     id: root,
-    
+
     children: [
       { index: true, element: <HomePage />, loader: loaderHomePageBooks },
       {
         path: 'books',
         element: <BooksPage />,
         loader: loaderBooks,
+      },
+      {
+        path: 'login',
+        element: <AuthenticationPage />,
+        //action: authAction,
+      },
+      {
+        path: 'logout',
+        //action: logoutAction,
       },
     ],
   },

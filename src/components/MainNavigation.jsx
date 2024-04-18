@@ -1,6 +1,7 @@
 import * as React from 'react';
-
-/* ------------------ component imports ----------------- */
+/* ---------------- react-router-imports ---------------- */
+import { useNavigation, Link } from 'react-router-dom';
+/* ------------------ component imports from mui ----------------- */
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -14,6 +15,8 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import AuthForm from './LoginModalForm';
+import LoginModalForm from './LoginModalForm';
 
 /* -------------------- Colour Schema -------------------- */
 const ColourSchema = {
@@ -29,11 +32,17 @@ const ColourSchema = {
 
 /* ---------------- MainNavigation Links ---------------- */
 const pages = ['Discover', 'Book Store', 'Offers'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Login'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const navigation = useNavigation();
+  function handleClick(menuItem) {
+    if (menuItem === 'Login') {
+    }
+  }
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -171,11 +180,12 @@ function ResponsiveAppBar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  {/* <Link to={`/${setting.toLowerCase()}`}>{setting}</Link> */}
                 </MenuItem>
               ))}
             </Menu>
           </Box>
+          <LoginModalForm />
         </Toolbar>
       </Container>
     </AppBar>

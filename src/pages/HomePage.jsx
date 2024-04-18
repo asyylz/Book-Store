@@ -3,10 +3,16 @@ import { json, useLoaderData } from 'react-router-dom';
 import * as React from 'react';
 import Carousel from 'react-material-ui-carousel';
 
+//import Carousel from '@mui/material/Carousel';
+import Paper from '@mui/material/Paper';
+import { IconButton } from '@mui/material';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+
 /* ----------------- material ui imports ---------------- */
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
+//import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import ButtonCustom from '../components/UI/ButtonCustom';
 //import CarouselCustom from '../components/UI/CarouselCustom';
@@ -91,11 +97,11 @@ export default function HomePage() {
       {/* -------------- Recommendations  Section -------------- */}
       <Box sx={{ mt: '2rem' }}>
         <Grid container spacing={2}>
-          <Grid xs={12} sx={{ textAlign: 'center' }}>
+          <Grid item xs={12} sx={{ textAlign: 'center' }}>
             <h1>Discover Your Next Book...</h1>
           </Grid>
           <Grid item xs={12}>
-            <Carousel>
+            {/* <Carousel>
               {newestBooks.map((book) => (
                 <Item key={book.volumeInfo.title}>
                   <img
@@ -106,7 +112,46 @@ export default function HomePage() {
                   <p>{book.volumeInfo.description}</p>
                 </Item>
               ))}
-            </Carousel>
+            </Carousel> */}
+            <Box sx={{ maxWidth: 600, margin: 'auto' }}>
+              <Carousel
+                animation="slide"
+                enableAutoPlay={false}
+                prevButton={
+                  <IconButton>
+                    <NavigateBeforeIcon />
+                  </IconButton>
+                }
+                nextButton={
+                  <IconButton>
+                    <NavigateNextIcon />
+                  </IconButton>
+                }
+                sx={{
+                  maxWidth: 600,
+                  margin: 'auto',
+                  '.MuiPaper-root': {
+                    width: 'calc(100% / 3)', 
+                    padding: '8px',
+                    boxSizing: 'border-box',
+                    display: 'inline-block',
+                    textAlign: 'center',
+                    verticalAlign: 'top',
+                  },
+                }}
+              >
+                {newestBooks.map((book, index) => (
+                  <Paper key={index}>
+                    <img
+                      src={book.volumeInfo.imageLinks.thumbnail}
+                      alt={`Image ${index + 1}`}
+                      style={{ width: '100%' }}
+                    />
+                    <h2>{book.volumeInfo.title}</h2>
+                  </Paper>
+                ))}
+              </Carousel>
+            </Box>
           </Grid>
         </Grid>
       </Box>
