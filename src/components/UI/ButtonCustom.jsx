@@ -1,8 +1,12 @@
 import './Button.css';
+import ButtonStyle from './ButtonStyle.jsx';
 export default function ButtonCustom({ buttonName, id, ...props }) {
   return (
-    <button id={id} className="customButton" role="button">
+    <ButtonStyle id={id} role="button">
       {buttonName}
-    </button>
+    </ButtonStyle>
+    // <button id={id} className="customButton" role="button">
+    //   {buttonName}
+    // </button>
   );
 }

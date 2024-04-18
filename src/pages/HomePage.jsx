@@ -15,7 +15,7 @@ import { useEffect } from 'react';
 
 /* ------------------- section imports ------------------ */
 const bookSectionLeft = ['Children books', 'Thriller books', 'Pshsycolg'];
-const bookSectionRight = ['Children books', 'Thriller books', 'Pshsycolg'];
+const bookSectionRight = ['Fantasy books', 'Self help books', 'Fiction books'];
 
 const Item = styled(Paper)(() => ({
   backgroundColor: 'transparent',
@@ -29,36 +29,41 @@ export default function HomePage() {
   const popularBooks = useLoaderData();
 
   return (
-    <Box sx={{ flexGrow: 1, mt: '1rem', ml: '4rem', mr: '4rem' }}>
-      <Grid container spacing={2}>
-        {/* ------------------------ Left ------------------------*/}
-        <Grid item xs={4}>
-          {bookSectionLeft.map((section, index) => (
-            <Grid item xs={12} key={index}>
-              <Item>
-                <ButtonCustom buttonName={section} />
-              </Item>
-            </Grid>
-          ))}
+    <>
+      {/* --------------------- Top Section -------------------- */}
+      <Box sx={{ flexGrow: 1, mt: '1rem', ml: '4rem', mr: '4rem' }}>
+        <Grid container spacing={2}>
+          {/* ------------------------ Left ------------------------*/}
+          <Grid item xs={4}>
+            {bookSectionLeft.map((section, index) => (
+              <Grid item xs={12} key={index}>
+                <Item>
+                  <ButtonCustom buttonName={section} />
+                </Item>
+              </Grid>
+            ))}
+          </Grid>
+          {/* ------------------------ Middle ------------------------*/}
+          <Grid item xs={4}>
+            <Item>
+              <CarouselCustom items={popularBooks} />
+            </Item>
+          </Grid>
+          {/* ------------------------ Right ------------------------*/}
+          <Grid item xs={4}>
+            {bookSectionRight.map((section, index) => (
+              <Grid item xs={12} key={index}>
+                <Item>
+                  <ButtonCustom buttonName={section} />
+                </Item>
+              </Grid>
+            ))}
+          </Grid>
         </Grid>
-        {/* ------------------------ Middle ------------------------*/}
-        <Grid item xs={4}>
-          <Item>
-            <CarouselCustom items={popularBooks} />
-          </Item>
-        </Grid>
-        {/* ------------------------ Right ------------------------*/}
-        <Grid item xs={4}>
-          {bookSectionRight.map((section, index) => (
-            <Grid item xs={12} key={index}>
-              <Item>
-                <ButtonCustom buttonName={section} />
-              </Item>
-            </Grid>
-          ))}
-        </Grid>
-      </Grid>
-    </Box>
+      </Box>
+      {/* -------------- Recommendations  Section -------------- */}
+      <Box></Box>
+    </>
   );
 }
 
