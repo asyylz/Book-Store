@@ -1,6 +1,7 @@
 /* ------------------ react-router-dom-imports ------------------ */
 import { json, useLoaderData } from 'react-router-dom';
 import * as React from 'react';
+import Carousel from 'react-material-ui-carousel';
 
 /* ----------------- material ui imports ---------------- */
 import { styled } from '@mui/material/styles';
@@ -8,12 +9,16 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import ButtonCustom from '../components/UI/ButtonCustom';
-import CarouselCustom from '../components/UI/CarouselCustom';
+//import CarouselCustom from '../components/UI/CarouselCustom';
 
 /* -------------------- react imports ------------------- */
 import { useEffect } from 'react';
 
-/* ------------------- section imports ------------------ */
+/* --------------------- url imporst -------------------- */
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+const apiKey = import.meta.env.VITE_APP_apiKey;
+
+/* ------------------- section book imports ------------------ */
 const bookSection = [
   { id: 1, name: 'Children books' },
   { id: 2, name: 'Thriller books' },
@@ -32,7 +37,9 @@ const Item = styled(Paper)(() => ({
 }));
 
 export default function HomePage() {
-  const { recommendedBooks, popularBooks } = useLoaderData();
+  const { newestBooks, popularBooks } = useLoaderData();
+
+  console.log(newestBooks);
 
   return (
     <>
@@ -54,7 +61,17 @@ export default function HomePage() {
           {/* ------------------------ Middle ------------------------*/}
           <Grid item xs={4}>
             <Item>
-              <CarouselCustom items={popularBooks} />
+              <Carousel>
+                {popularBooks.map((book) => (
+                  <Item key={book.volumeInfo.title}>
+                    <img
+                      src={book.volumeInfo.imageLinks.thumbnail}
+                      alt={book.volumeInfo.title}
+                    />
+                    <h2>{book.volumeInfo.title}</h2>
+                  </Item>
+                ))}
+              </Carousel>
             </Item>
           </Grid>
           {/* ------------------------ Right ------------------------*/}
@@ -72,16 +89,34 @@ export default function HomePage() {
         </Grid>
       </Box>
       {/* -------------- Recommendations  Section -------------- */}
-      <Box></Box>
+      <Box sx={{ mt: '2rem' }}>
+        <Grid container spacing={2}>
+          <Grid xs={12} sx={{ textAlign: 'center' }}>
+            <h1>Discover Your Next Book...</h1>
+          </Grid>
+          <Grid item xs={12}>
+            <Carousel>
+              {newestBooks.map((book) => (
+                <Item key={book.volumeInfo.title}>
+                  <img
+                    src={book.volumeInfo.imageLinks.thumbnail}
+                    alt={book.volumeInfo.title}
+                  />
+                  <h2>{book.volumeInfo.title}</h2>
+                  <p>{book.volumeInfo.description}</p>
+                </Item>
+              ))}
+            </Carousel>
+          </Grid>
+        </Grid>
+      </Box>
     </>
   );
 }
 
 export async function loaderHomePageBooks() {
   async function fetchPopularBooks() {
-    const response = await fetch(
-      'https://www.googleapis.com/books/v1/volumes?q=react+subject'
-    );
+    const response = await fetch(`${BASE_URL}q=react+subject`);
     const resData = await response.json();
     if (!response.ok) {
       throw json(
@@ -92,10 +127,8 @@ export async function loaderHomePageBooks() {
     return resData.items;
   }
 
-  async function fetchRecommendedBooks() {
-    const response = await fetch(
-      'https://www.googleapis.com/books/v1/volumes?q=react+subject'
-    );
+  async function fetchNewestBooks() {
+    const response = await fetch(`${BASE_URL}q=orderBy=newest&${apiKey}`);
     const resData = await response.json();
     if (!response.ok) {
       throw json(
@@ -107,7 +140,7 @@ export async function loaderHomePageBooks() {
   }
 
   const popularBooks = await fetchPopularBooks();
-  const recommendedBooks = await fetchRecommendedBooks();
+  const newestBooks = await fetchNewestBooks();
 
-  return { recommendedBooks, popularBooks };
+  return { newestBooks, popularBooks };
 }
