@@ -6,7 +6,6 @@ const ColourSchema = [
   { name: 'blue', value: '#9ACDD9' },
   { name: 'purple', value: '#BE9BF3' },
   { name: 'green', value: '#AAF2A7' },
-
 ];
 
 const ButtonStyle = styled.button`
@@ -27,6 +26,7 @@ const ButtonStyle = styled.button`
   touch-action: manipulation;
   height: 60px;
   width: 100%;
+  margin-bottom: 1rem;
 
   &:after {
     content: '';

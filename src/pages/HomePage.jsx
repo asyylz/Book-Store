@@ -32,7 +32,7 @@ const Item = styled(Paper)(() => ({
 }));
 
 export default function HomePage() {
-  const popularBooks = useLoaderData();
+  const { recommendedBooks, popularBooks } = useLoaderData();
 
   return (
     <>
@@ -77,14 +77,37 @@ export default function HomePage() {
   );
 }
 
-export async function loaderPopularBooks() {
-  const response = await fetch(
-    'https://www.googleapis.com/books/v1/volumes?q=react+subject'
-  );
-  const resData = await response.json();
-  if (!response.ok) {
-    throw json({ message: 'Could not lood popular books...' }, { status: 500 });
+export async function loaderHomePageBooks() {
+  async function fetchPopularBooks() {
+    const response = await fetch(
+      'https://www.googleapis.com/books/v1/volumes?q=react+subject'
+    );
+    const resData = await response.json();
+    if (!response.ok) {
+      throw json(
+        { message: 'Could not load popular books...' },
+        { status: 500 }
+      );
+    }
+    return resData.items;
   }
-  const popularBooks = resData.items;
-  return popularBooks;
+
+  async function fetchRecommendedBooks() {
+    const response = await fetch(
+      'https://www.googleapis.com/books/v1/volumes?q=react+subject'
+    );
+    const resData = await response.json();
+    if (!response.ok) {
+      throw json(
+        { message: 'Could not load recommended books...' },
+        { status: 500 }
+      );
+    }
+    return resData.items;
+  }
+
+  const popularBooks = await fetchPopularBooks();
+  const recommendedBooks = await fetchRecommendedBooks();
+
+  return { recommendedBooks, popularBooks };
 }

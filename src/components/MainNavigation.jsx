@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { createTheme } from '@mui/material/styles';
 
 /* ------------------ component imports ----------------- */
 import AppBar from '@mui/material/AppBar';
