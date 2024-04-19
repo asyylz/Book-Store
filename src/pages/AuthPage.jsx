@@ -28,8 +28,8 @@ export default function AuthPage() {
   const isLogin = searchParams.get('mode') === 'login';
   const isSubmitting = navigation.state === 'submitting';
 
-  //   return <>{isLogin ? <LoginForm /> : <RegisterForm />}</>;
-  return <LoginForm />;
+    return <>{isLogin ? <LoginForm /> : <RegisterForm />}</>;
+  
 }
 
 export async function login(data) {

@@ -13,6 +13,28 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
+import { auth } from '../auth/firebase';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { toastSuccessNotify, toastErrorNotify } from '../helper/toastNotify';
+
+const register = async (email, password, displayName) => {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    await updateProfile(auth.currentUser, {
+      displayName: displayName,
+    });
+    //navigate('/');
+    toastSuccessNotify('Registered!');
+    console.log(userCredential);
+  } catch (error) {
+    console.log(error);
+    toastErrorNotify(error.message);
+  }
+};
 
 function Copyright(props) {
   return (
@@ -37,13 +59,15 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function RegisterForm() {
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const email = data.get('email');
+    const password = data.get('password');
+    const displayName = data.get('firstName');
+    register(email, password, displayName);
   };
 
   return (
@@ -66,9 +90,9 @@ export default function RegisterForm() {
           </Typography>
           <Box
             component="form"
-            method="post"
+            //method="post"
             noValidate
-            //onSubmit={handleSubmit}
+            onSubmit={handleSubmit}
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
