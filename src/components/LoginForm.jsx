@@ -12,8 +12,20 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
+import { Link, json, useNavigate,redirect} from 'react-router-dom';
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateProfile,
+} from 'firebase/auth';
+import { toastSuccessNotify, toastErrorNotify } from '../helper/toastNotify';
 
+import { auth } from '../auth/firebase';
 function Copyright(props) {
   return (
     <Typography
@@ -37,13 +49,31 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function LoginForm() {
+  const navigate = useNavigate();
+
+  const login = async (email, password) => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      console.log('User:', user);
+      toastSuccessNotify('Logged in!');
+      navigate('/');
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.error('Error:', errorMessage);
+      toastErrorNotify(errorMessage);
+    }
+  };
+  
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const email = data.get('email');
+    const password = data.get('password');
+    console.log(email, password);
+    login(email, password);
   };
 
   return (
@@ -123,9 +153,7 @@ export default function LoginForm() {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link  variant="body2">
-                    Forgot password?
-                  </Link>
+                  <Link variant="body2">Forgot password?</Link>
                 </Grid>
                 <Grid item>
                   <Link to="?mode=register" variant="body2">

@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Link } from'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -66,8 +66,9 @@ export default function RegisterForm() {
           </Typography>
           <Box
             component="form"
+            method="post"
             noValidate
-            onSubmit={handleSubmit}
+            //onSubmit={handleSubmit}
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
