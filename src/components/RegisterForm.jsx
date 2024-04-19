@@ -12,29 +12,10 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
-import { auth } from '../auth/firebase';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { toastSuccessNotify, toastErrorNotify } from '../helper/toastNotify';
-
-const register = async (email, password, displayName) => {
-  try {
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    await updateProfile(auth.currentUser, {
-      displayName: displayName,
-    });
-    //navigate('/');
-    toastSuccessNotify('Registered!');
-    console.log(userCredential);
-  } catch (error) {
-    console.log(error);
-    toastErrorNotify(error.message);
-  }
-};
+import { useAuthContext } from "../context/AuthContext";
 
 function Copyright(props) {
   return (
@@ -53,13 +34,13 @@ function Copyright(props) {
     </Typography>
   );
 }
-
-// TODO remove, this demo shouldn't need to reset the theme.
-
 const defaultTheme = createTheme();
 
-export default function RegisterForm() {
 
+  /* -------------------- REGISTER FORM ------------------- */
+export default function RegisterForm() {
+  const {register,signGoogleProvider} = useAuthContext();
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();

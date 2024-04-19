@@ -1,6 +1,6 @@
 import * as React from 'react';
 /* ---------------- react-router-imports ---------------- */
-import { useNavigation, Link } from 'react-router-dom';
+import { useNavigation, Link, useNavigate} from 'react-router-dom';
 /* ------------------ component imports from mui ----------------- */
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -37,6 +37,7 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Login'];
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navigate = useNavigate();
 
   const navigation = useNavigation();
 
@@ -149,7 +150,7 @@ function ResponsiveAppBar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                //onClick={handleCloseNavMenu}
+                onClick={() => navigate('/')}
                 sx={{ my: 2, color: ColourSchema.purpleDark, display: 'block' }}
               >
                 {page}
