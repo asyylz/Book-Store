@@ -30,7 +30,7 @@ const bookSection = [
   { id: 2, name: 'Thriller books' },
   { id: 3, name: 'Psychology books' },
   { id: 4, name: 'Fantasy books' },
-  { id: 5, name: 'Self help books' },
+  { id: 5, name: 'Self-Help books' },
   { id: 6, name: 'Fiction books' },
 ];
 
@@ -57,7 +57,12 @@ export default function HomePage() {
               .map((book) => (
                 <Grid item xs={12} key={book.id}>
                   <Item>
-                    <ButtonCustom buttonName={book.name} id={book.id} />
+                    <ButtonCustom
+                      buttonName={book.name}
+                      id={book.id}
+                      to={book.name}
+                      //to="books"
+                    />
                   </Item>
                 </Grid>
               ))}
@@ -85,7 +90,12 @@ export default function HomePage() {
               .map((book) => (
                 <Grid item xs={12} key={book.id}>
                   <Item>
-                    <ButtonCustom buttonName={book.name} id={book.id} />
+                    <ButtonCustom
+                      buttonName={book.name}
+                      id={book.id}
+                      //to={book.name}
+                      to="books"
+                    />
                   </Item>
                 </Grid>
               ))}
@@ -129,7 +139,7 @@ export default function HomePage() {
                   maxWidth: 600,
                   margin: 'auto',
                   '.MuiPaper-root': {
-                    width: 'calc(100% / 3)', 
+                    width: 'calc(100% / 3)',
                     padding: '8px',
                     boxSizing: 'border-box',
                     display: 'inline-block',

@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 
 
 const ButtonStyle = styled(Link)`
+.style{
   font-size: 16px;
   font-weight: 200;
   letter-spacing: 1px;
@@ -26,8 +27,8 @@ const ButtonStyle = styled(Link)`
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  height: 60px;
-  width: 100%;
+  height: 40px;
+  width: 80%;
   margin-bottom: 1rem;
 
   &:after {
@@ -50,6 +51,7 @@ const ButtonStyle = styled(Link)`
   @media (min-width: 768px) {
     padding: 13px 50px 13px;
   }
+}
 `;
 
 export default ButtonStyle;

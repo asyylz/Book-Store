@@ -7,7 +7,7 @@ import HomePage from '../pages/HomePage.jsx';
 import RootLayout from '../pages/RootLayout.jsx';
 
 /* ------------------- loader imports ------------------- */
-import BooksPage, { loaderBooks } from '../pages/Bookspage.jsx';
+import BooksPage, { loaderBooks } from '../pages/BooksPage.jsx';
 import { loaderHomePageBooks } from '../pages/HomePage.jsx';
 import AuthPage from '../pages/AuthPage.jsx';
 
