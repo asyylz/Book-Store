@@ -5,27 +5,15 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-//import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Link, json, useNavigate,redirect} from 'react-router-dom';
-import {
-  createUserWithEmailAndPassword,
-  GoogleAuthProvider,
-  onAuthStateChanged,
-  sendPasswordResetEmail,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-  signOut,
-  updateProfile,
-} from 'firebase/auth';
-import { toastSuccessNotify, toastErrorNotify } from '../helper/toastNotify';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../context/AuthContext';
 
-import { auth } from '../auth/firebase';
 function Copyright(props) {
   return (
     <Typography
@@ -50,22 +38,7 @@ const defaultTheme = createTheme();
 
 export default function LoginForm() {
   const navigate = useNavigate();
-
-  const login = async (email, password) => {
-    try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      console.log('User:', user);
-      toastSuccessNotify('Logged in!');
-      navigate('/');
-    } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.error('Error:', errorMessage);
-      toastErrorNotify(errorMessage);
-    }
-  };
-  
+  const { login } = useAuthContext();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -147,6 +120,7 @@ export default function LoginForm() {
                 type="submit"
                 fullWidth
                 variant="contained"
+                onClick={() => navigate('/')}
                 sx={{ mt: 3, mb: 2 }}
               >
                 Sign In

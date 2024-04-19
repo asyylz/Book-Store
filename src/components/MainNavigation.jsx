@@ -15,8 +15,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import AuthForm from './LoginForm';
-import LoginModalForm from './LoginForm';
+
 
 /* -------------------- Colour Schema -------------------- */
 const ColourSchema = {
@@ -37,9 +36,9 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Login'];
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
   const navigate = useNavigate();
 
-  const navigation = useNavigation();
 
   const handleUserMenuNavigate = (route) => {
     if (route === 'Login') {

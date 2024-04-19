@@ -5,17 +5,14 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-//import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Link, redirect, useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { toastSuccessNotify, toastErrorNotify } from '../helper/toastNotify';
-import { useAuthContext } from "../context/AuthContext";
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../context/AuthContext';
 
 function Copyright(props) {
   return (
@@ -36,11 +33,10 @@ function Copyright(props) {
 }
 const defaultTheme = createTheme();
 
-
-  /* -------------------- REGISTER FORM ------------------- */
+/* -------------------- REGISTER FORM ------------------- */
 export default function RegisterForm() {
-  const {register,signGoogleProvider} = useAuthContext();
   const navigate = useNavigate();
+  const { register, signGoogleProvider } = useAuthContext();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -132,6 +128,7 @@ export default function RegisterForm() {
               type="submit"
               fullWidth
               variant="contained"
+              onClick={() => navigate('/')}
               sx={{ mt: 3, mb: 2 }}
             >
               Sign Up

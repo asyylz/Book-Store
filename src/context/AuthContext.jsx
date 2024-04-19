@@ -1,4 +1,9 @@
 import {
+  toastErrorNotify,
+  toastSuccessNotify,
+  toastWarnNotify,
+} from '../helper/toastNotify';
+import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   onAuthStateChanged,
@@ -9,22 +14,18 @@ import {
   updateProfile,
 } from 'firebase/auth';
 import { createContext, useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { auth } from '../auth/firebase';
-import {
-  toastErrorNotify,
-  toastSuccessNotify,
-  toastWarnNotify,
-} from '../helpers/toastNotify';
+//import { useNavigate } from 'react-router-dom';
 
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
+
+  //const navigate = useNavigate();
+
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem('user')) || ''
   );
-
-  const navigate = useNavigate();
 
   /* ---------------------- register ---------------------- */
   const register = async (email, password, displayName) => {
@@ -37,7 +38,7 @@ const AuthContextProvider = ({ children }) => {
       await updateProfile(auth.currentUser, {
         displayName: displayName,
       });
-      navigate('/');
+      //navigate('/');
       toastSuccessNotify('Registered!');
       console.log(userCredential);
     } catch (error) {
@@ -49,7 +50,7 @@ const AuthContextProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate('/');
+      //navigate('/');
       toastSuccessNotify('Logged in!');
     } catch (error) {
       toastErrorNotify(error.message);
@@ -67,7 +68,7 @@ const AuthContextProvider = ({ children }) => {
     try {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
-      navigate('/');
+      //navigate('/');
       toastSuccessNotify('Logged in!');
     } catch (error) {
       console.log(error);
@@ -86,7 +87,6 @@ const AuthContextProvider = ({ children }) => {
       });
   };
 
-
   /* ----------------------user observer ---------------------- */
   const userObserver = () => {
     onAuthStateChanged(auth, (user) => {
@@ -98,7 +98,7 @@ const AuthContextProvider = ({ children }) => {
         localStorage.setItem(
           'user',
           JSON.stringify({ email, displayName, photoURL })
-        ); 
+        );
       } else {
         //User is signed out
         setCurrentUser(false);
@@ -127,7 +127,7 @@ const AuthContextProvider = ({ children }) => {
   );
 };
 
-// customHook
+//customHook;
 export const useAuthContext = () => {
   return useContext(AuthContext);
 };
