@@ -7,8 +7,10 @@ const ColourSchema = [
   { name: 'purple', value: '#BE9BF3' },
   { name: 'green', value: '#AAF2A7' },
 ];
+import { Link } from 'react-router-dom';
 
-const ButtonStyle = styled.button`
+
+const ButtonStyle = styled(Link)`
   font-size: 16px;
   font-weight: 200;
   letter-spacing: 1px;
