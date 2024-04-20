@@ -1,6 +1,6 @@
 import * as React from 'react';
 /* ---------------- react-router-imports ---------------- */
-import { useNavigation, Link, useNavigate} from 'react-router-dom';
+import { useNavigation, useNavigate, NavLink } from 'react-router-dom';
 /* ------------------ component imports from mui ----------------- */
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -15,7 +15,8 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-
+import Link from '@mui/material/Link';
+import { useAuthContext } from '../context/AuthContext';
 
 /* -------------------- Colour Schema -------------------- */
 const ColourSchema = {
@@ -31,20 +32,29 @@ const ColourSchema = {
 
 /* ---------------- MainNavigation Links ---------------- */
 const pages = ['Discover', 'Book Store', 'Offers'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Login'];
+const settings = ['Profile', 'Account', 'Dashboard'];
 
-function ResponsiveAppBar() {
+function MainNavigation() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
+  const { logout } = useAuthContext();
+
   const navigate = useNavigate();
 
+  const user = localStorage.getItem('user');
 
   const handleUserMenuNavigate = (route) => {
+    console.log(route);
     if (route === 'Login') {
-      return '/auth?mode=login';
+      return 'auth?mode=login';
     }
   };
+
+  function handleClick(status) {
+    if (status === 'logout') logout();
+    return;
+  }
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -181,14 +191,39 @@ function ResponsiveAppBar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Link to={handleUserMenuNavigate(setting)}>{setting}</Link>
+                  {/* Link did not work ASK */}
+                  <NavLink to={handleUserMenuNavigate(setting)}>
+                    {setting}
+                  </NavLink>
                 </MenuItem>
               ))}
             </Menu>
+            {/* <Link
+              sx={{
+                textDecoration: 'none',
+                ml: '1rem',
+                color: ColourSchema.purpleDark,
+                fontSize: '1.2rem',
+                fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+                cursor: 'pointer',
+              }}
+              to="logout"
+              onClick={handleNav}
+            >
+              {user ? 'Logout' : 'Login'}
+            </Link> */}
+            <NavLink
+              to={!user && 'auth?mode=login'}
+              onClick={() => handleClick(user ? 'logout' : 'login')}
+            >
+              <Button sx={{ color: ColourSchema.purpleDark }}>
+                {user ? 'Logout' : 'Login'}
+              </Button>
+            </NavLink>
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
   );
 }
-export default ResponsiveAppBar;
+export default MainNavigation;

@@ -20,7 +20,6 @@ import { auth } from '../auth/firebase';
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
-
   //const navigate = useNavigate();
 
   const [currentUser, setCurrentUser] = useState(
@@ -59,6 +58,7 @@ const AuthContextProvider = ({ children }) => {
 
   /* ----------------------- logout ----------------------- */
   const logout = () => {
+    console.log('clicked');
     signOut(auth);
     toastSuccessNotify('Logged out!');
   };
@@ -91,9 +91,7 @@ const AuthContextProvider = ({ children }) => {
   const userObserver = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user);
         const { email, displayName, photoURL } = user;
-        console.log(user.displayName);
         setCurrentUser({ email, displayName, photoURL });
         localStorage.setItem(
           'user',

@@ -30,7 +30,7 @@ export default function BookCard({ volumeInfo }) {
           <Typography variant="body2" color="text.secondary"></Typography>
         </CardContent>
         <CardMedia
-          sx={{ height: 350, objectFit: 'contain' }}
+          sx={{ height:350, objectFit: 'contain' }}
           component="img"
           image={volumeInfo.imageLinks?.thumbnail}
           title={volumeInfo.title}
