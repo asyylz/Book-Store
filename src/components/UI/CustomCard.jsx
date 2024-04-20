@@ -1,7 +1,8 @@
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import ShareIcon from '@mui/icons-material/Share';
 import CustomCardStyle from './CustomCardStyle';
-import { Box, Typography, Grid, Button } from '@mui/material';
+import { Box, Typography, Grid, Button, IconButton } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const shadow = {
@@ -14,7 +15,7 @@ const shadow = {
 export default function CustomCard({ volumeInfo }) {
   return (
     <Box
-      sx={{ border: '1px solid gray', borderRadius: '10px', height: '58vmin' }}
+      sx={{ border: '1px solid gray', borderRadius: '10px', height: '60vmin', display:'flex', flexDirection: 'column', justifyContent:'space-around'}}
     >
       <Typography
         variant="h4"
@@ -70,6 +71,9 @@ export default function CustomCard({ volumeInfo }) {
             <Button sx={shadow}>More Details</Button>{' '}
           </Link>
           <Button sx={shadow}>Add Favs</Button>
+          <IconButton aria-label="share">
+            <ShareIcon />
+          </IconButton>
         </Box>
       </Grid>
     </Box>
