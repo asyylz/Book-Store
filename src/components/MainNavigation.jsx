@@ -200,8 +200,8 @@ function MainNavigation() {
                   </NavLink>
                 </MenuItem>
               ))}
-            </Menu>
-            {/* <Link
+            </Menu>  
+            {/*ASK:path action logic did not work <Link
               sx={{
                 textDecoration: 'none',
                 ml: '1rem',

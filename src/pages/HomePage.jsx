@@ -18,7 +18,7 @@ import ButtonCustom from '../components/UI/ButtonCustom';
 //import CarouselCustom from '../components/UI/CarouselCustom';
 
 /* -------------------- react imports ------------------- */
-import { useEffect } from 'react';
+
 
 /* --------------------- url imporst -------------------- */
 const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -36,7 +36,7 @@ const bookSection = [
 
 const Item = styled(Paper)(() => ({
   backgroundColor: 'transparent',
-  border: '1px solid red',
+  //border: '1px solid red',
   boxShadow: 'none',
   padding: '10px',
   textAlign: 'center',
@@ -109,18 +109,6 @@ export default function HomePage() {
             <h1>Discover Your Next Book...</h1>
           </Grid>
           <Grid item xs={12}>
-            {/* <Carousel>
-              {newestBooks.map((book) => (
-                <Item key={book.volumeInfo.title}>
-                  <img
-                    src={book.volumeInfo.imageLinks.thumbnail}
-                    alt={book.volumeInfo.title}
-                  />
-                  <h2>{book.volumeInfo.title}</h2>
-                  <p>{book.volumeInfo.description}</p>
-                </Item>
-              ))}
-            </Carousel> */}
             <Box sx={{ maxWidth: 600, margin: 'auto' }}>
               <Carousel
                 animation="slide"
