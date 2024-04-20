@@ -34,7 +34,7 @@ const ColourSchema = {
 
 /* ---------------- MainNavigation Links ---------------- */
 const pages = ['Discover', 'Book Store', 'Offers'];
-const settings = ['Profile', 'Account', 'Dashboard'];
+const settings = ['Account'];
 
 function MainNavigation() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -47,9 +47,12 @@ function MainNavigation() {
   const user = JSON.parse(localStorage.getItem('user'));
 
   const handleUserMenuNavigate = (route) => {
-    console.log(route);
+    const newRoute = route.toLowerCase();
+
     if (route === 'Login') {
-      return 'auth?mode=login';
+      return `auth?mode=${newRoute}`;
+    } else {
+      return newRoute;
     }
   };
 
@@ -135,7 +138,6 @@ function MainNavigation() {
                 </MenuItem>
               ))}
             </Menu>
-  
           </Box>
 
           {/* ------------------ For small screen ------------------ */}

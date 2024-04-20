@@ -19,6 +19,7 @@ import AuthPage from '../pages/AuthPage.jsx';
 /* ------------------- import actions ------------------- */
 //import { action as logoutAction } from '../pages/Logout.jsx';
 import { Home } from '@mui/icons-material';
+import UserPage from '../pages/UserPage.jsx';
 /* ----------------------- router ----------------------- */
 
 const router = createBrowserRouter([
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: 'logout',
         action: logoutAction,
+      },
+      {
+        path: 'account',
+        element: <UserPage />,
       },
     ],
   },
