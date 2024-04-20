@@ -15,8 +15,8 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import Link from '@mui/material/Link';
 import { useAuthContext } from '../context/AuthContext';
+import SearchInput from './UI/SearchInput.jsx';
 
 /* -------------------- Colour Schema -------------------- */
 const ColourSchema = {
@@ -135,6 +135,7 @@ function MainNavigation() {
                 </MenuItem>
               ))}
             </Menu>
+  
           </Box>
 
           {/* ------------------ For small screen ------------------ */}
@@ -168,6 +169,7 @@ function MainNavigation() {
               </Button>
             ))}
           </Box>
+          <SearchInput />
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
