@@ -5,14 +5,17 @@ import { Box, Typography, Grid, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const shadow = {
-  boxShadow:
-    'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px',
-    width:100,
+  boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px;',
+  width: 100,
+  marginTop: 1,
+  color: 'gray',
 };
 
 export default function CustomCard({ volumeInfo }) {
   return (
-    <Box sx={{ border: '1px solid gray', borderRadius: '10px' }}>
+    <Box
+      sx={{ border: '1px solid gray', borderRadius: '10px', height: '58vmin' }}
+    >
       <Typography
         variant="h4"
         sx={{
@@ -56,16 +59,17 @@ export default function CustomCard({ volumeInfo }) {
           mr: '10px',
         }}
       >
-        <Box>
-          <Typography>Title: {volumeInfo.title}</Typography>
+        <Box sx={{ mr: '20px' }}>
+          <Typography sx={{}}>Title: {volumeInfo.title}</Typography>
           <Typography>Publisher: {volumeInfo.publisher}</Typography>
           <Typography>Published Date: {volumeInfo.publishedDate}</Typography>
           <Typography>Page Count: {volumeInfo.pageCount}</Typography>
         </Box>
-        <Box>
+        <Box sx={{ display: 'flex', flexDirection: 'column', mr: '20px' }}>
           <Link>
-            <Button sx={shadow}>More Details</Button>
+            <Button sx={shadow}>More Details</Button>{' '}
           </Link>
+          <Button sx={shadow}>Add Favs</Button>
         </Box>
       </Grid>
     </Box>

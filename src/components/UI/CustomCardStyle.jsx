@@ -27,6 +27,7 @@ const CustomCardStyle = styled.div`
     border-radius: 10px;
     position: relative;
     overflow: hidden;
+    background-color: #F2F0EB;
   }
   .overlay {
     position: relative;
@@ -58,16 +59,17 @@ const CustomCardStyle = styled.div`
     top: 0;
     height: 90%;
     overflow-y: scroll;
+  
   }
   .icon {
     transition: 0.3s ease-in-out;
   }
 
   .wrap:hover .overlay {
-    transform: translateX(-40vmin);
+    transform: translateX(-30vmin);
   }
   .wrap:hover .icon {
-    transform: translateX(-40vmin);
+    transform: translateX(-30vmin);
   }
 `;
 export default CustomCardStyle;
