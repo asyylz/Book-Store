@@ -4,8 +4,6 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import EditIcon from '@mui/icons-material/Edit';
 export default function BookCard({ volumeInfo }) {
 
 
@@ -49,8 +47,6 @@ export default function BookCard({ volumeInfo }) {
             gap: 2,
           }}
         >
-          <EditIcon />
-          <DeleteOutlineIcon />
         </CardActions>
       </Card>
     </div>
