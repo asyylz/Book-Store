@@ -8,7 +8,7 @@ import CustomCard from './UI/CustomCard';
 
 export default function BookList({ searchedBooks, header }) {
   return (
-    <Box>
+    <Box sx={{mb:'2rem'}}>
       <Container
         fixed
         sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}

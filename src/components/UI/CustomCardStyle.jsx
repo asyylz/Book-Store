@@ -4,7 +4,7 @@ const CustomCardStyle = styled.div`
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-
+  font-family: 'Oswald', sans-serif;
   h3 {
     text-align: center;
     color: white;
@@ -20,7 +20,7 @@ const CustomCardStyle = styled.div`
     flex-wrap: nowrap;
     justify-content: space-between;
     width: 30vmin;
-    height: 40vmin;
+    height: 35vmin;
     margin: 10px auto;
     border: 1px solid gray;
     transition: 0.3s ease-in-out;
@@ -53,12 +53,10 @@ const CustomCardStyle = styled.div`
   }
 
   .text {
+    padding: 10px;
     position: absolute;
     top: 0;
-    left: 20px;
     height: 90%;
-    padding: 3vmin 4vmin;
-    background: #A3D9C;
     overflow-y: scroll;
   }
   .icon {
@@ -66,10 +64,10 @@ const CustomCardStyle = styled.div`
   }
 
   .wrap:hover .overlay {
-    transform: translateX(-30vmin);
+    transform: translateX(-40vmin);
   }
   .wrap:hover .icon {
-    transform: translateX(-30vmin);
+    transform: translateX(-40vmin);
   }
 `;
 export default CustomCardStyle;
