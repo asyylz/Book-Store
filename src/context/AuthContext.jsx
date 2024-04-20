@@ -58,7 +58,6 @@ const AuthContextProvider = ({ children }) => {
 
   /* ----------------------- logout ----------------------- */
   const logout = () => {
-    console.log('clicked');
     signOut(auth);
     toastSuccessNotify('Logged out!');
   };
