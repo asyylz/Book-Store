@@ -4,19 +4,21 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import BookCard from './BookCard';
 
-export default function BookList({ searchedBooks }) {
+export default function BookList({ searchedBooks, header }) {
   return (
     <Container>
       <Typography
         align="center"
         variant="h4"
         component="h1"
+        mt={'1rem'}
         color="secondary.second"
+        textTransform={'uppercase'}
       >
-        Fantasy Books
+        {`${header} Books`}
       </Typography>
-      <Button variant="contained">New Firm</Button>
-      <Grid container spacing={2} mt={3}>
+      <Button variant="contained">Back to main page</Button>
+      <Grid container spacing={3} columnSpacing={20} mt={3}>
         {searchedBooks.map((book) => (
           <Grid item xs={12} md={6} lg={4} xl={3} key={book.id}>
             <BookCard {...book} />

@@ -4,20 +4,20 @@ const apiKey = import.meta.env.VITE_APP_apiKeyGoogle;
 import BookList from '../components/BooksList';
 import { useSearchParams, useNavigation } from 'react-router-dom';
 export default function BooksPage() {
-  const { items } = useLoaderData();
-  return <BookList searchedBooks={items} />;
+  const { items, header } = useLoaderData();
+  return <BookList searchedBooks={items} header={header} />;
 }
 
 export async function loaderBooks(request) {
   const category = request.request.url.split('=');
-  //console.log(category)
+  console.log(category);
+  const header = category[1]
 
-  //const response = await fetch(`${BASE_URL}q=fantasy+terms`);
   const response = await fetch(`${BASE_URL}q=${category[1]}`);
   const resData = await response.json();
   if (!response.ok) {
     throw json({ message: 'Could not load books...' }, { status: 500 });
   }
   console.log(resData.items);
-  return resData;
+  return { items: resData.items, header };
 }

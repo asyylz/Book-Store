@@ -93,8 +93,8 @@ export default function HomePage() {
                     <ButtonCustom
                       buttonName={book.name}
                       id={book.id}
-                      //to={book.name}
-                      to="books"
+                      to={book.name}
+                      //to="books"
                     />
                   </Item>
                 </Grid>

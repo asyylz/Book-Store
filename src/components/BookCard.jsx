@@ -6,12 +6,21 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditIcon from '@mui/icons-material/Edit';
-export default function BookCard({}) {
+export default function BookCard({ volumeInfo }) {
+
+
+  const thumbnailChecker = (thumbnail) => {
+    if (!thumbnail) {
+      return <div>No thumbnail available</div>;
+    }
+  };
+
   return (
     <div>
       <Card
         sx={{
-          height: 390,
+          height: 500,
+          width:300,
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
@@ -23,15 +32,16 @@ export default function BookCard({}) {
           <Typography variant="body2" color="text.secondary"></Typography>
         </CardContent>
         <CardMedia
-          sx={{ height: 140, objectFit: 'contain' }}
+          sx={{ height: 350, objectFit: 'contain' }}
           component="img"
-          //image={image}
-          //title={name}
+          image={volumeInfo.imageLinks?.thumbnail}
+          title={volumeInfo.title}
         />
         <CardContent>
-          <Typography variant="body2" color="text.secondary"></Typography>
+          <Typography variant="body2" color="text.secondary">
+            {volumeInfo.authors}
+          </Typography>
         </CardContent>
-
         <CardActions
           sx={{
             justifyContent: 'center',
