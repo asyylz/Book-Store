@@ -5,8 +5,7 @@ const CustomCardStyle = styled.div`
   margin: 0;
   box-sizing: border-box;
 
-  h1 {
-    font-size: 5.25vmin;
+  h3 {
     text-align: center;
     color: white;
   }
@@ -24,7 +23,7 @@ const CustomCardStyle = styled.div`
     width: 35vmin;
     height: 45vmin;
     margin: 2rem auto;
-    border: 8px solid #8767BA;
+    border: 8px solid #8767ba;
     transition: 0.3s ease-in-out;
     position: relative;
     overflow: hidden;
@@ -46,14 +45,19 @@ const CustomCardStyle = styled.div`
     width: 15vmin;
     height: 100%;
     padding: 0.5rem 0 0 0.5rem;
-    border: 3px solid #F2BBD9;
+    border: 3px solid #f2bbd9;
     transition: 0.3s ease-in-out 0.2s;
     z-index: 1;
   }
+
+  .image-wrapper {
+    padding: 10px;
+    flexgrow: 1;
+  }
   .image-content {
     ${'' /* position: absolute; */}
-    width: 80%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
     padding: 1rem;
     background-image: ${({ coverImage }) => {
       console.log(coverImage);
@@ -62,55 +66,39 @@ const CustomCardStyle = styled.div`
     background-size: cover;
     transition: 0.3s ease-in-out;
   }
-  .dots {
-    position: absolute;
-    bottom: 1rem;
-    right: 2rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    width: 55px;
-    height: 4vmin;
-    transition: 0.3s ease-in-out 0.3s;
-  }
-  .dot {
-    width: 14px;
-    height: 14px;
-    background: yellow;
-    border: 1px solid indigo;
-    border-radius: 50%;
-    transition: 0.3s ease-in-out 0.3s;
-  }
 
   .text {
     position: absolute;
     top: 0;
-    right: 0;
+    left: 20px;
     ${'' /* width: 60vmin; */}
     height: 90%;
     padding: 3vmin 4vmin;
-    background: #F2BBD9;
+    background: #f2bbd9;
     overflow-y: scroll;
   }
 
   .wrap:hover .overlay {
-    transform: translateX(-60vmin);
+    transform: translateX(-30vmin);
   }
-  ${'' /* .wrap:hover .image-content {
+  ${
+    '' /* .wrap:hover .image-content {
     width: 30vmin;
-  } */}
-  ${'' /* .wrap:hover .overlay-content {
+  } */
+  }
+  ${
+    '' /* .wrap:hover .overlay-content {
     border: none;
     transition-delay: 0.2s;
     transform: translateX(60vmin);
-  } */}
-  .wrap:hover .dots {
+  } */
+  }
+  ${'' /* .wrap:hover .dots {
     transform: translateX(1rem);
   }
   .wrap:hover .dots .dot {
     background: white;
-  }
+  } */}
 
   /* Animations and timing delays */
   .animate {
@@ -192,7 +180,7 @@ const CustomCardStyle = styled.div`
   .delay-5 {
     animation-delay: 1.5s;
   }
-  .delay-6 {
+  ${'' /* .delay-6 {
     animation-delay: 1.8s;
   }
   .delay-7 {
@@ -200,6 +188,6 @@ const CustomCardStyle = styled.div`
   }
   .delay-8 {
     animation-delay: 2.4s;
-  }
+  } */}
 `;
 export default CustomCardStyle;

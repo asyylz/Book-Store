@@ -15,17 +15,13 @@ export default function CustomCard({ volumeInfo }) {
               Author: <em>{volumeInfo.authors}</em>
             </p>
           </div>
-          <div className="image-content animate slide delay-5"></div>
-          <div className="dots animate">
-            <div className="dot animate slide-up delay-6"></div>
-            <div className="dot animate slide-up delay-7"></div>
-            <div className="dot animate slide-up delay-8"></div>
+          <div className='image-wrapper'>
+            <div className="image-content animate slide delay-5"></div>
           </div>
+
         </div>
         <div className="text">
-          <p>
-            {volumeInfo.description}
-          </p>
+          <p>{volumeInfo.description}</p>
         </div>
       </div>
     </CustomCardStyle>
