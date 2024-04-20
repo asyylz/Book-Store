@@ -31,6 +31,7 @@ const CustomCardStyle = styled.div`
   .overlay {
     position: relative;
     display: flex;
+    flex-direction:column;
     width: 100%;
     height: 100%;
     padding: 1rem 0.75rem;
@@ -38,27 +39,11 @@ const CustomCardStyle = styled.div`
     transition: 0.4s ease-in-out;
     z-index: 1;
   }
-  .overlay-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 15vmin;
-    height: 100%;
-    padding: 0.5rem 0 0 0.5rem;
-    border: 3px solid #f2bbd9;
-    transition: 0.3s ease-in-out 0.2s;
-    z-index: 1;
-  }
 
-  .image-wrapper {
-    padding: 10px;
-    flexgrow: 1;
-  }
   .image-content {
-    ${'' /* position: absolute; */}
-    width: 100%;
-    height: 100%;
-    padding: 1rem;
+    position: absolute;
+    width: 80%;
+    height: 80%;
     background-image: ${({ coverImage }) => {
       console.log(coverImage);
       return coverImage ? `url(${coverImage})` : 'none';
@@ -71,7 +56,7 @@ const CustomCardStyle = styled.div`
     position: absolute;
     top: 0;
     left: 20px;
-    ${'' /* width: 60vmin; */}
+
     height: 90%;
     padding: 3vmin 4vmin;
     background: #f2bbd9;
@@ -81,25 +66,6 @@ const CustomCardStyle = styled.div`
   .wrap:hover .overlay {
     transform: translateX(-30vmin);
   }
-  ${
-    '' /* .wrap:hover .image-content {
-    width: 30vmin;
-  } */
-  }
-  ${
-    '' /* .wrap:hover .overlay-content {
-    border: none;
-    transition-delay: 0.2s;
-    transform: translateX(60vmin);
-  } */
-  }
-  ${'' /* .wrap:hover .dots {
-    transform: translateX(1rem);
-  }
-  .wrap:hover .dots .dot {
-    background: white;
-  } */}
-
   /* Animations and timing delays */
   .animate {
     animation-duration: 0.7s;
