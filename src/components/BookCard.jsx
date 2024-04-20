@@ -4,14 +4,9 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 export default function BookCard({ volumeInfo }) {
-
-
-  const thumbnailChecker = (thumbnail) => {
-    if (!thumbnail) {
-      return <div>No thumbnail available</div>;
-    }
-  };
 
   return (
     <div>

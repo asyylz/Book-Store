@@ -15,10 +15,10 @@ import Box from '@mui/material/Box';
 //import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import ButtonCustom from '../components/UI/ButtonCustom';
+import CustomCard from '../components/UI/CustomCard';
 //import CarouselCustom from '../components/UI/CarouselCustom';
 
 /* -------------------- react imports ------------------- */
-
 
 /* --------------------- url imporst -------------------- */
 const BASE_URL = import.meta.env.VITE_BASE_URL;
