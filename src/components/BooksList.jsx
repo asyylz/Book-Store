@@ -8,7 +8,7 @@ import CustomCard from './UI/CustomCard';
 
 export default function BookList({ searchedBooks, header }) {
   return (
-    <Box sx={{mb:'2rem'}}>
+    <Box sx={{ mb: '2rem' }}>
       <Container
         fixed
         sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
@@ -25,7 +25,7 @@ export default function BookList({ searchedBooks, header }) {
             {`${header} Books`}
           </Typography>
           <Button
-            sx={{ backgroundColor: '#8767BA' }}
+            sx={{ backgroundColor: '#F2F0EB', color: 'gray' }}
             component="a"
             variant="contained"
             href="/"

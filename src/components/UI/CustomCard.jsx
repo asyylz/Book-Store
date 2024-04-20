@@ -45,7 +45,7 @@ export default function CustomCard({ volumeInfo }) {
               right: '10px',
               top: '10px',
               fontSize: '2.7rem',
-              color: '#F2B6C1',
+              color: '#7D898C',
             }}
           />
         </Box>

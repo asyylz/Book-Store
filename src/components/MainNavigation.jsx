@@ -28,6 +28,8 @@ const ColourSchema = {
   mint: '#A3D9C5',
   purpleDark: '#8767BA',
   purple: '#BE9BF3',
+  greenGray: '#7D898C',
+  beige: '#F2F0EB',
 };
 
 /* ---------------- MainNavigation Links ---------------- */
@@ -75,8 +77,8 @@ function MainNavigation() {
     <AppBar
       position="static"
       sx={{
-        backgroundColor: ColourSchema.pastelPink,
-        color: '#8767BA',
+        backgroundColor: ColourSchema.greenGray,
+        color: ColourSchema.beige,
       }}
     >
       <Container maxWidth="xl">
@@ -160,7 +162,7 @@ function MainNavigation() {
               <Button
                 key={page}
                 onClick={() => navigate('/')}
-                sx={{ my: 2, color: ColourSchema.purpleDark, display: 'block' }}
+                sx={{ my: 2, color: ColourSchema.beige, display: 'block' }}
               >
                 {page}
               </Button>
@@ -200,7 +202,7 @@ function MainNavigation() {
                   </NavLink>
                 </MenuItem>
               ))}
-            </Menu>  
+            </Menu>
             {/*ASK:path action logic did not work <Link
               sx={{
                 textDecoration: 'none',
@@ -219,7 +221,7 @@ function MainNavigation() {
               to={!user && 'auth?mode=login'}
               onClick={() => handleClick(user ? 'logout' : 'login')}
             >
-              <Button sx={{ color: ColourSchema.purpleDark }}>
+              <Button sx={{ color: ColourSchema.beige }}>
                 {user ? 'Logout' : 'Login'}
               </Button>
             </NavLink>
