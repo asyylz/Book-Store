@@ -52,7 +52,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function SearchInput() {
   const [searchValue, setSearchValue] = useState('');
   const navigate = useNavigate();
-  console.log(searchValue);
+  //console.log(searchValue);
 
   const handleInputChange = (event) => {
     setSearchValue(event.target.value);
