@@ -10,9 +10,7 @@ export default function BooksPage() {
 
 export async function loaderBooks(request) {
   const splitUrl = request.request.url.split('=');
-console.log(splitUrl)
   const category = splitUrl[1];
-  console.log(category)
 
   const response = await fetch(
     `${BASE_URL}q=${category}+subject&projection=full&key=${apiKey}`

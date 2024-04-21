@@ -5,8 +5,12 @@ import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
 import BookCard from './BookCard';
 import CustomCard from './UI/CustomCard';
+import { Link, useLoaderData } from 'react-router-dom';
 
 export default function BookList({ searchedBooks, header }) {
+  // we can also catch loader data here
+  //const { items: searchedBooks, header } = useLoaderData();
+
   return (
     <Box sx={{ mb: '2rem' }}>
       <Container
@@ -24,14 +28,15 @@ export default function BookList({ searchedBooks, header }) {
           >
             {`${header} Books`}
           </Typography>
-          <Button
-            sx={{ backgroundColor: '#F2F0EB', color: 'gray' }}
-            component="a"
-            variant="contained"
-            href="/"
-          >
-            Back to main page
-          </Button>
+          <Link to=".." relative="path">
+            <Button
+              sx={{ backgroundColor: '#F2F0EB', color: 'gray' }}
+              component="a"
+              variant="contained"
+            >
+              Back to Main Page
+            </Button>
+          </Link>
           <Grid container spacing={3} columnSpacing={3} mt={3} width="80vw">
             {searchedBooks.map((book) => (
               <Grid item xs={12} md={6} lg={5} xl={4} key={book.id}>

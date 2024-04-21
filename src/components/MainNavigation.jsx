@@ -17,6 +17,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useAuthContext } from '../context/AuthContext';
 import SearchInput from './UI/SearchInput.jsx';
+import classes from './MainNavigation.module.css';
 
 /* -------------------- Colour Schema -------------------- */
 const ColourSchema = {
@@ -162,13 +163,26 @@ function MainNavigation() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button
+              <NavLink
                 key={page}
-                onClick={() => navigate('/')}
-                sx={{ my: 2, color: ColourSchema.beige, display: 'block' }}
+                //onClick={() => navigate('/')}
+                to='/'
+                className={({ isActive }) =>{
+                //console.log(isActive)
+                  isActive ? classes.active : undefined
+                }}
+                end
               >
-                {page}
-              </Button>
+                <Button
+                  sx={{
+                    my: 2,
+                    color: ColourSchema.beige,
+                    display: 'block',
+                  }}
+                >
+                  {page}
+                </Button>
+              </NavLink>
             ))}
           </Box>
           <SearchInput />

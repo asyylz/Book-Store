@@ -12,10 +12,18 @@ const shadow = {
   color: 'gray',
 };
 
-export default function CustomCard({ volumeInfo }) {
+export default function CustomCard({ volumeInfo, id }) {
+ 
   return (
     <Box
-      sx={{ border: '1px solid gray', borderRadius: '10px', height: '60vmin', display:'flex', flexDirection: 'column', justifyContent:'space-around'}}
+      sx={{
+        border: '1px solid gray',
+        borderRadius: '10px',
+        height: '60vmin',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+      }}
     >
       <Typography
         variant="h4"
@@ -67,8 +75,8 @@ export default function CustomCard({ volumeInfo }) {
           <Typography>Page Count: {volumeInfo.pageCount}</Typography>
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column', mr: '20px' }}>
-          <Link>
-            <Button sx={shadow}>More Details</Button>{' '}
+          <Link to={`/books?category=/${id}`}>
+            <Button sx={shadow}>More Details</Button>
           </Link>
           <Button sx={shadow}>Add Favs</Button>
           <IconButton aria-label="share">
