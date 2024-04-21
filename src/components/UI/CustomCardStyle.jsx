@@ -46,7 +46,6 @@ const CustomCardStyle = styled.div`
     width: 80%;
     height: 80%;
     background-image: ${({ coverImage }) => {
-      console.log(coverImage);
       return coverImage ? `url(${coverImage})` : 'none';
     }};
     background-size: cover;

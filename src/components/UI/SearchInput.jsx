@@ -3,6 +3,9 @@ import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import { useState } from 'react';
+import ButtonCustom from './ButtonCustom';
+import { useNavigate } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -47,6 +50,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchInput() {
+  const [searchValue, setSearchValue] = useState('');
+  const navigate = useNavigate();
+  console.log(searchValue);
+
+  const handleInputChange = (event) => {
+    setSearchValue(event.target.value);
+    setTimeout(() => {
+      navigate(`books?category=${searchValue}`);
+    }, 1500);
+  };
   return (
     <Box sx={{ flexGrow: 1, mr: '1rem' }}>
       <Search>
@@ -56,6 +69,8 @@ export default function SearchInput() {
         <StyledInputBase
           placeholder="Search…"
           inputProps={{ 'aria-label': 'search' }}
+          value={searchValue}
+          onChange={handleInputChange}
         />
       </Search>
     </Box>
