@@ -14,7 +14,7 @@ export async function loaderBooks(request) {
   const category = splitUrl[1];
 
   const response = await fetch(
-    `${BASE_URL}q=${category}+subject&projection=full&key=${apiKey}`
+    `${BASE_URL}?q=${category}+subject&projection=full&key=${apiKey}`
   );
   // ASK loader function allows  not to manually extract the resposne
   const resData = await response.json();

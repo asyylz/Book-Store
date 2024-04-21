@@ -19,9 +19,7 @@ export default function BookDetailsPage() {
 export async function loaderBook({ request, params }) {
   const id = params.id;
   console.log(id);
-  const response = await fetch(
-    `https://www.googleapis.com/books/v1/volumes/${id}`
-  );
+  const response = await fetch(`${BASE_URL}/${id}`);
   // ASK loader function allows  not to manually extract the resposne
   const resData = await response.json();
   console.log(resData);

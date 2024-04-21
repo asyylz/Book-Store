@@ -157,7 +157,7 @@ export default function HomePage() {
 
 export async function loaderHomePageBooks() {
   async function fetchPopularBooks() {
-    const response = await fetch(`${BASE_URL}q=react+subject`);
+    const response = await fetch(`${BASE_URL}?q=react+subject`);
     const resData = await response.json();
     if (!response.ok) {
       throw json(
@@ -169,7 +169,7 @@ export async function loaderHomePageBooks() {
   }
 
   async function fetchNewestBooks() {
-    const response = await fetch(`${BASE_URL}q=orderBy=newest&${apiKey}`);
+    const response = await fetch(`${BASE_URL}?q=orderBy=newest&${apiKey}`);
     const resData = await response.json();
     if (!response.ok) {
       throw json(
