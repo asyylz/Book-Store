@@ -13,7 +13,6 @@ const shadow = {
 };
 
 export default function CustomCard({ volumeInfo, id }) {
- 
   return (
     <Box
       sx={{
@@ -75,7 +74,7 @@ export default function CustomCard({ volumeInfo, id }) {
           <Typography>Page Count: {volumeInfo.pageCount}</Typography>
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column', mr: '20px' }}>
-          <Link to={`/books?category=/${id}`}>
+          <Link to={id}>
             <Button sx={shadow}>More Details</Button>
           </Link>
           <Button sx={shadow}>Add Favs</Button>

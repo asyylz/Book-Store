@@ -31,7 +31,6 @@ export default function BookList({ searchedBooks, header }) {
           <Link to=".." relative="path">
             <Button
               sx={{ backgroundColor: '#F2F0EB', color: 'gray' }}
-              component="a"
               variant="contained"
             >
               Back to Main Page

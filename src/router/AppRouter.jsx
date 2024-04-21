@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 
 /* --------------------- Route Pages -------------------- */
-
+import BooksRootLayout from '../pages/BooksRootLayout.jsx';
 import HomePage from '../pages/HomePage.jsx';
 import RootLayout from '../pages/RootLayout.jsx';
 import ErrorPage from '../pages/ErrorPage.jsx';
@@ -28,20 +28,26 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
-    errorElement:<ErrorPage />,
+    errorElement: <ErrorPage />,
     id: root,
 
     children: [
       { index: true, element: <HomePage />, loader: loaderHomePageBooks },
       {
         path: 'books',
-        element: <BooksPage />,
-        loader: loaderBooks,
-      },
-      {
-        path: 'books/:bookId',
-        element: <BookDetailsPage />,
-        //loader: loaderBook,
+        element: <BooksRootLayout />,
+        children: [
+          {
+            index: true,
+            element: <BooksPage />,
+            loader: loaderBooks,
+          },
+          {
+            path: ':id',
+            element: <BookDetailsPage />,
+            loader: loaderBook,
+          },
+        ],
       },
       {
         path: 'auth',
