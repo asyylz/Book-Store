@@ -10,6 +10,7 @@ import {
 
 import HomePage from '../pages/HomePage.jsx';
 import RootLayout from '../pages/RootLayout.jsx';
+import ErrorPage from '../pages/ErrorPage.jsx';
 import { action as logoutAction } from '../pages/Logout.jsx';
 /* ------------------- loader imports ------------------- */
 import BooksPage, { loaderBooks } from '../pages/BooksPage.jsx';
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
+    errorElement:<ErrorPage />,
     id: root,
 
     children: [
