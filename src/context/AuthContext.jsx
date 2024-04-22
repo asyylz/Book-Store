@@ -25,6 +25,7 @@ const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem('user')) || ''
   );
+  console.log(currentUser);
 
   /* ---------------------- register ---------------------- */
   const register = async (email, password, displayName) => {
@@ -34,12 +35,14 @@ const AuthContextProvider = ({ children }) => {
         email,
         password
       );
+      console.log(auth.currentUser);
       await updateProfile(auth.currentUser, {
         displayName: displayName,
       });
+
       //navigate('/');
       toastSuccessNotify('Registered!');
-      console.log(userCredential);
+      //console.log(userCredential.user);
     } catch (error) {
       console.log(error);
       toastErrorNotify(error.message);
@@ -89,12 +92,14 @@ const AuthContextProvider = ({ children }) => {
   /* ----------------------user observer ---------------------- */
   const userObserver = () => {
     onAuthStateChanged(auth, (user) => {
+      console.log(user);
       if (user) {
-        const { email, displayName, photoURL } = user;
-        setCurrentUser({ email, displayName, photoURL });
+        const { email, displayName, photoURL, uid } = user;
+        console.log('clicked');
+        setCurrentUser({ email, displayName, photoURL, uid });
         localStorage.setItem(
           'user',
-          JSON.stringify({ email, displayName, photoURL })
+          JSON.stringify({ email, displayName, photoURL, uid })
         );
       } else {
         //User is signed out
@@ -107,6 +112,18 @@ const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     userObserver(); // triggering userObserverı for user's sign in and out
   }, []);
+
+  // useEffect(async () => {
+  //   const response = await fetch(
+  //     'https://book-store-420619-default-rtdb.firebaseio.com/users.json',
+  //     {
+  //       method: 'POST',
+  //       body: JSON.stringify({
+
+  //       }),
+  //     }
+  //   );
+  // });
 
   return (
     <AuthContext.Provider

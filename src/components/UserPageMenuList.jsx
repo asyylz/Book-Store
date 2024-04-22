@@ -65,7 +65,6 @@ const selectedStyle = {
 const UserPageMenuList = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  console.log(pathname);
   return (
     <div>
       <Toolbar />
