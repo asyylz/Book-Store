@@ -15,21 +15,15 @@ const shadow = {
 };
 
 export default function CustomCard({ volumeInfo, id }) {
-  // const [userProfile, setUserProfile] = useState(
-  //   JSON.parse(localStorage.getItem('user')) || ''
-  // );
-
-
 
   function handleFavClick() {
-    // const isAlreadyFavorite = userProfile.favBooks.some(
-    //   (book) => book.id === id
-    // );
-    const isAlreadyFavorite = false;
+    const isAlreadyFavorite = userProfile.favBooks.some(
+      (book) => book.id === id
+    );
 
     if (!isAlreadyFavorite) {
       //const updatedFavBooks = [...userProfile.favBooks, favBook];
-      sendUser({ ...userProfile, favBooks: { volumeInfo, id } });
+      //sendUser({ ...userProfile, favBooks: { volumeInfo, id } });
     } else {
       // Optionally handle the case where the book is already a favorite
       console.log('This book is already in your favorites.');

@@ -7,9 +7,9 @@ import {
 } from 'react-router-dom';
 
 /* --------------------- Route Pages -------------------- */
-import BooksRootLayout from '../pages/BooksRootLayout.jsx';
+import BooksRootLayout from '../layouts/BooksRootLayout.jsx';
 import HomePage from '../pages/HomePage.jsx';
-import RootLayout from '../pages/RootLayout.jsx';
+import RootLayout from '../layouts/RootLayout.jsx';
 import ErrorPage from '../pages/ErrorPage.jsx';
 import { action as logoutAction } from '../pages/Logout.jsx';
 /* ------------------- loader imports ------------------- */
@@ -20,8 +20,12 @@ import { loaderBook } from '../pages/BookDetailsPage.jsx';
 
 /* ------------------- import actions ------------------- */
 //import { action as logoutAction } from '../pages/Logout.jsx';
-import UserPage from '../pages/UserPage.jsx';
+import UserPage from '../components/UserPageNavigation.jsx';
 import BookDetailsPage from '../pages/BookDetailsPage.jsx';
+import DashBoard from '../pages/UserPages/DashBoard.jsx';
+import FavBooksPage from '../pages/UserPages/FavBooksPage.jsx';
+import ReadingNowPage from '../pages/UserPages/ReadingNowPage.jsx';
+import UserPageLayout from '../layouts/UserPageLayout.jsx';
 /* ----------------------- router ----------------------- */
 
 const router = createBrowserRouter([
@@ -49,6 +53,25 @@ const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: 'user',
+        element: <UserPageLayout />,
+        children: [
+          {
+            index: true,
+            element: <DashBoard />,
+          },
+          {
+            path: 'favs',
+            element: <FavBooksPage />,
+          },
+          {
+            path: 'readingNow',
+            element: <ReadingNowPage />,
+          },
+        ],
+      },
+
       {
         path: 'auth',
         element: <AuthPage />,
