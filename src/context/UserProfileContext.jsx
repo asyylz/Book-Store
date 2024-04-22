@@ -15,7 +15,7 @@ const UserProfileContextProvider = ({ children }) => {
     }
   };
 
-  const fetchUsers = async () => {
+  const fetchUser = async () => {
     try {
       const response = await fetch(`${BASE_DB_URL}/users/-Nw6WlG9znx7xHQ1H1gF`);
       const resData = await response.json();
@@ -30,7 +30,7 @@ const UserProfileContextProvider = ({ children }) => {
     <UserProfileContext.Provider
       value={{
         createUserInDB,
-        fetchUsers
+        fetchUser,
       }}
     >
       {children}

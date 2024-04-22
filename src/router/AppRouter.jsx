@@ -34,7 +34,6 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <ErrorPage />,
     id: root,
-
     children: [
       { index: true, element: <HomePage />, loader: loaderHomePageBooks },
       {
@@ -54,7 +53,7 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: 'user',
+        path: 'account',
         element: <UserPageLayout />,
         children: [
           {
@@ -80,10 +79,6 @@ const router = createBrowserRouter([
       {
         path: 'logout',
         action: logoutAction,
-      },
-      {
-        path: 'account',
-        element: <UserPage />,
       },
     ],
   },
