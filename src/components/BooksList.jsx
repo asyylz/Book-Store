@@ -7,7 +7,10 @@ import BookCard from './BookCard';
 import CustomCard from './UI/CustomCard';
 import { Link, useLoaderData } from 'react-router-dom';
 
+
 export default function BookList({ searchedBooks, header }) {
+console.log(searchedBooks)
+ 
   // we can also catch loader data here
   //const { items: searchedBooks, header } = useLoaderData();
 

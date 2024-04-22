@@ -15,12 +15,13 @@ import {
 } from 'firebase/auth';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { auth } from '../auth/firebase';
-//import { useNavigate } from 'react-router-dom';
+import { useUserProfileContext } from './UserProfileContext';
+const BASE_DB_URL = import.meta.env.VITE_APP_databaseURL;
 
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
-  //const navigate = useNavigate();
+  const { createUserInDB } = useUserProfileContext();
 
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem('user')) || ''
@@ -35,14 +36,15 @@ const AuthContextProvider = ({ children }) => {
         email,
         password
       );
-      console.log(auth.currentUser);
+      const { user } = userCredential;
       await updateProfile(auth.currentUser, {
         displayName: displayName,
       });
 
       //navigate('/');
       toastSuccessNotify('Registered!');
-      //console.log(userCredential.user);
+      createUserInDB({ user, books: {} });
+  
     } catch (error) {
       console.log(error);
       toastErrorNotify(error.message);

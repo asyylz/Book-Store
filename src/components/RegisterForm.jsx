@@ -13,6 +13,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
+import { useUserProfileContext } from '../context/UserProfileContext';
+import { useState } from 'react';
 
 function Copyright(props) {
   return (
@@ -36,15 +38,18 @@ const defaultTheme = createTheme();
 /* -------------------- REGISTER FORM ------------------- */
 export default function RegisterForm() {
   const navigate = useNavigate();
-  const { register, signGoogleProvider } = useAuthContext();
+  const { register, signGoogleProvider, currentUser } = useAuthContext();
+  const { createUserInDB } = useUserProfileContext();
 
-  const handleSubmit = (event) => {
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get('email');
     const password = data.get('password');
     const displayName = data.get('firstName');
-    register(email, password, displayName);
+    await register(email, password, displayName);
+    //createUserInDB({ userProfile, books: {} });
   };
 
   return (

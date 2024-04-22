@@ -4,6 +4,8 @@ import ShareIcon from '@mui/icons-material/Share';
 import CustomCardStyle from './CustomCardStyle';
 import { Box, Typography, Grid, Button, IconButton } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { useUserProfileContext } from '../../context/UserProfileContext';
+import { useState } from 'react';
 
 const shadow = {
   boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px;',
@@ -13,6 +15,26 @@ const shadow = {
 };
 
 export default function CustomCard({ volumeInfo, id }) {
+  // const [userProfile, setUserProfile] = useState(
+  //   JSON.parse(localStorage.getItem('user')) || ''
+  // );
+
+
+
+  function handleFavClick() {
+    // const isAlreadyFavorite = userProfile.favBooks.some(
+    //   (book) => book.id === id
+    // );
+    const isAlreadyFavorite = false;
+
+    if (!isAlreadyFavorite) {
+      //const updatedFavBooks = [...userProfile.favBooks, favBook];
+      sendUser({ ...userProfile, favBooks: { volumeInfo, id } });
+    } else {
+      // Optionally handle the case where the book is already a favorite
+      console.log('This book is already in your favorites.');
+    }
+  }
   return (
     <Box
       sx={{
@@ -77,7 +99,9 @@ export default function CustomCard({ volumeInfo, id }) {
           <Link to={id}>
             <Button sx={shadow}>More Details</Button>
           </Link>
-          <Button sx={shadow}>Add Favs</Button>
+          <Button sx={shadow} onClick={handleFavClick}>
+            Add Favs
+          </Button>
           <IconButton aria-label="share">
             <ShareIcon />
           </IconButton>
