@@ -59,6 +59,7 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <DashBoard />,
+            //loader:loaderUser
           },
           {
             path: 'favs',

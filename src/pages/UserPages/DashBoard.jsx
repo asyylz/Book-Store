@@ -1,3 +1,4 @@
+import { Box, Button, Typography } from '@mui/material';
 import { useUserProfileContext } from '../../context/UserProfileContext';
 import { useLoaderData } from 'react-router-dom';
 
@@ -6,10 +7,10 @@ export default function DashBoard() {
   //const { items, header } = useLoaderData();
 
   return (
-    <div>
-      <h1>DashBoard</h1>
-      <button onClick={fetchUser}>Fetch Users</button>
-    </div>
+    <Box>
+      <Typography>DashBoard</Typography>
+      <Button>Fetch Users</Button>
+    </Box>
   );
 }
 
