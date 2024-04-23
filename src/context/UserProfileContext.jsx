@@ -1,26 +1,34 @@
 import { useState, createContext, useContext } from 'react';
-
-export const UserProfileContext = createContext();
+import { getDatabase, ref, set, onValue } from 'firebase/database';
 const BASE_DB_URL = import.meta.env.VITE_APP_databaseURL;
+export const UserProfileContext = createContext();
+
 const UserProfileContextProvider = ({ children }) => {
-  const createUserInDB = async (userProfile) => {
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  const createUserInDB = async (userId, name, email) => {
+    const db = getDatabase();
     try {
-      const response = await fetch(`${BASE_DB_URL}/users.json`, {
-        method: 'POST',
-        body: JSON.stringify(userProfile),
+      set(ref(db, 'users/' + userId), {
+        username: name,
+        email: email,
+        //profile_picture: imageUrl,
       });
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const fetchUser = async () => {
+  const fetchUserData = async (userId) => {
+    console.log('fetchuserdata:clicked');
     try {
-      const response = await fetch(`${BASE_DB_URL}/users/-Nw6WlG9znx7xHQ1H1gF`);
-      const resData = await response.json();
-      console.log(resData);
-      return resData;
+      const db = getDatabase();
+      const userRef = ref(db, `users/${userId}`);
+      onValue(userRef, (snapshot) => {
+        const data = snapshot.val();
+        //updateStarCount(postElement, data);
+      });
+      return data;
     } catch (error) {
       console.log(error);
     }
@@ -30,7 +38,7 @@ const UserProfileContextProvider = ({ children }) => {
     <UserProfileContext.Provider
       value={{
         createUserInDB,
-        fetchUser,
+        fetchUserData,
       }}
     >
       {children}

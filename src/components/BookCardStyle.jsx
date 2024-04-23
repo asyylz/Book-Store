@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-const CustomCardStyle = styled.div`
+const BookCardStyle = styled.div`
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -71,4 +71,4 @@ const CustomCardStyle = styled.div`
     transform: translateX(-30vmin);
   }
 `;
-export default CustomCardStyle;
+export default BookCardStyle;

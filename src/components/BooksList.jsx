@@ -3,14 +3,10 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
+import { Link } from 'react-router-dom';
 import BookCard from './BookCard';
-import CustomCard from './UI/CustomCard';
-import { Link, useLoaderData } from 'react-router-dom';
-
 
 export default function BookList({ searchedBooks, header }) {
-console.log(searchedBooks)
- 
   // we can also catch loader data here
   //const { items: searchedBooks, header } = useLoaderData();
 
@@ -42,8 +38,7 @@ console.log(searchedBooks)
           <Grid container spacing={3} columnSpacing={3} mt={3} width="80vw">
             {searchedBooks.map((book) => (
               <Grid item xs={12} md={6} lg={5} xl={4} key={book.id}>
-                {/* <BookCard {...book} /> */}
-                <CustomCard {...book} />
+                <BookCard {...book} />
               </Grid>
             ))}
           </Grid>

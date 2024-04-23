@@ -1,28 +1,39 @@
 import { Box, Button, Typography } from '@mui/material';
-import { useUserProfileContext } from '../../context/UserProfileContext';
 import { useLoaderData } from 'react-router-dom';
+import { getDatabase, ref, get, onValue } from 'firebase/database';
+
+const BASE_DB_URL = import.meta.env.VITE_APP_databaseURL;
 
 export default function DashBoard() {
-  const { fetchUser } = useUserProfileContext();
-  //const { items, header } = useLoaderData();
-
+  //const { fetchUser } = useUserProfileContext();
+  const { user } = useLoaderData();
+  console.log(user);
   return (
     <Box>
-      <Typography>DashBoard</Typography>
+      <Typography>{user.username}</Typography>
       <Button>Fetch Users</Button>
     </Box>
   );
 }
 
-export async function loaderUser(request) {
-  const splitUrl = request.request.url.split('=');
-  const category = splitUrl[1];
-
-  const response = await fetch(``);
-  // ASK loader function allows  not to manually extract the resposne
-  const resData = await response.json();
-  if (!response.ok) {
-    throw json({ message: 'Could not load books...' }, { status: 500 });
+export async function loaderUser({ _, params }) {
+  const userId = params.userId;
+  console.log(params.userId);
+  const db = getDatabase();
+  //const userRef = ref(db, 'users/-Nw6WlG9znx7xHQ1H1gF/user/providerData');
+  const userRef = ref(db, `users/${userId}`);
+  try {
+    const snapshot = await get(userRef);
+    if (snapshot.exists()) {
+      //console.log(snapshot.val());
+      const user = snapshot.val();
+      return { user };
+    } else {
+      console.log('No data available');
+      return {};
+    }
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to fetch user data');
   }
-  return { items: resData.items, header: category };
 }

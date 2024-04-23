@@ -17,6 +17,8 @@ import BooksPage, { loaderBooks } from '../pages/BooksPage.jsx';
 import { loaderHomePageBooks } from '../pages/HomePage.jsx';
 import AuthPage from '../pages/AuthPage.jsx';
 import { loaderBook } from '../pages/BookDetailsPage.jsx';
+import { loaderUser } from '../pages/UserPages/DashBoard.jsx';
+import { loaderFavBooks } from '../pages/UserPages/FavBooksPage.jsx';
 
 /* ------------------- import actions ------------------- */
 //import { action as logoutAction } from '../pages/Logout.jsx';
@@ -53,17 +55,18 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: 'account',
+        path: ':userId',
         element: <UserPageLayout />,
         children: [
           {
             index: true,
             element: <DashBoard />,
-            //loader:loaderUser
+            loader: loaderUser,
           },
           {
             path: 'favs',
             element: <FavBooksPage />,
+            loader: loaderFavBooks,
           },
           {
             path: 'readingNow',

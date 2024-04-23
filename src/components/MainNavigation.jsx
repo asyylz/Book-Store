@@ -52,6 +52,8 @@ function MainNavigation() {
 
     if (route === 'Login') {
       return `auth?mode=${newRoute}`;
+    } else if (route === 'Account') {
+      return `${user?.uid}`;
     } else {
       return newRoute;
     }
@@ -166,10 +168,10 @@ function MainNavigation() {
               <NavLink
                 key={page}
                 //onClick={() => navigate('/')}
-                to='/'
-                className={({ isActive }) =>{
-                //console.log(isActive)
-                  isActive ? classes.active : undefined
+                to="/"
+                className={({ isActive }) => {
+                  //console.log(isActive)
+                  isActive ? classes.active : undefined;
                 }}
                 end
               >

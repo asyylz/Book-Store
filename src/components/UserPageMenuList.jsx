@@ -6,39 +6,40 @@ import ListItemText from '@mui/material/ListItemText';
 import Toolbar from '@mui/material/Toolbar';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useUserProfileContext } from '../context/UserProfileContext';
 
 //const icon = (name) => `/assets/navbar/${name}.svg`;
 
 const links = [
   {
     title: 'Dashboard',
-    url: '/account',
+    url: '/',
     //icon: icon("ic_analytics"),
   },
   {
     title: 'Favorites',
-    url: '/account/favs',
+    url: 'favs',
     //icon: icon("purchase"),
   },
   {
     title: 'To Read',
     //icon: icon("sales"),
-    url: '/account/toread/',
+    url: 'toread',
   },
   {
     title: 'My e-books',
     //icon: icon("firms"),
-    url: '/account/my-e-book/',
+    url: 'my-e-book',
   },
   {
     title: 'Reading Now',
     //icon: icon("brand"),
-    url: '/account/readingNow/',
+    url: 'readingNow',
   },
   {
     title: 'Purchased',
     //icon: icon("ic_cart"),
-    url: '/account/purchased/',
+    url: 'purchased',
   },
 ];
 
@@ -65,6 +66,17 @@ const selectedStyle = {
 const UserPageMenuList = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  //const {userId} =useUserProfileContext()
+  const user = JSON.parse(localStorage.getItem('user')) || '';
+
+  function handleNavigate(route) {
+    if (route === '/') {
+      navigate(`${user.uid}`);
+    } else {
+      navigate(route);
+    }
+  }
+
   return (
     <div>
       <Toolbar />
@@ -72,7 +84,7 @@ const UserPageMenuList = () => {
         {links.map((item, index) => (
           <ListItem key={item.title} disablePadding>
             <ListItemButton
-              onClick={() => navigate(item.url)}
+              onClick={() => handleNavigate(item.url)}
               sx={pathname == item.url ? selectedStyle : iconStyle}
             >
               <Box

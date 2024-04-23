@@ -2,8 +2,6 @@
 import { json, useLoaderData } from 'react-router-dom';
 import * as React from 'react';
 import Carousel from 'react-material-ui-carousel';
-
-//import Carousel from '@mui/material/Carousel';
 import Paper from '@mui/material/Paper';
 import { IconButton } from '@mui/material';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
@@ -12,11 +10,8 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 /* ----------------- material ui imports ---------------- */
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-//import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import ButtonCustom from '../components/UI/ButtonCustom';
-import CustomCard from '../components/UI/CustomCard';
-//import CarouselCustom from '../components/UI/CarouselCustom';
 
 /* -------------------- react imports ------------------- */
 

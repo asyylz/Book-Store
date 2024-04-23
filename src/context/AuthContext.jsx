@@ -43,7 +43,7 @@ const AuthContextProvider = ({ children }) => {
 
       //navigate('/');
       toastSuccessNotify('Registered!');
-      createUserInDB({ user, books: {} });
+      createUserInDB(user.uid, displayName, email);
   
     } catch (error) {
       console.log(error);

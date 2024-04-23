@@ -1,49 +1,104 @@
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-export default function BookCard({ volumeInfo }) {
+import ShareIcon from '@mui/icons-material/Share';
+import BookCardStyle from './BookCardStyle';
+import { Box, Typography, Grid, Button, IconButton } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { useUserProfileContext } from '../context/UserProfileContext';
 
+const shadow = {
+  boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px;',
+  width: 100,
+  marginTop: 1,
+  color: 'gray',
+};
+
+export default function BookCard({ volumeInfo, id }) {
+  function handleFavClick() {
+    const isAlreadyFavorite = userProfile.favBooks.some(
+      (book) => book.id === id
+    );
+
+    if (!isAlreadyFavorite) {
+      //const updatedFavBooks = [...userProfile.favBooks, favBook];
+      //sendUser({ ...userProfile, favBooks: { volumeInfo, id } });
+    } else {
+      // Optionally handle the case where the book is already a favorite
+      console.log('This book is already in your favorites.');
+    }
+  }
   return (
-    <div>
-      <Card
+    <Box
+      sx={{
+        border: '1px solid gray',
+        borderRadius: '10px',
+        height: '60vmin',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+      }}
+    >
+      <Typography
+        variant="h4"
         sx={{
-          height: 500,
-          width:300,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          padding: '0.5rem',
+          textAlign: 'center',
+          mt: '10px',
+          fontFamily: 'Oswald',
+          fontWeight: '200',
         }}
       >
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div"></Typography>
-          <Typography variant="body2" color="text.secondary"></Typography>
-        </CardContent>
-        <CardMedia
-          sx={{ height:350, objectFit: 'contain' }}
-          component="img"
-          image={volumeInfo.imageLinks?.thumbnail}
-          title={volumeInfo.title}
-        />
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            {volumeInfo.authors}
-          </Typography>
-        </CardContent>
-        <CardActions
-          sx={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: 2,
-          }}
-        >
-        </CardActions>
-      </Card>
-    </div>
+        {volumeInfo.authors}
+      </Typography>
+      <BookCardStyle coverImage={volumeInfo.imageLinks?.thumbnail}>
+        <Box className="wrap">
+          <Box className="overlay">
+            <Box className="image-content"></Box>
+          </Box>
+          <Box className="text">
+            <p style={{ fontSize: '30px', fontWeight: '200' }}>
+              {volumeInfo.description}
+            </p>
+          </Box>
+          <FavoriteBorderIcon
+            className="icon"
+            sx={{
+              zIndex: '1',
+              position: 'absolute',
+              right: '10px',
+              top: '10px',
+              fontSize: '2.7rem',
+              color: '#7D898C',
+            }}
+          />
+        </Box>
+      </BookCardStyle>
+      <Grid
+        columnSpacing={4}
+        sx={{
+          ml: '10px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          mr: '10px',
+        }}
+      >
+        <Box sx={{ mr: '20px' }}>
+          <Typography sx={{}}>Title: {volumeInfo.title}</Typography>
+          <Typography>Publisher: {volumeInfo.publisher}</Typography>
+          <Typography>Published Date: {volumeInfo.publishedDate}</Typography>
+          <Typography>Page Count: {volumeInfo.pageCount}</Typography>
+        </Box>
+        <Box sx={{ display: 'flex', flexDirection: 'column', mr: '20px' }}>
+          <Link to={id}>
+            <Button sx={shadow}>More Details</Button>
+          </Link>
+          <Button sx={shadow} onClick={handleFavClick}>
+            Add Favs
+          </Button>
+          <IconButton aria-label="share">
+            <ShareIcon />
+          </IconButton>
+        </Box>
+      </Grid>
+    </Box>
   );
 }
