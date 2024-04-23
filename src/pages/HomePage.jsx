@@ -70,7 +70,10 @@ export default function HomePage() {
           </Grid>
           {/* ------------------------ Middle ------------------------*/}
           <Grid item xs={4}>
-            <Box sx={{ height: '300px' }}>
+            <Typography variant="h6" sx={{ textAlign: 'center' }}>
+              The Author of the week
+            </Typography>
+            <Box>
               <Carousel>
                 {popularBooks.map((book) => (
                   <Item key={book.volumeInfo.title}>
@@ -107,8 +110,8 @@ export default function HomePage() {
       <Box sx={{ mt: '2rem' }}>
         <Grid container spacing={2}>
           <Grid item xs={12} sx={{ textAlign: 'center' }}>
-            <Typography sx={{ fontFamily: 'Oswald',mt:'1rem' }} variant="h4">
-              Discover Your Next Book...
+            <Typography sx={{ fontFamily: 'Oswald', mt: '1rem' }} variant="h4">
+              Discover newest releases...
             </Typography>
           </Grid>
           <Grid item xs={12}>
@@ -123,7 +126,9 @@ export default function HomePage() {
 
 export async function loaderHomePageBooks() {
   async function fetchPopularBooks() {
-    const response = await fetch(`${BASE_URL}?q=react+subject`);
+    const response = await fetch(
+      `${BASE_URL}?q=inauthor:"Roald Dahl"&key=${apiKey}`
+    );
     const resData = await response.json();
     if (!response.ok) {
       throw json(
@@ -135,7 +140,9 @@ export async function loaderHomePageBooks() {
   }
 
   async function fetchNewestBooks() {
-    const response = await fetch(`${BASE_URL}?q=orderBy=newest&${apiKey}`);
+    const response = await fetch(
+      `${BASE_URL}?q=subject:fiction&orderBy=newest&key=${apiKey}`
+    );
     const resData = await response.json();
     if (!response.ok) {
       throw json(
