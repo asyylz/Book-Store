@@ -18,6 +18,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { useAuthContext } from '../context/AuthContext';
 import SearchInput from './UI/SearchInput.jsx';
 import classes from './MainNavigation.module.css';
+import { Link } from 'react-router-dom';
 
 /* -------------------- Colour Schema -------------------- */
 const ColourSchema = {
@@ -115,6 +116,7 @@ function MainNavigation() {
             >
               <MenuIcon />
             </IconButton>
+
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -133,15 +135,16 @@ function MainNavigation() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+              {' '}
+              {/* ------------------ For small screen ------------------ */}
+              {pages.map((page, index) => (
+                <MenuItem key={index} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
 
-          {/* ------------------ For small screen ------------------ */}
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
@@ -162,26 +165,9 @@ function MainNavigation() {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <NavLink
-                key={page}
-                //onClick={() => navigate('/')}
-                to="/"
-                className={({ isActive }) => {
-                  //console.log(isActive)
-                  isActive ? classes.active : undefined;
-                }}
-                end
-              >
-                <Button
-                  sx={{
-                    my: 2,
-                    color: ColourSchema.beige,
-                    display: 'block',
-                  }}
-                >
-                  {page}
-                </Button>
+            {pages.map((page, index) => (
+              <NavLink key={index} to="/" end>
+                <Button sx={{ color: ColourSchema.beige }}>{page}</Button>
               </NavLink>
             ))}
           </Box>

@@ -1,4 +1,3 @@
-import './Button.css';
 import ButtonStyle from './ButtonStyle.jsx';
 export default function ButtonCustom({ buttonName, id, to, ...props }) {
   if (!to) {
