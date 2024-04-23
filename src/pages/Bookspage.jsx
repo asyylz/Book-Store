@@ -9,6 +9,7 @@ const apiKey = import.meta.env.VITE_APP_apiKeyGoogle;
 
 export default function BooksPage() {
   const { items, header } = useLoaderData();
+  console.log(items)
   const { user } = useUserProfileContext();
   const [favBookIds, setFavBookIds] = useState([]);
 
@@ -38,7 +39,7 @@ export async function loaderBooks(request) {
   const category = splitUrl[1];
 
   const response = await fetch(
-    `${BASE_URL}?q=${category}+subject&projection=full&key=${apiKey}`
+    `${BASE_URL}?q=subject:${category}&projection=full&key=${apiKey}`
   );
   const resData = await response.json();
   if (!response.ok) {
