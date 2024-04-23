@@ -58,6 +58,21 @@ function SwiperCustom({ books }) {
                 {titleTrimmer(book.volumeInfo.title)}
               </Typography>
               <Typography
+                sx={{
+                  fontFamily: 'Oswald',
+                  textAlign: 'center',
+                  mt: '5px',
+                  color: '#0B2559',
+                  textDecoration: 'line-through',
+                }}
+              >
+                {book.saleInfo.retailPrice?.amount ? (
+                  `£${book.saleInfo.retailPrice?.amount}`
+                ) : (
+                  <br></br>
+                )}
+              </Typography>
+              <Typography
                 variant="h6"
                 sx={{
                   fontFamily: 'Oswald',
