@@ -1,5 +1,5 @@
 import { useState, createContext, useContext } from 'react';
-import { getDatabase, ref, set,get,onValue } from 'firebase/database';
+import { getDatabase, ref, set, get, onValue } from 'firebase/database';
 const BASE_DB_URL = import.meta.env.VITE_APP_databaseURL;
 export const UserProfileContext = createContext();
 
@@ -21,14 +21,14 @@ const UserProfileContextProvider = ({ children }) => {
 
   const fetchUserData = async (userId) => {
     console.log('fetchuserdata:clicked');
-console.log(userId)
+    //console.log(userId);
     const db = getDatabase();
     const userRef = ref(db, `users/${userId}`);
     try {
       const snapshot = await get(userRef);
       if (snapshot.exists()) {
         const user = snapshot.val();
-        return user
+        return user;
       } else {
         console.log('No data available');
         return {};
