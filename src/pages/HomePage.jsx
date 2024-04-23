@@ -4,8 +4,7 @@ import * as React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import Paper from '@mui/material/Paper';
 import { IconButton, Typography } from '@mui/material';
-import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import Footer from '../components/UI/Footer';
 
 /* ----------------- material ui imports ---------------- */
 import { styled } from '@mui/material/styles';
@@ -32,7 +31,6 @@ const bookSection = [
 
 const Item = styled(Paper)(() => ({
   backgroundColor: 'transparent',
-  //border: '1px solid red',
   boxShadow: 'none',
   padding: '10px',
   textAlign: 'center',
@@ -72,7 +70,7 @@ export default function HomePage() {
           </Grid>
           {/* ------------------------ Middle ------------------------*/}
           <Grid item xs={4}>
-            <Item>
+            <Box sx={{ height: '300px' }}>
               <Carousel>
                 {popularBooks.map((book) => (
                   <Item key={book.volumeInfo.title}>
@@ -84,7 +82,7 @@ export default function HomePage() {
                   </Item>
                 ))}
               </Carousel>
-            </Item>
+            </Box>
           </Grid>
           {/* ------------------------ Right ------------------------*/}
           <Grid item xs={4}>
@@ -116,6 +114,7 @@ export default function HomePage() {
           </Grid>
         </Grid>
       </Box>
+      <Footer />
     </>
   );
 }

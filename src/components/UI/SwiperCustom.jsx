@@ -12,10 +12,8 @@ function SwiperCustom({ books }) {
   return (
     <Box
       sx={{
-        border: '2px solid red',
         width: '98vw',
         height: '40vh',
-        border: '1px solid red',
         position: 'absolute',
         left: '1rem',
         display: 'flex',
