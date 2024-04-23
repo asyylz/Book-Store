@@ -73,7 +73,7 @@ export default function HomePage() {
             <Typography variant="h6" sx={{ textAlign: 'center' }}>
               The Author of the week
             </Typography>
-            <Box>
+            <Box sx={{height:'330px'}}>
               <Carousel>
                 {popularBooks.map((book) => (
                   <Item key={book.volumeInfo.title}>
