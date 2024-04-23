@@ -5,6 +5,7 @@ import BookCardStyle from './BookCardStyle';
 import { Box, Typography, Grid, Button, IconButton } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useUserProfileContext } from '../context/UserProfileContext';
+import { update, getDatabase, ref, get, set } from 'firebase/database';
 
 const shadow = {
   boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px;',
@@ -16,27 +17,46 @@ const shadow = {
 export default function BookCard({ volumeInfo, id }) {
   const { fetchUserData } = useUserProfileContext();
   const user = JSON.parse(localStorage.getItem('user'));
- 
-  async function  handleFavClick() {
-    const userData = await fetchUserData(user.uid); 
-    
 
+  async function handleFavClick() {
+    const db = getDatabase();
+    const userRef = ref(db, `users/${user.uid}`);
 
+    try {
+      const snapshot = await get(userRef);
+      if (snapshot.exists()) {
+        const userData = snapshot.val() || {};
+        let favBooks = userData.favBooks || [];
+        const isAlreadyFavorite = favBooks.some((book) => book.id === id);
+        console.log(isAlreadyFavorite)
 
-    // const isAlreadyFavorite = userProfile.favBooks.some(
-    //   (book) => book.id === id
-    // );
-
-    // if (!isAlreadyFavorite) {
-    //   //const updatedFavBooks = [...userProfile.favBooks, favBook];
-    //   //sendUser({ ...userProfile, favBooks: { volumeInfo, id } });
-    // } else {
-    //   // Optionally handle the case where the book is already a favorite
-    //   console.log('This book is already in your favorites.');
-    // }
+        if (isAlreadyFavorite) {
+          alert('This book has already in your favorites...');
+          return;
+        } else {
+          favBooks.push({ volumeInfo, id });
+        }
+        await update(userRef, { favBooks });
+        console.log('Favorite books updated successfully.');
+      } else {
+        console.log('No user data available.');
+      }
+    } catch (error) {
+      console.error('Error updating favorite books:', error);
+    }
   }
 
+  // const isAlreadyFavorite = userProfile.favBooks.some(
+  //   (book) => book.id === id
+  // );
 
+  // if (!isAlreadyFavorite) {
+  //   //const updatedFavBooks = [...userProfile.favBooks, favBook];
+  //   //sendUser({ ...userProfile, favBooks: { volumeInfo, id } });
+  // } else {
+  //   // Optionally handle the case where the book is already a favorite
+  //   console.log('This book is already in your favorites.');
+  // }
 
   return (
     <Box
