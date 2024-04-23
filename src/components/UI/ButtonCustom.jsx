@@ -11,7 +11,9 @@ export default function ButtonCustom({ buttonName, id, to, ...props }) {
 
   return (
     <ButtonStyle id={id} to={`books?category=${linkHandler(to)}`}>
-      <div className="style">{buttonName}</div>
+      <div className="style" style={{ color: 'black' }}>
+        {buttonName}
+      </div>
     </ButtonStyle>
   );
 }

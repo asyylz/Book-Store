@@ -30,7 +30,7 @@ const ColourSchema = {
   mint: '#A3D9C5',
   purpleDark: '#8767BA',
   purple: '#BE9BF3',
-  greenGray: '#7D898C',
+  navy: '#183B59',
   beige: '#F2F0EB',
 };
 
@@ -82,7 +82,7 @@ function MainNavigation() {
     <AppBar
       position="static"
       sx={{
-        backgroundColor: ColourSchema.greenGray,
+        backgroundColor: ColourSchema.navy,
         color: ColourSchema.beige,
       }}
     >

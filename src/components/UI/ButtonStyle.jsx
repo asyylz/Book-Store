@@ -15,6 +15,7 @@ const ButtonStyle = styled(Link)`
   font-weight: 200;
   letter-spacing: 1px;
 
+
   .style {
     padding: 13px 20px 13px;
     outline: 0;
@@ -31,6 +32,8 @@ const ButtonStyle = styled(Link)`
     height: 40px;
     width: 80%;
     margin-bottom: 1rem;
+  
+    
 
     &:after {
       content: '';
