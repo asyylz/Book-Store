@@ -18,6 +18,10 @@ const swiperConfig = {
         slidesPerView: 4,
         spaceBetween: 40
       },
+      1550:{
+        slidesPerView: 6,
+        spaceBetween: 50
+      }
     }
   };
   
