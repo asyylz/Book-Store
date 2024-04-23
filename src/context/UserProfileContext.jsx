@@ -44,7 +44,7 @@ const UserProfileContextProvider = ({ children }) => {
       const snapshot = await get(userRef);
       if (snapshot.exists()) {
         const user = snapshot.val();
-        console.log(user);
+        //console.log(user);
         return user;
       } else {
         console.log('No data available');

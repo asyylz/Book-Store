@@ -94,7 +94,6 @@ const AuthContextProvider = ({ children }) => {
   /* ----------------------user observer ---------------------- */
   const userObserver = () => {
     onAuthStateChanged(auth, (user) => {
-      console.log(user);
       if (user) {
         const { email, displayName, photoURL, uid } = user;
         setCurrentUser({ email, displayName, photoURL, uid });
@@ -113,18 +112,6 @@ const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     userObserver(); // triggering userObserverı for user's sign in and out
   }, []);
-
-  // useEffect(async () => {
-  //   const response = await fetch(
-  //     'https://book-store-420619-default-rtdb.firebaseio.com/users.json',
-  //     {
-  //       method: 'POST',
-  //       body: JSON.stringify({
-
-  //       }),
-  //     }
-  //   );
-  // });
 
   return (
     <AuthContext.Provider
