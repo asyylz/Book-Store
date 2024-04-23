@@ -69,9 +69,10 @@ const UserPageMenuList = () => {
   //const {userId} =useUserProfileContext()
   const user = JSON.parse(localStorage.getItem('user')) || '';
 
-  function handleNavigate(route) {
+  function handleNavigate(route) { // ASK
     if (route === '/') {
-      navigate(`${user.uid}`);
+      //navigate(`${user.uid}`);
+      return;
     } else {
       navigate(route);
     }

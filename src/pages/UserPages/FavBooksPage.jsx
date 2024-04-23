@@ -11,7 +11,7 @@ export default function FavBooksPage() {
       <Grid container spacing={3} columnSpacing={3} m={3} width='80vw'>
         {favBooks.map((book) => (
           <Grid item xs={12} md={6} lg={5} xl={4} key={book.id}>
-            <BookCard {...book} />
+            <BookCard {...book} isFav />
           </Grid>
         ))}
       </Grid>

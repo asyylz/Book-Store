@@ -19,11 +19,13 @@ export default function UserPageNavigation() {
     <Drawer
       variant="permanent"
       sx={{
-        display: { xs: 'none', sm: 'block' },
+        display: { sm: 'none', sm: 'block' },
         '& .MuiDrawer-paper': {
           boxSizing: 'border-box',
           width: drawerWidth,
-          zIndex: -1,
+          position: 'absolute',
+          top: '80px',
+
         },
       }}
       open

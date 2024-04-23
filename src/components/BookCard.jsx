@@ -7,21 +7,18 @@ import { Link } from 'react-router-dom';
 import { useUserProfileContext } from '../context/UserProfileContext';
 import { update, getDatabase, ref, get, set } from 'firebase/database';
 
-const shadow = {
+const btnStyle = {
   boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px;',
   width: 100,
   marginTop: 1,
   color: 'gray',
 };
 
-export default function BookCard({ volumeInfo, id }) {
-  const { userData } = useUserProfileContext();
+export default function BookCard({ volumeInfo, id , isFav }) {
+  const { userData,user } = useUserProfileContext();
 
-  const user = JSON.parse(localStorage.getItem('user'));
-  console.log(userData);
-
-  const isFav = userData?.favBooks.some((book) => book.id === id);
-  console.log(isFav);
+  // const isFav = userData?.favBooks.some((book) => book.id === id);
+  // console.log(isFav);
 
   async function handleFavClick() {
     const db = getDatabase();
@@ -126,10 +123,10 @@ export default function BookCard({ volumeInfo, id }) {
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column', mr: '20px' }}>
           <Link to={id}>
-            <Button sx={shadow}>More Details</Button>
+            <Button sx={btnStyle}>More Details</Button>
           </Link>
-          <Button sx={shadow} onClick={handleFavClick}>
-            Add Favs
+          <Button sx={btnStyle} onClick={handleFavClick}>
+            {isFav ? 'Remove' : 'Add'}
           </Button>
           <IconButton aria-label="share">
             <ShareIcon />
