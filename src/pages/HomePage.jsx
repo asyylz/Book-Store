@@ -12,6 +12,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import ButtonCustom from '../components/UI/ButtonCustom';
+import SwiperCustom from '../components/UI/SwiperCustom';
 
 /* -------------------- react imports ------------------- */
 
@@ -43,7 +44,15 @@ export default function HomePage() {
   return (
     <>
       {/* --------------------- Top Section -------------------- */}
-      <Box sx={{ flexGrow: 1, mt: '1rem', ml: '4rem', mr: '4rem' }}>
+      <Box
+        sx={{
+          flexGrow: 1,
+          mt: '1rem',
+          ml: '4rem',
+          mr: '4rem',
+          fontFamily: 'Oswald',
+        }}
+      >
         <Grid container spacing={2}>
           {/* ------------------------ Left ------------------------*/}
           <Grid item xs={4}>
@@ -56,7 +65,6 @@ export default function HomePage() {
                       buttonName={book.name}
                       id={book.id}
                       to={book.name}
-                      //to="books"
                     />
                   </Item>
                 </Grid>
@@ -105,7 +113,7 @@ export default function HomePage() {
           </Grid>
           <Grid item xs={12}>
             <Box sx={{ maxWidth: 600, margin: 'auto' }}>
-              <Carousel
+              {/* <Carousel
                 animation="slide"
                 enableAutoPlay={false}
                 prevButton={
@@ -141,7 +149,9 @@ export default function HomePage() {
                     <h2>{book.volumeInfo.title}</h2>
                   </Paper>
                 ))}
-              </Carousel>
+                
+              </Carousel> */}
+              <SwiperCustom books={newestBooks} />
             </Box>
           </Grid>
         </Grid>
