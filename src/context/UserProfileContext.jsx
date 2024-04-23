@@ -1,10 +1,26 @@
 import { useState, createContext, useContext } from 'react';
 import { getDatabase, ref, set, get, onValue } from 'firebase/database';
+import { useEffect } from 'react';
 const BASE_DB_URL = import.meta.env.VITE_APP_databaseURL;
 export const UserProfileContext = createContext();
 
 const UserProfileContextProvider = ({ children }) => {
+  const [userData, setUserData] = useState();
   const user = JSON.parse(localStorage.getItem('user'));
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await fetchUserData(user.uid);
+        setUserData(data);
+      } catch (error) {
+        console.error('Failed to fetch user data:', error);
+        // Handle errors as appropriate
+      }
+    }
+
+    fetchData();
+  }, [user.uid]);
 
   const createUserInDB = async (userId, name, email) => {
     const db = getDatabase();
@@ -28,6 +44,7 @@ const UserProfileContextProvider = ({ children }) => {
       const snapshot = await get(userRef);
       if (snapshot.exists()) {
         const user = snapshot.val();
+        console.log(user);
         return user;
       } else {
         console.log('No data available');
@@ -44,6 +61,8 @@ const UserProfileContextProvider = ({ children }) => {
       value={{
         createUserInDB,
         fetchUserData,
+        userData,
+        user
       }}
     >
       {children}

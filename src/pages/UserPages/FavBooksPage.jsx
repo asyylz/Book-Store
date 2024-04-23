@@ -2,20 +2,19 @@ import { useLoaderData } from 'react-router-dom';
 import { useUserProfileContext } from '../../context/UserProfileContext';
 import { getDatabase, ref, get } from 'firebase/database';
 import BookCard from '../../components/BookCard';
-import { Box, Container } from '@mui/material';
+import { Box, Container, Grid } from '@mui/material';
 
 export default function FavBooksPage() {
   const { favBooks } = useLoaderData();
   return (
     <Box sx={{ mb: '2rem' }}>
-      <Container
-        fixed
-        sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-      >
+      <Grid container spacing={3} columnSpacing={3} m={3} width='80vw'>
         {favBooks.map((book) => (
-          <BookCard key={book.id} {...book} />
+          <Grid item xs={12} md={6} lg={5} xl={4} key={book.id}>
+            <BookCard {...book} />
+          </Grid>
         ))}
-      </Container>
+      </Grid>
     </Box>
   );
 }

@@ -15,8 +15,13 @@ const shadow = {
 };
 
 export default function BookCard({ volumeInfo, id }) {
-  const { fetchUserData } = useUserProfileContext();
+  const { userData } = useUserProfileContext();
+
   const user = JSON.parse(localStorage.getItem('user'));
+  console.log(userData);
+
+  const isFav = userData?.favBooks.some((book) => book.id === id);
+  console.log(isFav);
 
   async function handleFavClick() {
     const db = getDatabase();
@@ -28,7 +33,7 @@ export default function BookCard({ volumeInfo, id }) {
         const userData = snapshot.val() || {};
         let favBooks = userData.favBooks || [];
         const isAlreadyFavorite = favBooks.some((book) => book.id === id);
-        console.log(isAlreadyFavorite)
+        console.log(isAlreadyFavorite);
 
         if (isAlreadyFavorite) {
           alert('This book has already in your favorites...');
@@ -77,17 +82,31 @@ export default function BookCard({ volumeInfo, id }) {
               {volumeInfo.description}
             </p>
           </Box>
-          <FavoriteBorderIcon
-            className="icon"
-            sx={{
-              zIndex: '1',
-              position: 'absolute',
-              right: '10px',
-              top: '10px',
-              fontSize: '2.7rem',
-              color: '#7D898C',
-            }}
-          />
+          {isFav ? (
+            <FavoriteIcon
+              className="icon"
+              sx={{
+                zIndex: '1',
+                position: 'absolute',
+                right: '10px',
+                top: '10px',
+                fontSize: '2.7rem',
+                color: 'red',
+              }}
+            />
+          ) : (
+            <FavoriteBorderIcon
+              className="icon"
+              sx={{
+                zIndex: '1',
+                position: 'absolute',
+                right: '10px',
+                top: '10px',
+                fontSize: '2.7rem',
+                color: '#7D898C',
+              }}
+            />
+          )}
         </Box>
       </BookCardStyle>
       <Grid
