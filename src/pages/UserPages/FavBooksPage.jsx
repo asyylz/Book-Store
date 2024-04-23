@@ -1,14 +1,23 @@
 import { useLoaderData } from 'react-router-dom';
 import { useUserProfileContext } from '../../context/UserProfileContext';
-
-import { getDatabase, ref, onValue, get } from 'firebase/database';
-import { getAuth } from 'firebase/auth';
+import { getDatabase, ref, get } from 'firebase/database';
+import BookCard from '../../components/BookCard';
+import { Box, Container } from '@mui/material';
 
 export default function FavBooksPage() {
-  //const { fetchUserData } = useUserProfileContext();
   const { favBooks } = useLoaderData();
-  console.log(favBooks);
-  return <div>favBooksPage</div>;
+  return (
+    <Box sx={{ mb: '2rem' }}>
+      <Container
+        fixed
+        sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+      >
+        {favBooks.map((book) => (
+          <BookCard key={book.id} {...book} />
+        ))}
+      </Container>
+    </Box>
+  );
 }
 
 export async function loaderFavBooks() {
@@ -19,7 +28,6 @@ export async function loaderFavBooks() {
   try {
     const snapshot = await get(favBooksRef);
     if (snapshot.exists()) {
-      //console.log(snapshot.val());
       const favBooks = snapshot.val();
       console.log(favBooks);
       return { favBooks };

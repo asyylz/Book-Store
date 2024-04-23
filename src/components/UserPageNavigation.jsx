@@ -23,6 +23,7 @@ export default function UserPageNavigation() {
         '& .MuiDrawer-paper': {
           boxSizing: 'border-box',
           width: drawerWidth,
+          zIndex: -1,
         },
       }}
       open

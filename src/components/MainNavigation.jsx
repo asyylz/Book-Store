@@ -43,8 +43,6 @@ function MainNavigation() {
 
   const { logout } = useAuthContext();
 
-  const navigate = useNavigate();
-
   const user = JSON.parse(localStorage.getItem('user'));
 
   const handleUserMenuNavigate = (route) => {
