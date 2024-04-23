@@ -107,7 +107,9 @@ export default function HomePage() {
       <Box sx={{ mt: '2rem' }}>
         <Grid container spacing={2}>
           <Grid item xs={12} sx={{ textAlign: 'center' }}>
-            <Typography variant="h5">Discover Your Next Book...</Typography>
+            <Typography sx={{ fontFamily: 'Oswald',mt:'1rem' }} variant="h4">
+              Discover Your Next Book...
+            </Typography>
           </Grid>
           <Grid item xs={12}>
             <SwiperCustom books={newestBooks} />

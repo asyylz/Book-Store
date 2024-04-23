@@ -35,7 +35,7 @@ const ColourSchema = {
 };
 
 /* ---------------- MainNavigation Links ---------------- */
-const pages = ['Discover', 'Book Store', 'Offers'];
+const pages = ['Home', 'Book Store', 'Offers'];
 const settings = ['Account'];
 
 function MainNavigation() {

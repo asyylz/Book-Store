@@ -8,7 +8,15 @@ import { Box, Typography } from '@mui/material';
 import swiperConfig from './SwiperConfig';
 
 function SwiperCustom({ books }) {
-  console.log(books[2]);
+  const titleTrimmer = (title) => {
+    const countWords = title.split(' ');
+    if (countWords.length > 4) {
+      const newTitleWords = countWords.filter((_, index) => index < 4);
+      return newTitleWords.join(' ');
+    } else {
+      return title;
+    }
+  };
   return (
     <Box
       sx={{
@@ -43,7 +51,7 @@ function SwiperCustom({ books }) {
                 style={{ height: '90%', width: '100%' }}
               />
               <Typography sx={{ fontFamily: 'Oswald' }}>
-                {book.volumeInfo.title}
+                {titleTrimmer(book.volumeInfo.title)}
               </Typography>
             </Box>
           </SwiperSlide>
