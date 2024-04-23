@@ -97,7 +97,6 @@ const AuthContextProvider = ({ children }) => {
       console.log(user);
       if (user) {
         const { email, displayName, photoURL, uid } = user;
-        console.log('clicked');
         setCurrentUser({ email, displayName, photoURL, uid });
         localStorage.setItem(
           'user',

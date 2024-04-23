@@ -14,19 +14,30 @@ const shadow = {
 };
 
 export default function BookCard({ volumeInfo, id }) {
-  function handleFavClick() {
-    const isAlreadyFavorite = userProfile.favBooks.some(
-      (book) => book.id === id
-    );
+  const { fetchUserData } = useUserProfileContext();
+  const user = JSON.parse(localStorage.getItem('user'));
+ 
+  async function  handleFavClick() {
+    const userData = await fetchUserData(user.uid); 
+    
 
-    if (!isAlreadyFavorite) {
-      //const updatedFavBooks = [...userProfile.favBooks, favBook];
-      //sendUser({ ...userProfile, favBooks: { volumeInfo, id } });
-    } else {
-      // Optionally handle the case where the book is already a favorite
-      console.log('This book is already in your favorites.');
-    }
+
+
+    // const isAlreadyFavorite = userProfile.favBooks.some(
+    //   (book) => book.id === id
+    // );
+
+    // if (!isAlreadyFavorite) {
+    //   //const updatedFavBooks = [...userProfile.favBooks, favBook];
+    //   //sendUser({ ...userProfile, favBooks: { volumeInfo, id } });
+    // } else {
+    //   // Optionally handle the case where the book is already a favorite
+    //   console.log('This book is already in your favorites.');
+    // }
   }
+
+
+
   return (
     <Box
       sx={{
