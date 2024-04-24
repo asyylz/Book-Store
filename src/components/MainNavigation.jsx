@@ -20,6 +20,7 @@ import Cart from '../components/cart/Cart.jsx';
 import CartButton from './cart/CartButton.jsx';
 import { useState } from 'react';
 import { useCartContext } from '../context/CartContext.jsx';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 
 /* -------------------- Colour Schema -------------------- */
 const ColourSchema = {
@@ -84,7 +85,7 @@ function MainNavigation() {
     return;
   }
   /* -------------------------- - ------------------------- */
-  
+
   return (
     <AppBar
       position="static"
@@ -187,7 +188,7 @@ function MainNavigation() {
               </Button>
             </NavLink>
             <CartButton textOnly onClick>
-              Cart({totalCartItems})
+              <ShoppingBasketIcon /> <small>({totalCartItems})</small>
             </CartButton>
           </Box>
         </Toolbar>

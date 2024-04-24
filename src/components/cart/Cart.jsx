@@ -4,6 +4,8 @@ import { currencyFormatter } from '../../utils/currencyFormatter.js';
 import CartButton from './CartButton.jsx';
 //import UserProgressContext from "../store/UserProgressContext.jsx";
 import CartItem from './CartItem.jsx';
+import './style.css';
+import Modal from './Modal.jsx';
 
 export default function Cart() {
   const { items, addItem, removeItem, clearCart } = useCartContext();
