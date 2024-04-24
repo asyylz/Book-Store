@@ -9,28 +9,32 @@ const apiKey = import.meta.env.VITE_APP_apiKeyGoogle;
 
 export default function BooksPage() {
   const { items, header } = useLoaderData();
-  console.log(items)
-  const { user } = useUserProfileContext();
-  const [favBookIds, setFavBookIds] = useState([]);
+  console.log(items);
+  const { user, favBookIds } =
+    useUserProfileContext();
 
-  useEffect(() => {
-    const db = getDatabase();
-    const favBooksRef = ref(db, `users/${user?.uid}/favBooks`);
+  // useEffect(() => {
+  //   favCheckListener()
+  //   const db = getDatabase();
+  //   const favBooksRef = ref(db, `users/${user?.uid}/favBooks`);
 
-    const unsubscribe = onValue(favBooksRef, snapshot => {
-      const favBooks = snapshot.val() || [];
-      const favBookIds = favBooks.map(book => book.id); // Assuming each book has an 'id' field
-      setFavBookIds(favBookIds);
-    });
+  //   const unsubscribe = onValue(favBooksRef, (snapshot) => {
+  //     const favBooks = snapshot.val() || [];
+  //     const favBookIds = favBooks.map((book) => book.id); // Assuming each book has an 'id' field
+  //     setFavBookIds(favBookIds);
+  //   });
 
-    return () => unsubscribe(); // Clean up the subscription
-  }, [user?.uid]);
+  //   return () => unsubscribe(); // Clean up the subscription
+  // }, [user?.uid]);
 
   return (
-    <BookList searchedBooks={items.map(book => ({
-      ...book,
-      isFav: favBookIds.includes(book.id)
-    }))} header={header} />
+    <BookList
+      searchedBooks={items.map((book) => ({
+        ...book,
+        isFav: favBookIds.includes(book.id),
+      }))}
+      header={header}
+    />
   );
 }
 

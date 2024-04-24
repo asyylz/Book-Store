@@ -17,7 +17,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { useAuthContext } from '../context/AuthContext';
 import SearchInput from './UI/SearchInput.jsx';
 import MenuItemCustom from './UI/MenuItemCustom.jsx';
-import MenuItemDeneme from './UI/MenuItemdeneme.jsx';
+import MenuItemDeneme from './UI/MenuItemCustom.jsx';
 
 /* -------------------- Colour Schema -------------------- */
 const ColourSchema = {

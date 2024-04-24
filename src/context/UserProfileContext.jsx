@@ -6,6 +6,7 @@ export const UserProfileContext = createContext();
 
 const UserProfileContextProvider = ({ children }) => {
   const [userData, setUserData] = useState();
+  const [favBookIds, setFavBookIds] = useState([]);
   const user = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
@@ -20,6 +21,19 @@ const UserProfileContextProvider = ({ children }) => {
     }
 
     fetchData();
+  }, [user?.uid]);
+
+  useEffect(() => {
+    const db = getDatabase();
+    const favBooksRef = ref(db, `users/${user?.uid}/favBooks`);
+
+    const unsubscribe = onValue(favBooksRef, (snapshot) => {
+      const favBooks = snapshot.val() || [];
+      const favBookIds = favBooks.map((book) => book.id);
+      setFavBookIds(favBookIds);
+    });
+
+    return () => unsubscribe(); // Clean up the subscription
   }, [user?.uid]);
 
   const createUserInDB = async (userId, name, email) => {
@@ -62,7 +76,9 @@ const UserProfileContextProvider = ({ children }) => {
         createUserInDB,
         fetchUserData,
         userData,
-        user
+        user,
+        favBookIds,
+        setFavBookIds,
       }}
     >
       {children}

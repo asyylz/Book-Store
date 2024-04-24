@@ -11,7 +11,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 function SwiperCustom({ books }) {
-  console.log(books);
+  //console.log(books);
   const titleTrimmer = (title) => {
     const countWords = title.split(' ');
     if (countWords.length > 4) {
@@ -46,8 +46,8 @@ function SwiperCustom({ books }) {
         onSlideChange={() => console.log('slide change')}
         style={{ width: '90vw', height: '40vh', padding: '0 4rem' }}
       >
-        {books.map((book) => (
-          <SwiperSlide style={{ zIndex: '-1' }}>
+        {books.map((book, index) => (
+          <SwiperSlide style={{ zIndex: '-1' }} key={index}>
             <Box sx={{ height: '300px', width: '200px' }}>
               <img
                 src={book.volumeInfo.imageLinks.thumbnail}
@@ -81,7 +81,6 @@ function SwiperCustom({ books }) {
                   color: '#0B2559',
                 }}
               >
-                {/* <small>{book.saleInfo.listPrice?.currencyCode}</small> */}
                 <small
                   style={{
                     fontSize: '20px',

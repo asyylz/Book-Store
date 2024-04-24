@@ -3,44 +3,47 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { Typography } from '@mui/material';
 
-export default function MenuItemCustom({ menuList,menuLabel }) {
-  console.log(menuList)
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
+export default function MenuItemCustom({ menuList, anchor, setAnchor, mode }) {
+  const handleCloseMenu = () => {
+    setAnchor(null);
   };
 
   return (
-    <div>
-      <Button
-        id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
-      >
-        {menuLabel}
-      </Button>
-      <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-        }}
-      >
-        {menuList.map((menu, index) => (
-          <MenuItem key={index} onClick={handleClose}>
-            {menu.label}
-          </MenuItem>
-        ))}
-      </Menu>
-    </div>
+    <Menu
+      id="menu-appbar"
+      sx={{
+        mt: mode === 'user' ? '45px' : undefined,
+        display: {
+          xs: mode === 'nav' ? 'block' : undefined,
+          md: mode === 'nav' ? 'none' : undefined,
+        },
+      }}
+      anchorEl={anchor}
+      anchorOrigin={{
+        vertical: mode === 'nav' ? 'bottom' : 'top',
+        horizontal: mode === 'nav' ? 'left' : 'right',
+      }}
+      keepMounted
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: mode === 'user' ? 'right' : 'left',
+      }}
+      open={Boolean(anchor)}
+      onClose={handleCloseMenu}
+    >
+      {menuList.map((menu) => (
+        <MenuItem key={menu.label} onClick={handleCloseMenu}>
+          <NavLink
+            to={menu.path}
+            style={{ textDecoration: 'none', color: 'inherit' }}
+          >
+            <Typography textAlign="center">{menu.label}</Typography>
+          </NavLink>
+        </MenuItem>
+      ))}
+    </Menu>
   );
 }
