@@ -1,7 +1,4 @@
 import * as React from 'react';
-/* ---------------- react-router-imports ---------------- */
-import { useNavigation, useNavigate, NavLink } from 'react-router-dom';
-/* ------------------ component imports from mui ----------------- */
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -15,43 +12,11 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { useAuthContext } from '../context/AuthContext';
-import SearchInput from './UI/SearchInput.jsx';
-import MenuItemCustom from './UI/MenuItemCustom.jsx';
-import MenuItemDeneme from './UI/MenuItemdeneme.jsx';
 
-/* -------------------- Colour Schema -------------------- */
-const ColourSchema = {
-  pink: '#F2BBD9',
-  pastelPink: '#F2B6C1',
-  blue: '#9ACDD9',
-  green: '#A3D9C5',
-  peach: '#A3D9C5',
-  mint: '#A3D9C5',
-  purpleDark: '#8767BA',
-  purple: '#BE9BF3',
-  navy: '#183B59',
-  beige: '#F2F0EB',
-};
+const pages = ['Products', 'Pricing', 'Blog'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-const bookCategories = [
-  { label: 'Fiction', path: '/category/fiction' },
-  { label: 'Non-Fiction', path: '/category/non-fiction' },
-  { label: 'Science', path: '/category/science' },
-  { label: 'History', path: '/category/history' },
-  { label: 'Biography', path: '/category/biography' },
-  { label: 'Fantasy', path: '/category/fantasy' },
-  { label: 'Mystery', path: '/category/mystery' },
-  { label: 'Romance', path: '/category/romance' },
-  { label: "Children's Books", path: '/category/childrens-books' },
-  { label: 'Young Adult', path: '/category/young-adult' },
-];
-
-/* ---------------- MainNavigation Links ---------------- */
-const pages = ['Home', 'Offers', 'Categories'];
-const settings = ['Account'];
-
-function MainNavigation() {
+function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -70,47 +35,8 @@ function MainNavigation() {
     setAnchorElUser(null);
   };
 
-  const { logout } = useAuthContext();
-
-  const user = JSON.parse(localStorage.getItem('user'));
-
-  // console.log('yol', route);
-  // const newRoute = route.toLowerCase();
-  // if (route === 'Login') {
-  //   return `auth?mode=${newRoute}`;
-  // } else if (route === 'Account') {
-  //   return `${user?.uid}`;
-  // } else if (route === 'Home') {
-  //   console.log('this is home');
-  //   return;
-  // } else {
-  //   return newRoute;
-  // }
-
-  function handleClick(status) {
-    if (status === 'logout') logout();
-    return;
-  }
-
-  const handleUserMenuNavigate = (page) => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    const pageToPathMapping = {
-      Home: '/',
-      Categories: '/categories',
-      Offers: '/offers',
-      Account: `${user?.uid}`,
-    };
-    return pageToPathMapping[page] || '/';
-  };
-
   return (
-    <AppBar
-      position="static"
-      sx={{
-        backgroundColor: ColourSchema.navy,
-        color: ColourSchema.beige,
-      }}
-    >
+    <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -118,6 +44,7 @@ function MainNavigation() {
             variant="h6"
             noWrap
             component="a"
+            href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -130,8 +57,9 @@ function MainNavigation() {
           >
             LOGO
           </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-          <IconButton
+            <IconButton
               size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
@@ -141,10 +69,32 @@ function MainNavigation() {
             >
               <MenuIcon />
             </IconButton>
-            {/* ------------------ For small screen ------------------ */}
-            <MenuItemDeneme menuList={bookCategories} anchorElNav={anchorElNav} setAnchorElNav={setAnchorElNav} />
+            {/* smallScreen */}
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
           </Box>
-
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
@@ -165,21 +115,21 @@ function MainNavigation() {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page, index) => (
-              <NavLink key={index} to={handleUserMenuNavigate(page)}>
-                <Button sx={{ color: ColourSchema.beige }}>{page}</Button>
-              </NavLink>
+            {pages.map((page) => (
+              <Button
+                key={page}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                {page}
+              </Button>
             ))}
           </Box>
 
-          <SearchInput />
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar
-                  alt={user?.displayName}
-                  src="/static/images/avatar/2.jpg"
-                />
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -200,25 +150,14 @@ function MainNavigation() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  {/* Link did not work ASK */}
-                  <NavLink to={handleUserMenuNavigate(setting)}>
-                    {setting}
-                  </NavLink>
+                  <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
             </Menu>
-            <NavLink
-              to={!user && 'auth?mode=login'}
-              onClick={() => handleClick(user ? 'logout' : 'login')}
-            >
-              <Button sx={{ color: ColourSchema.beige }}>
-                {user ? 'Logout' : 'Login'}
-              </Button>
-            </NavLink>
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
   );
 }
-export default MainNavigation;
+export default ResponsiveAppBar;
