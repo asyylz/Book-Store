@@ -5,46 +5,44 @@ import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Typography } from '@mui/material';
-export default function MenuItemDeneme({
-  menuList,
-  anchorElNav,
-  setAnchorElNav,
-}) {
-  console.log(menuList);
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+
+export default function MenuItemDeneme({ menuList, anchor, setAnchor, mode }) {
+  const handleCloseMenu = () => {
+    setAnchor(null);
   };
-  //   const handleOpenNavMenu = (event) => {
-  //     setAnchorElNav(event.currentTarget);
+  //   const handleCloseUserMenu = () => {
+  //     setAnchor(null);
   //   };
 
   return (
     <Menu
       id="menu-appbar"
-      anchorEl={anchorElNav}
+      sx={{
+        mt: mode === 'user' ? '45px' : undefined,
+        display: {
+          xs: mode === 'nav' ? 'block' : undefined,
+          md: mode === 'nav' ? 'none' : undefined,
+        },
+      }}
+      anchorEl={anchor}
       anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'left',
+        vertical: mode === 'nav' ? 'bottom' : 'top',
+        horizontal: mode === 'nav' ? 'left' : 'right',
       }}
       keepMounted
       transformOrigin={{
         vertical: 'top',
-        horizontal: 'left',
+        horizontal: mode === 'user' ? 'right' : 'left',
       }}
-      open={Boolean(anchorElNav)}
-      onClose={handleCloseNavMenu}
-      sx={{
-        display: { xs: 'block', md: 'none' },
-      }}
+      open={Boolean(anchor)}
+      //   onClose={() => (mode === 'user' ? handleCloseNavMenu() : handleCloseUserMenu())}
+      onClose={handleCloseMenu}
     >
-      {/* {menuList.map((menu, index) => (
-        <MenuItem key={index} onClick={handleCloseNavMenu}>
-          <NavLink textAlign="center">{menu.label}</NavLink>
-        </MenuItem>
-      ))} */}
       {menuList.map((menu) => (
-        <MenuItem key={menu.label} onClick={handleCloseNavMenu}>
+        <MenuItem key={menu.label} onClick={handleCloseMenu}>
           <Typography textAlign="center">{menu.label}</Typography>
+          {/* If NavLink is needed, wrap Typography with NavLink and add necessary props like `to` */}
+          {/* <NavLink to="/some-path"><Typography textAlign="center">{menu.label}</Typography></NavLink> */}
         </MenuItem>
       ))}
     </Menu>

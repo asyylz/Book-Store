@@ -1,0 +1,85 @@
+{
+  "textmarker.savedHighlights": [
+    {
+      "pattern": {
+        "type": "string",
+        "expression": " <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>\n            {pages.map((page, index) => (\n              <NavLink key={index} to={handleUserMenuNavigate(page)}>\n                <Button sx={{ color: ColourSchema.beige }}>{page}</Button>\n              </NavLink>\n            ))}\n          </Box>",
+        "ignoreCase": false,
+        "wholeMatch": false
+      },
+      "color": "darkgoldenrod"
+    },
+    {
+      "pattern": {
+        "type": "string",
+        "expression": "{/* smallScreen */}",
+        "ignoreCase": false,
+        "wholeMatch": false
+      },
+      "color": "darkmagenta"
+    },
+    {
+      "pattern": {
+        "type": "string",
+        "expression": "    <Menu\n              id=\"menu-appbar\"\n              anchorEl={anchorElNav}\n              anchorOrigin={{\n                vertical: 'bottom',\n                horizontal: 'left',\n              }}\n              keepMounted\n              transformOrigin={{\n                vertical: 'top',\n                horizontal: 'left',\n              }}\n              open={Boolean(anchorElNav)}\n              onClose={handleCloseNavMenu}\n              sx={{\n                display: { xs: 'block', md: 'none' },\n              }}\n            >\n              {pages.map((page) => (\n                <MenuItem key={page} onClick={handleCloseNavMenu}>\n                  <Typography textAlign=\"center\">{page}</Typography>\n                </MenuItem>\n              ))}\n            </Menu>",
+        "ignoreCase": false,
+        "wholeMatch": false
+      },
+      "color": "darkolivegreen"
+    },
+    {
+      "pattern": {
+        "type": "string",
+        "expression": "      <Menu\n              sx={{ mt: '45px' }}\n              id=\"menu-appbar\"\n              anchorEl={anchorElUser}\n              anchorOrigin={{\n                vertical: 'top',\n                horizontal: 'right',\n              }}\n              keepMounted\n              transformOrigin={{\n                vertical: 'top',\n                horizontal: 'right',\n              }}\n              open={Boolean(anchorElUser)}\n              onClose={handleCloseUserMenu}\n            >\n              {settings.map((setting) => (\n                <MenuItem key={setting} onClick={handleCloseUserMenu}>\n                  <Typography textAlign=\"center\">{setting}</Typography>\n                </MenuItem>\n              ))}\n            </Menu>",
+        "ignoreCase": false,
+        "wholeMatch": false
+      },
+      "color": "darkslateblue"
+    },
+    {
+      "pattern": {
+        "type": "string",
+        "expression": "<MenuItemDeneme menuList={pages}/>",
+        "ignoreCase": false,
+        "wholeMatch": false
+      },
+      "color": "darkslategray"
+    },
+    {
+      "pattern": {
+        "type": "string",
+        "expression": "{/* ------------------ For small screen ------------------ */}",
+        "ignoreCase": false,
+        "wholeMatch": false
+      },
+      "color": "darkviolet"
+    },
+    {
+      "pattern": {
+        "type": "string",
+        "expression": "  <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>\n          <IconButton\n              size=\"large\"\n              aria-label=\"account of current user\"\n              aria-controls=\"menu-appbar\"\n              aria-haspopup=\"true\"\n              onClick={handleOpenNavMenu}\n              color=\"inherit\"\n            >\n              <MenuIcon />\n            </IconButton>\n            <MenuItemDeneme menuList={bookCategories} anchorElNav={anchorElNav} setAnchorElNav={setAnchorElNav} />\n          </Box>",
+        "ignoreCase": false,
+        "wholeMatch": false
+      },
+      "color": "darkblue"
+    },
+    {
+      "pattern": {
+        "type": "string",
+        "expression": "     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>\n            <IconButton\n              size=\"large\"\n              aria-label=\"account of current user\"\n              aria-controls=\"menu-appbar\"\n              aria-haspopup=\"true\"\n              onClick={handleOpenNavMenu}\n              color=\"inherit\"\n            >\n              <MenuIcon />\n            </IconButton>\n            <MenuItemDeneme\n              menuList={bookCategories}\n              anchorElNav={anchorElNav}\n              setAnchorElNav={setAnchorElNav}\n            />\n          </Box>",
+        "ignoreCase": false,
+        "wholeMatch": false
+      },
+      "color": "darkturquoise"
+    },
+    {
+      "pattern": {
+        "type": "string",
+        "expression": "<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>\n            <IconButton\n              size=\"large\"\n              aria-label=\"account of current user\"\n              aria-controls=\"menu-appbar\"\n              aria-haspopup=\"true\"\n              onClick={handleOpenNavMenu}\n              color=\"inherit\"\n            >\n              <MenuIcon />\n            </IconButton>\n            <MenuItemDeneme\n              menuList={bookCategories}\n              anchor={anchorElNav}\n              setAnchor={setAnchorElNav}\n            />\n          </Box>",
+        "ignoreCase": false,
+        "wholeMatch": false
+      },
+      "color": "darkgray"
+    }
+  ]
+}

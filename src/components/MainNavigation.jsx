@@ -49,7 +49,7 @@ const bookCategories = [
 
 /* ---------------- MainNavigation Links ---------------- */
 const pages = ['Home', 'Offers', 'Categories'];
-const settings = ['Account'];
+const settings = [{ label: 'Account' }];
 
 function MainNavigation() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -130,8 +130,10 @@ function MainNavigation() {
           >
             LOGO
           </Typography>
+
+          {/* ------------------ small screen nav sections------------------ */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-          <IconButton
+            <IconButton
               size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
@@ -139,10 +141,14 @@ function MainNavigation() {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-              <MenuIcon />
+            <MenuIcon />
             </IconButton>
-            {/* ------------------ For small screen ------------------ */}
-            <MenuItemDeneme menuList={bookCategories} anchorElNav={anchorElNav} setAnchorElNav={setAnchorElNav} />
+            <MenuItemDeneme
+              menuList={bookCategories}
+              anchor={anchorElNav}
+              setAnchor={setAnchorElNav}
+              mode="nav"
+            />
           </Box>
 
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -171,7 +177,6 @@ function MainNavigation() {
               </NavLink>
             ))}
           </Box>
-
           <SearchInput />
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
@@ -182,31 +187,13 @@ function MainNavigation() {
                 />
               </IconButton>
             </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  {/* Link did not work ASK */}
-                  <NavLink to={handleUserMenuNavigate(setting)}>
-                    {setting}
-                  </NavLink>
-                </MenuItem>
-              ))}
-            </Menu>
+            /* ------------------ user setting menu ----------------- */
+            <MenuItemDeneme
+              menuList={settings}
+              anchor={anchorElUser}
+              setAnchor={setAnchorElUser}
+              mode="user"
+            />
             <NavLink
               to={!user && 'auth?mode=login'}
               onClick={() => handleClick(user ? 'logout' : 'login')}
