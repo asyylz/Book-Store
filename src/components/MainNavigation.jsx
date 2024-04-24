@@ -12,12 +12,14 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-
+import MenuItemCustom from '../components/UI/MenuItemCustom.jsx';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useAuthContext } from '../context/AuthContext';
 import SearchInput from './UI/SearchInput.jsx';
-import MenuItemCustom from './UI/MenuItemCustom.jsx';
-import MenuItemDeneme from './UI/MenuItemCustom.jsx';
+import Cart from '../components/cart/Cart.jsx';
+import CartButton from './cart/CartButton.jsx';
+import { useState } from 'react';
+import { useCartContext } from '../context/CartContext.jsx';
 
 /* -------------------- Colour Schema -------------------- */
 const ColourSchema = {
@@ -56,8 +58,17 @@ const pages = [
 const settings = [{ label: 'Account', path: `${user?.uid}` }];
 
 function MainNavigation() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  /* ----------------------- context ---------------------- */
+  const { logout } = useAuthContext();
+  const { items } = useCartContext();
+
+  const totalCartItems = items.reduce((totalNumberOfItems, item) => {
+    return totalNumberOfItems + item.quantity;
+  }, 0);
+
+  /* ------------------ navbar functions ------------------ */
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -66,12 +77,14 @@ function MainNavigation() {
     setAnchorElUser(event.currentTarget);
   };
 
-  const { logout } = useAuthContext();
+  /* -------------------------- - ------------------------- */
 
   function handleClick(status) {
     if (status === 'logout') logout();
     return;
   }
+  /* -------------------------- - ------------------------- */
+  
   return (
     <AppBar
       position="static"
@@ -112,7 +125,7 @@ function MainNavigation() {
             >
               <MenuIcon />
             </IconButton>
-            <MenuItemDeneme
+            <MenuItemCustom
               menuList={pages}
               anchor={anchorElNav}
               setAnchor={setAnchorElNav}
@@ -159,7 +172,7 @@ function MainNavigation() {
               </IconButton>
             </Tooltip>
             {/* ------------------ user settings menu ----------------- */}
-            <MenuItemDeneme
+            <MenuItemCustom
               menuList={settings}
               anchor={anchorElUser}
               setAnchor={setAnchorElUser}
@@ -173,6 +186,9 @@ function MainNavigation() {
                 {user ? 'Logout' : 'Login'}
               </Button>
             </NavLink>
+            <CartButton textOnly onClick>
+              Cart({totalCartItems})
+            </CartButton>
           </Box>
         </Toolbar>
       </Container>

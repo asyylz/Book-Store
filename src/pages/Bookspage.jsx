@@ -10,22 +10,7 @@ const apiKey = import.meta.env.VITE_APP_apiKeyGoogle;
 export default function BooksPage() {
   const { items, header } = useLoaderData();
   console.log(items);
-  const { user, favBookIds } =
-    useUserProfileContext();
-
-  // useEffect(() => {
-  //   favCheckListener()
-  //   const db = getDatabase();
-  //   const favBooksRef = ref(db, `users/${user?.uid}/favBooks`);
-
-  //   const unsubscribe = onValue(favBooksRef, (snapshot) => {
-  //     const favBooks = snapshot.val() || [];
-  //     const favBookIds = favBooks.map((book) => book.id); // Assuming each book has an 'id' field
-  //     setFavBookIds(favBookIds);
-  //   });
-
-  //   return () => unsubscribe(); // Clean up the subscription
-  // }, [user?.uid]);
+  const { user, favBookIds } = useUserProfileContext();
 
   return (
     <BookList
