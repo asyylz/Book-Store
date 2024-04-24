@@ -11,7 +11,7 @@ const UserProfileContextProvider = ({ children }) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const data = await fetchUserData(user.uid);
+        const data = await fetchUserData(user?.uid);
         setUserData(data);
       } catch (error) {
         console.error('Failed to fetch user data:', error);
@@ -20,7 +20,7 @@ const UserProfileContextProvider = ({ children }) => {
     }
 
     fetchData();
-  }, [user.uid]);
+  }, [user?.uid]);
 
   const createUserInDB = async (userId, name, email) => {
     const db = getDatabase();

@@ -7,7 +7,7 @@ const BASE_DB_URL = import.meta.env.VITE_APP_databaseURL;
 export default function DashBoard() {
   //const { fetchUser } = useUserProfileContext();
   const { user } = useLoaderData();
-  console.log(user);
+  //console.log(user);
   return (
     <Box>
       <Typography>{user.username}</Typography>

@@ -15,7 +15,7 @@ export default function BooksPage() {
 
   useEffect(() => {
     const db = getDatabase();
-    const favBooksRef = ref(db, `users/${user.uid}/favBooks`);
+    const favBooksRef = ref(db, `users/${user?.uid}/favBooks`);
 
     const unsubscribe = onValue(favBooksRef, snapshot => {
       const favBooks = snapshot.val() || [];
@@ -24,7 +24,7 @@ export default function BooksPage() {
     });
 
     return () => unsubscribe(); // Clean up the subscription
-  }, [user.uid]);
+  }, [user?.uid]);
 
   return (
     <BookList searchedBooks={items.map(book => ({

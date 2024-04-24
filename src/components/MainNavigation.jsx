@@ -35,7 +35,7 @@ const ColourSchema = {
 };
 
 /* ---------------- MainNavigation Links ---------------- */
-const pages = ['Home', 'Book Store', 'Offers'];
+const pages = ['Home', 'Categories', 'Offers'];
 const settings = ['Account'];
 
 function MainNavigation() {
@@ -46,22 +46,35 @@ function MainNavigation() {
 
   const user = JSON.parse(localStorage.getItem('user'));
 
-  const handleUserMenuNavigate = (route) => {
-    const newRoute = route.toLowerCase();
-
-    if (route === 'Login') {
-      return `auth?mode=${newRoute}`;
-    } else if (route === 'Account') {
-      return `${user?.uid}`;
-    } else {
-      return newRoute;
-    }
-  };
+  // console.log('yol', route);
+  // const newRoute = route.toLowerCase();
+  // if (route === 'Login') {
+  //   return `auth?mode=${newRoute}`;
+  // } else if (route === 'Account') {
+  //   return `${user?.uid}`;
+  // } else if (route === 'Home') {
+  //   console.log('this is home');
+  //   return;
+  // } else {
+  //   return newRoute;
+  // }
 
   function handleClick(status) {
     if (status === 'logout') logout();
     return;
   }
+  
+  const handleUserMenuNavigate = (page) => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const pageToPathMapping = {
+      Home: '/',
+      Categories: '/categories',
+      Offers: '/offers',
+      Account: `${user?.uid}`,
+    };
+
+    return pageToPathMapping[page] || '/';
+  };
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -139,7 +152,9 @@ function MainNavigation() {
               {/* ------------------ For small screen ------------------ */}
               {pages.map((page, index) => (
                 <MenuItem key={index} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <NavLink to={handleUserMenuNavigate(page)} textAlign="center">
+                    {page}
+                  </NavLink>
                 </MenuItem>
               ))}
             </Menu>
@@ -166,7 +181,7 @@ function MainNavigation() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page, index) => (
-              <NavLink key={index} to="/" end>
+              <NavLink key={index} to={handleUserMenuNavigate(page)}>
                 <Button sx={{ color: ColourSchema.beige }}>{page}</Button>
               </NavLink>
             ))}
