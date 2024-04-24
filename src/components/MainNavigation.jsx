@@ -7,13 +7,12 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
+
 import AdbIcon from '@mui/icons-material/Adb';
 import { useAuthContext } from '../context/AuthContext';
 import SearchInput from './UI/SearchInput.jsx';
@@ -48,8 +47,13 @@ const bookCategories = [
 ];
 
 /* ---------------- MainNavigation Links ---------------- */
-const pages = ['Home', 'Offers', 'Categories'];
-const settings = [{ label: 'Account' }];
+const user = JSON.parse(localStorage.getItem('user'));
+const pages = [
+  { label: 'Home', path: '/' },
+  { label: 'Offers', path: 'offers' },
+  { label: 'Categories', path: 'category' },
+];
+const settings = [{ label: 'Account', path: `${user?.uid}` }];
 
 function MainNavigation() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -62,47 +66,12 @@ function MainNavigation() {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
   const { logout } = useAuthContext();
-
-  const user = JSON.parse(localStorage.getItem('user'));
-
-  // console.log('yol', route);
-  // const newRoute = route.toLowerCase();
-  // if (route === 'Login') {
-  //   return `auth?mode=${newRoute}`;
-  // } else if (route === 'Account') {
-  //   return `${user?.uid}`;
-  // } else if (route === 'Home') {
-  //   console.log('this is home');
-  //   return;
-  // } else {
-  //   return newRoute;
-  // }
 
   function handleClick(status) {
     if (status === 'logout') logout();
     return;
   }
-
-  const handleUserMenuNavigate = (page) => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    const pageToPathMapping = {
-      Home: '/',
-      Categories: '/categories',
-      Offers: '/offers',
-      Account: `${user?.uid}`,
-    };
-    return pageToPathMapping[page] || '/';
-  };
-
   return (
     <AppBar
       position="static"
@@ -141,10 +110,10 @@ function MainNavigation() {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-            <MenuIcon />
+              <MenuIcon />
             </IconButton>
             <MenuItemDeneme
-              menuList={bookCategories}
+              menuList={pages}
               anchor={anchorElNav}
               setAnchor={setAnchorElNav}
               mode="nav"
@@ -170,10 +139,12 @@ function MainNavigation() {
           >
             LOGO
           </Typography>
+
+          {/* -------------- large screen nav sections ------------- */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page, index) => (
-              <NavLink key={index} to={handleUserMenuNavigate(page)}>
-                <Button sx={{ color: ColourSchema.beige }}>{page}</Button>
+              <NavLink key={index} to={page.path}>
+                <Button sx={{ color: ColourSchema.beige }}>{page.label}</Button>
               </NavLink>
             ))}
           </Box>
@@ -187,7 +158,7 @@ function MainNavigation() {
                 />
               </IconButton>
             </Tooltip>
-            /* ------------------ user setting menu ----------------- */
+            {/* ------------------ user settings menu ----------------- */}
             <MenuItemDeneme
               menuList={settings}
               anchor={anchorElUser}

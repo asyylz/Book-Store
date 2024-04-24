@@ -10,9 +10,6 @@ export default function MenuItemDeneme({ menuList, anchor, setAnchor, mode }) {
   const handleCloseMenu = () => {
     setAnchor(null);
   };
-  //   const handleCloseUserMenu = () => {
-  //     setAnchor(null);
-  //   };
 
   return (
     <Menu
@@ -35,14 +32,16 @@ export default function MenuItemDeneme({ menuList, anchor, setAnchor, mode }) {
         horizontal: mode === 'user' ? 'right' : 'left',
       }}
       open={Boolean(anchor)}
-      //   onClose={() => (mode === 'user' ? handleCloseNavMenu() : handleCloseUserMenu())}
       onClose={handleCloseMenu}
     >
       {menuList.map((menu) => (
         <MenuItem key={menu.label} onClick={handleCloseMenu}>
-          <Typography textAlign="center">{menu.label}</Typography>
-          {/* If NavLink is needed, wrap Typography with NavLink and add necessary props like `to` */}
-          {/* <NavLink to="/some-path"><Typography textAlign="center">{menu.label}</Typography></NavLink> */}
+          <NavLink
+            to={menu.path}
+            style={{ textDecoration: 'none', color: 'inherit' }}
+          >
+            <Typography textAlign="center">{menu.label}</Typography>
+          </NavLink>
         </MenuItem>
       ))}
     </Menu>
