@@ -9,9 +9,15 @@ import swiperConfig from './SwiperConfig';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ShareIcon from '@mui/icons-material/Share';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { useCartContext } from '../../context/CartContext';
 
 function SwiperCustom({ books }) {
-  //console.log(books);
+  const { addItem } = useCartContext()
+
+  function handleAddBookToCart(book) {
+    addItem(book);
+  }
+
   const titleTrimmer = (title) => {
     const countWords = title.split(' ');
     if (countWords.length > 4) {
@@ -42,8 +48,8 @@ function SwiperCustom({ books }) {
         navigation
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log('slide change')}
+        //onSwiper={(swiper) => console.log(swiper)}
+        //onSlideChange={() => console.log('slide change')}
         style={{ width: '90vw', height: '40vh', padding: '0 4rem' }}
       >
         {books.map((book, index) => (
@@ -97,7 +103,10 @@ function SwiperCustom({ books }) {
                     color: '#818274',
                     textDecoration: 'underline',
                     marginLeft: '15px',
+                    cursor: 'pointer',
                   }}
+                  //onClick={()=>console.log('clicked')}
+                  onClick={() => handleAddBookToCart(book)}
                 >
                   Add to Basket
                 </small>

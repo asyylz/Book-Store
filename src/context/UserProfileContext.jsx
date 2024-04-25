@@ -50,7 +50,7 @@ const UserProfileContextProvider = ({ children }) => {
   };
 
   const fetchUserData = async (userId) => {
-    console.log('fetchuserdata:clicked');
+    //console.log('fetchuserdata:clicked');
     //console.log(userId);
     const db = getDatabase();
     const userRef = ref(db, `users/${userId}`);

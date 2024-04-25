@@ -26,7 +26,7 @@ const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem('user')) || ''
   );
-  console.log(currentUser);
+ // console.log(currentUser);
 
   /* ---------------------- register ---------------------- */
   const register = async (email, password, displayName) => {

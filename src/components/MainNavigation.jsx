@@ -21,6 +21,7 @@ import { useState } from 'react';
 import { useCartContext } from '../context/CartContext.jsx';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { useUserProgressContext } from '../context/UserProgressContext.jsx';
+import SelectableAvatar from '../components/SelectableAvatar.jsx';
 
 /* -------------------- Colour Schema -------------------- */
 const ColourSchema = {
@@ -63,7 +64,7 @@ function MainNavigation() {
   /* ----------------------- context ---------------------- */
   const { logout } = useAuthContext();
   const { items } = useCartContext();
-  const { showCart } = useUserProgressContext()
+  const { showCart } = useUserProgressContext();
 
   const totalCartItems = items.reduce((totalNumberOfItems, item) => {
     return totalNumberOfItems + item.quantity;
@@ -72,12 +73,9 @@ function MainNavigation() {
   /* ------------------ navbar functions ------------------ */
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-
+  console.log(anchorElUser);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
   };
 
   /* -------------------------- - ------------------------- */
@@ -171,12 +169,7 @@ function MainNavigation() {
           <SearchInput />
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar
-                  alt={user?.displayName}
-                  src="/static/images/avatar/2.jpg"
-                />
-              </IconButton>
+              <SelectableAvatar user={user} setAnchorElUser={setAnchorElUser} anchorElUser={anchorElUser} />
             </Tooltip>
             {/* ------------------ user settings menu ----------------- */}
             <MenuItemCustom
@@ -189,7 +182,14 @@ function MainNavigation() {
               to={!user && 'auth?mode=login'}
               onClick={() => handleClick(user ? 'logout' : 'login')}
             >
-              <Button sx={{ color: ColourSchema.beige }}>
+              <Button
+                sx={{
+                  color: ColourSchema.beige,
+                  '&:hover': {
+                    color: '#F29F05',
+                  },
+                }}
+              >
                 {user ? 'Logout' : 'Login'}
               </Button>
             </NavLink>
