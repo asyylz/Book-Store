@@ -9,7 +9,6 @@ const apiKey = import.meta.env.VITE_APP_apiKeyGoogle;
 
 export default function BooksPage() {
   const { items, header } = useLoaderData();
-  console.log(items);
   const { user, favBookIds } = useUserProfileContext();
 
   return (
@@ -24,11 +23,15 @@ export default function BooksPage() {
 }
 
 export async function loaderBooks(request) {
+  console.log(request.request.url)
+
   const splitUrl = request.request.url.split('=');
   const category = splitUrl[1];
 
   const response = await fetch(
-    `${BASE_URL}?q=subject:${category}&projection=full&key=${apiKey}`
+    //`${BASE_URL}?q=subject:${category}&projection=full&key=${apiKey}`
+    `${BASE_URL}?q=fantasys&orderBy=newest&key=${apiKey}`
+    
   );
   const resData = await response.json();
   if (!response.ok) {

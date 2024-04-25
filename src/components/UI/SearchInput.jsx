@@ -5,6 +5,7 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import SelectInput from './SelectInput';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -60,18 +61,21 @@ export default function SearchInput() {
     }, 1500);
   };
   return (
-    <Box sx={{ flexGrow: 1, mr: '1rem' }}>
-      <Search>
-        <SearchIconWrapper>
-          <SearchIcon />
-        </SearchIconWrapper>
-        <StyledInputBase
-          placeholder="Title,author,keyword or ISBN"
-          inputProps={{ 'aria-label': 'search' }}
-          value={searchValue}
-          onChange={handleInputChange}
-        />
-      </Search>
-    </Box>
+    <>
+      <SelectInput />
+      <Box sx={{ flexGrow: 1, mr: '1rem' }}>
+        <Search>
+          <SearchIconWrapper>
+            <SearchIcon />
+          </SearchIconWrapper>
+          <StyledInputBase
+            placeholder="Title,author,keyword or ISBN"
+            inputProps={{ 'aria-label': 'search' }}
+            value={searchValue}
+            onChange={handleInputChange}
+          />
+        </Search>
+      </Box>
+    </>
   );
 }

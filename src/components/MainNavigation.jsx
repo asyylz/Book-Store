@@ -73,7 +73,6 @@ function MainNavigation() {
   /* ------------------ navbar functions ------------------ */
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  console.log(anchorElUser);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
