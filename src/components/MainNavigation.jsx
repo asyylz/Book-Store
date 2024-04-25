@@ -16,11 +16,11 @@ import MenuItemCustom from '../components/UI/MenuItemCustom.jsx';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useAuthContext } from '../context/AuthContext';
 import SearchInput from './UI/SearchInput.jsx';
-import Cart from '../components/cart/Cart.jsx';
 import CartButton from './cart/CartButton.jsx';
 import { useState } from 'react';
 import { useCartContext } from '../context/CartContext.jsx';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import { useUserProgressContext } from '../context/UserProgressContext.jsx';
 
 /* -------------------- Colour Schema -------------------- */
 const ColourSchema = {
@@ -59,9 +59,11 @@ const pages = [
 const settings = [{ label: 'Account', path: `${user?.uid}` }];
 
 function MainNavigation() {
+  const user = JSON.parse(localStorage.getItem('user'));
   /* ----------------------- context ---------------------- */
   const { logout } = useAuthContext();
   const { items } = useCartContext();
+  const { showCart } = useUserProgressContext()
 
   const totalCartItems = items.reduce((totalNumberOfItems, item) => {
     return totalNumberOfItems + item.quantity;
@@ -79,6 +81,11 @@ function MainNavigation() {
   };
 
   /* -------------------------- - ------------------------- */
+
+  function handleShowCart() {
+    console.log('clicked');
+    showCart();
+  }
 
   function handleClick(status) {
     if (status === 'logout') logout();
@@ -187,7 +194,7 @@ function MainNavigation() {
                 {user ? 'Logout' : 'Login'}
               </Button>
             </NavLink>
-            <CartButton textOnly onClick>
+            <CartButton textOnly onClick={handleShowCart}>
               <ShoppingBasketIcon /> <small>({totalCartItems})</small>
             </CartButton>
           </Box>

@@ -7,7 +7,7 @@ import AppRouter from './router/AppRouter';
 import UserProfileContextProvider from './context/UserProfileContext.jsx';
 import AuthContextProvider from './context/AuthContext.jsx';
 import { CartContextProvider } from './context/CartContext.jsx';
-import UserProgressContextProvider from './context/UserProgressContext.jsx';
+import { UserProgressContextProvider } from './context/UserProgressContext.jsx';
 
 function App() {
   return (
@@ -16,7 +16,6 @@ function App() {
         <UserProgressContextProvider>
           <CartContextProvider>
             <AppRouter />
-            <ToastContainer />
           </CartContextProvider>
         </UserProgressContextProvider>
       </AuthContextProvider>

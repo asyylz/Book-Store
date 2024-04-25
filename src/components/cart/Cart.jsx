@@ -6,18 +6,20 @@ import CartButton from './CartButton.jsx';
 import CartItem from './CartItem.jsx';
 import './style.css';
 import Modal from './Modal.jsx';
+import { useUserProgressContext } from '../../context/UserProgressContext.jsx';
 
 export default function Cart() {
   const { items, addItem, removeItem, clearCart } = useCartContext();
-  //const userProgressCtx = useContext(UserProgressContext);
+  const { progress, showCart, hideCart, showCheckout, hideCheckout } =
+    useUserProgressContext();
 
-  //   function handleCloseCart() {
-  //     userProgressCtx.hideCart();
-  //   }
+  function handleCloseCart() {
+    hideCart();
+  }
 
-  //   function handleGoToCheckout() {
-  //     userProgressCtx.showCheckout();
-  //   }
+  function handleGoToCheckout() {
+    showCheckout();
+  }
 
   const totalPrice = items.reduce(
     (totalPrice, item) => totalPrice + item.quantity * item.price,
@@ -26,8 +28,8 @@ export default function Cart() {
   return (
     <Modal
       className="cart"
-      //open={userProgressCtx.progress === 'cart'}
-      //onClose={userProgressCtx.progress === 'cart' ? handleCloseCart : null}
+      open={progress === 'cart'}
+      onClose={progress === 'cart' ? handleCloseCart : null}
     >
       <h2>Your Cart</h2>
       <ul>
@@ -44,12 +46,12 @@ export default function Cart() {
       </ul>
       <p className="total">{currencyFormatter.format(totalPrice)}</p>
       <p className="modal-actions">
-        {/* <CartButton textOnly onClick={handleCloseCart}>
+        <CartButton textOnly onClick={handleCloseCart}>
           Close
-        </CartButton> */}
-        {/* {items.length > 0 && (
+        </CartButton>
+        {items.length > 0 && (
           <CartButton onClick={handleGoToCheckout}> Go to Checkout</CartButton>
-        )} */}
+        )}
       </p>
     </Modal>
   );
