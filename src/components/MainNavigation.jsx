@@ -83,7 +83,6 @@ function MainNavigation() {
   /* -------------------------- - ------------------------- */
 
   function handleShowCart() {
-    console.log('clicked');
     showCart();
   }
 

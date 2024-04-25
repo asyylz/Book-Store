@@ -27,14 +27,6 @@ export function UserProgressContextProvider({ children }) {
     setUserProgress('');
   }
 
-  //   const userProgressCtx = {
-  //     progress: userProgress,
-  //     showCart,
-  //     hideCart,
-  //     showCheckout,
-  //     hideCheckout,
-  //   };
-
   return (
     <UserProgressContext.Provider
       value={{

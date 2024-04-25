@@ -1,17 +1,14 @@
-//import Modal from './UI/Modal.jsx';
 import { useCartContext } from '../../context/CartContext.jsx';
 import { currencyFormatter } from '../../utils/currencyFormatter.js';
 import CartButton from './CartButton.jsx';
-//import UserProgressContext from "../store/UserProgressContext.jsx";
 import CartItem from './CartItem.jsx';
 import './style.css';
 import Modal from './Modal.jsx';
 import { useUserProgressContext } from '../../context/UserProgressContext.jsx';
 
 export default function Cart() {
-  const { items, addItem, removeItem, clearCart } = useCartContext();
-  const { progress, showCart, hideCart, showCheckout, hideCheckout } =
-    useUserProgressContext();
+  const { items, addItem, removeItem } = useCartContext();
+  const { progress, hideCart, showCheckout } = useUserProgressContext();
 
   function handleCloseCart() {
     hideCart();
