@@ -43,12 +43,13 @@ export default function BookList({ searchedBooks, header }) {
                 item
                 xs={12}
                 sm={6}
-                md={4}
-                lg={3}
+                md={5}
+                lg={4}
+                xl={3}
                 key={book.id}
                 sx={{
                   //border: '1px solid red',
-                  m: 'auto',
+                  m: { md: 'auto', lg: 'unset', xl: 'unset' },
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',

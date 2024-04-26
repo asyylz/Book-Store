@@ -11,10 +11,11 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
     <Box
       container
       sx={{
-        height: '500px',
-        width: '250px',
+        height: '470px',
+        width: '210px',
         display: 'flex',
         flexDirection: 'column',
+        //border:'1px solid red'
       }}
     >
       <img
