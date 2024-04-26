@@ -174,7 +174,11 @@ function MainNavigation() {
             {pages.map((page, index) => (
               <NavLink key={index} to={page.path}>
                 <Button
-                  sx={{ color: ColourSchema.beige, fontFamily: 'Oswald', fontSize:'20px' }}
+                  sx={{
+                    color: ColourSchema.beige,
+                    fontFamily: 'Oswald',
+                    fontSize: '20px',
+                  }}
                 >
                   {page.label}
                 </Button>
@@ -182,7 +186,9 @@ function MainNavigation() {
             ))}
           </Box>
           <SearchInput />
-          <Box sx={{ flexGrow: 0 }}>
+          <Box
+            sx={{ flexGrow: 0, border: '1px solid red', textAlign: 'center' }}
+          >
             <Tooltip title="Open settings">
               <SelectableAvatar
                 user={user}

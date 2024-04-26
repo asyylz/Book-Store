@@ -14,6 +14,7 @@ export default function SelectableAvatar({ ...props }) {
           cursor: 'pointer',
         },
         backgroundColor: props.anchorElUser ? '#F29F05' : 'transparent',
+        mt:'5px'
       }}
     >
       <Avatar alt={props.user?.displayName} src="/static/images/avatar/2.jpg" />
