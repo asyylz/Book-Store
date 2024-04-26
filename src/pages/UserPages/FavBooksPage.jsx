@@ -1,14 +1,14 @@
 import { useLoaderData } from 'react-router-dom';
 import { useUserProfileContext } from '../../context/UserProfileContext';
 import { getDatabase, ref, get } from 'firebase/database';
-import BookCard from '../../components/BookCard';
+import BookCard from '../../components/BookCardLast';
 import { Box, Container, Grid } from '@mui/material';
 
 export default function FavBooksPage() {
   const { favBooks } = useLoaderData();
   return (
     <Box sx={{ mb: '2rem' }}>
-      <Grid container spacing={3} columnSpacing={3} m={3} width='80vw'>
+      <Grid container spacing={3} columnSpacing={3} m={3} width="80vw">
         {favBooks.map((book) => (
           <Grid item xs={12} md={6} lg={5} xl={4} key={book.id}>
             <BookCard {...book} isFav />

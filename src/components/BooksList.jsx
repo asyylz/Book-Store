@@ -4,10 +4,10 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
 import { Link } from 'react-router-dom';
-import BookCard from './BookCard';
+import BookCard from './BookCardLast';
 export default function BookList({ searchedBooks, header }) {
-//console.log(searchedBooks)
-  
+  console.log(searchedBooks);
+
   return (
     <Box sx={{ mb: '2rem' }}>
       <Container
@@ -21,7 +21,8 @@ export default function BookList({ searchedBooks, header }) {
             component="h1"
             mt={'1rem'}
             color="secondary.second"
-            textTransform={'uppercase'}
+            //textTransform={'uppercase'}
+            fontFamily="Oswald"
           >
             {`${header}`}
           </Typography>
@@ -36,7 +37,7 @@ export default function BookList({ searchedBooks, header }) {
           <Grid container spacing={3} columnSpacing={3} mt={3} width="80vw">
             {searchedBooks?.map((book) => (
               <Grid item xs={12} md={6} lg={5} xl={4} key={book.id}>
-                <BookCard {...book}  />
+                <BookCard {...book} />
               </Grid>
             ))}
           </Grid>
