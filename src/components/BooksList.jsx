@@ -27,15 +27,33 @@ export default function BookList({ searchedBooks, header }) {
           </Typography>
           <Link to=".." relative="path">
             <Button
-              sx={{ backgroundColor: '#F2F0EB', color: 'gray' }}
+              sx={{
+                backgroundColor: '#F2F0EB',
+                color: 'gray',
+                '&:hover': { color: '#F29F05', backgroundColor: 'inherit' },
+              }}
               variant="contained"
             >
               Back to Main Page
             </Button>
           </Link>
-          <Grid container spacing={3} columnSpacing={3} mt={3} width="80vw">
+          <Grid container spacing={2} columnSpacing={2} mt={3} width="80vw">
             {searchedBooks?.map((book) => (
-              <Grid item xs={12} md={6} lg={5} xl={4} key={book.id}>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                lg={3}
+                key={book.id}
+                sx={{
+                  //border: '1px solid red',
+                  m: 'auto',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
                 <BookCard {...book} />
               </Grid>
             ))}

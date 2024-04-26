@@ -3,47 +3,9 @@ import { useUserProfileContext } from '../context/UserProfileContext';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShareIcon from '@mui/icons-material/Share';
-import { update, getDatabase, ref, get, set } from 'firebase/database';
+import { titleTrimmer } from '../utils/titleTrimmer.js';
 export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
-  const { userData, user, handleFavClick } = useUserProfileContext();
-
-  //   async function handleFavClick() {
-  //     const db = getDatabase();
-  //     const userRef = ref(db, `users/${user.uid}`);
-
-  //     try {
-  //       const snapshot = await get(userRef);
-  //       if (snapshot.exists()) {
-  //         const userData = snapshot.val() || {};
-  //         let favBooks = userData.favBooks || [];
-  //         const isAlreadyFavorite = favBooks.some((book) => book.id === id);
-  //         console.log(isAlreadyFavorite);
-
-  //         if (isAlreadyFavorite) {
-  //           alert('This book has already in your favorites...');
-  //           return;
-  //         } else {
-  //           favBooks.push({ volumeInfo, id, saleInfo });
-  //         }
-  //         await update(userRef, { favBooks });
-  //         console.log('Favorite books updated successfully.');
-  //       } else {
-  //         console.log('No user data available.');
-  //       }
-  //     } catch (error) {
-  //       console.error('Error updating favorite books:', error);
-  //     }
-  //   }
-
-  const titleTrimmer = (title) => {
-    const countWords = title.split(' ');
-    if (countWords.length > 4) {
-      const newTitleWords = countWords.filter((_, index) => index < 4);
-      return newTitleWords.join(' ');
-    } else {
-      return title;
-    }
-  };
+  const { handleFavClick } = useUserProfileContext();
 
   return (
     <Box
@@ -53,15 +15,27 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
         width: '250px',
         display: 'flex',
         flexDirection: 'column',
-        border: '1px solid black',
       }}
     >
       <img
         src={volumeInfo.imageLinks.thumbnail}
         alt={volumeInfo.title}
-        style={{ height: '60%', width: '100%' }}
+        style={{
+          height: '60%',
+          width: '100%',
+          boxShadow:
+            'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px',
+          borderRadius: '10px',
+        }}
       />
-      <Typography sx={{ fontFamily: 'Oswald', textAlign: 'center' }}>
+      <Typography
+        sx={{
+          fontFamily: 'Oswald',
+          textAlign: 'center',
+          mt: '1rem',
+          fontSize: '20px',
+        }}
+      >
         {titleTrimmer(volumeInfo.title)}
       </Typography>
       <Typography
