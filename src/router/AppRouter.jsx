@@ -1,10 +1,5 @@
-import { useAuthContext } from '../context/AuthContext';
 /* -------------- react-router-dom imports -------------- */
-import {
-  RouterProvider,
-  createBrowserRouter,
-  redirect,
-} from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 /* --------------------- Route Pages -------------------- */
 import BooksRootLayout from '../layouts/BooksRootLayout.jsx';
@@ -13,7 +8,9 @@ import RootLayout from '../layouts/RootLayout.jsx';
 import ErrorPage from '../pages/ErrorPage.jsx';
 import { action as logoutAction } from '../pages/Logout.jsx';
 /* ------------------- loader imports ------------------- */
-import BooksPage, { loaderBooks } from '../pages/BooksPage.jsx';
+import { loaderBooks } from '../pages/BooksPage.jsx';
+import BooksPage from '../pages/BooksPage.jsx';
+
 import { loaderHomePageBooks } from '../pages/HomePage.jsx';
 import AuthPage from '../pages/AuthPage.jsx';
 import { loaderBook } from '../pages/BookDetailsPage.jsx';
@@ -22,6 +19,9 @@ import { loaderFavBooks } from '../pages/UserPages/FavBooksPage.jsx';
 
 /* ------------------- import actions ------------------- */
 //import { action as logoutAction } from '../pages/Logout.jsx';
+import { action as newRegisterAction } from '../pages/AuthPage.jsx'
+
+/* -------------------------- - ------------------------- */
 import UserPage from '../components/UserPageNavigation.jsx';
 import BookDetailsPage from '../pages/BookDetailsPage.jsx';
 import DashBoard from '../pages/UserPages/DashBoard.jsx';
@@ -78,6 +78,7 @@ const router = createBrowserRouter([
       {
         path: 'auth',
         element: <AuthPage />,
+        action: newRegisterAction,
       },
 
       {

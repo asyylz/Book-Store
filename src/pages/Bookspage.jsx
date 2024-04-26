@@ -23,19 +23,24 @@ export default function BooksPage() {
 }
 
 export async function loaderBooks(request) {
-  console.log(request.request.url)
+  console.log(request.request.url);
 
   const splitUrl = request.request.url.split('=');
-  const category = splitUrl[1];
-
+  const search = splitUrl[1];
+  const field = splitUrl[3];
+  console.log(search);
+  console.log(field);
   const response = await fetch(
-    //`${BASE_URL}?q=subject:${category}&projection=full&key=${apiKey}`
-    `${BASE_URL}?q=fantasys&orderBy=newest&key=${apiKey}`
-    
+    //`${BASE_URL}?q=subject:${search}&projection=full&key=${apiKey}`
+    `${BASE_URL}?q=${
+      field ? field : 'subject'
+    }:${search}&projection=full&key=${apiKey}`
+    //`${BASE_URL}?q=fantasys&orderBy=newest&key=${apiKey}`
   );
   const resData = await response.json();
+  console.log(resData.items);
   if (!response.ok) {
     throw json({ message: 'Could not load books...' }, { status: 500 });
   }
-  return { items: resData.items, header: category };
+  return { items: resData.items, header: search };
 }

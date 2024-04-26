@@ -3,9 +3,11 @@ import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SelectInput from './SelectInput';
+
+import debounce from 'lodash-es/debounce';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -51,18 +53,28 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function SearchInput() {
   const [searchValue, setSearchValue] = useState('');
+  const [selection, setSelection] = useState('Title');
   const navigate = useNavigate();
   //console.log(searchValue);
 
+  const debouncedNavigate = debounce((search, field) => {
+    navigate(`/books?searchValue=${searchValue}=&field=${selection}`);
+  }, 2000); // Delay of 2000ms
+
+  useEffect(() => {
+    // Call the debounced navigate function whenever searchValue or selection changes
+    if (searchValue && selection) {
+      debouncedNavigate(searchValue, selection);
+    }
+  }, [searchValue, selection]);
+
   const handleInputChange = (event) => {
-    setSearchValue(event.target.value);
-    setTimeout(() => {
-      navigate(`books?category=${searchValue}`);
-    }, 1500);
+    setSearchValue(event.target.value); // Set the search value as user types
   };
+
   return (
     <>
-      <SelectInput />
+      <SelectInput selection={selection} setSelection={setSelection} />
       <Box sx={{ flexGrow: 1, mr: '1rem' }}>
         <Search>
           <SearchIconWrapper>

@@ -9,7 +9,7 @@ export default function UserPageNavigation() {
     <Drawer
       variant="permanent"
       sx={{
-        display: { sm: 'none', sm: 'block' },
+        display: { sm: 'none' ,sm:'block'}, // sm:'block'
         '& .MuiDrawer-paper': {
           boxSizing: 'border-box',
           width: drawerWidth,
