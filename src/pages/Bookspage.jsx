@@ -43,5 +43,7 @@ export async function loaderBooks(request) {
   // }:${search}&projection=full&key=${apiKey}`;
 
   const books = await fetchCachedData(booksUrl, nodeCache);
-  return { items: books, header: search };
+  return { items: books, header: 'Your search results' };
+
+  //TODOsoon result will be dynamically updated
 }

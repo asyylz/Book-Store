@@ -23,7 +23,7 @@ export default function BookList({ searchedBooks, header }) {
             color="secondary.second"
             textTransform={'uppercase'}
           >
-            {`${header} Books`}
+            {`${header}`}
           </Typography>
           <Link to=".." relative="path">
             <Button

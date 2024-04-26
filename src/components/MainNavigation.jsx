@@ -1,6 +1,6 @@
 import * as React from 'react';
 /* ---------------- react-router-imports ---------------- */
-import { useNavigation, useNavigate, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 /* ------------------ component imports from mui ----------------- */
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -9,7 +9,6 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItemCustom from '../components/UI/MenuItemCustom.jsx';
@@ -22,6 +21,7 @@ import { useCartContext } from '../context/CartContext.jsx';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { useUserProgressContext } from '../context/UserProgressContext.jsx';
 import SelectableAvatar from '../components/SelectableAvatar.jsx';
+import { currencyFormatter } from '../utils/currencyFormatter.js';
 
 /* -------------------- Colour Schema -------------------- */
 const ColourSchema = {
@@ -67,8 +67,18 @@ function MainNavigation() {
   const { items } = useCartContext();
   const { showCart } = useUserProgressContext();
 
+  /* ------------------------ cart ------------------------ */
+  console.log(items);
   const totalCartItems = items.reduce((totalNumberOfItems, item) => {
     return totalNumberOfItems + item.quantity;
+  }, 0);
+
+  const total = items.reduce((totalPrice, item) => {
+    return (
+      totalPrice +
+      (item.saleInfo.listPrice ? item.saleInfo.listPrice.amount : 10) *
+        item.quantity
+    );
   }, 0);
 
   /* ------------------ navbar functions ------------------ */
@@ -169,7 +179,11 @@ function MainNavigation() {
           <SearchInput />
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <SelectableAvatar user={user} setAnchorElUser={setAnchorElUser} anchorElUser={anchorElUser} />
+              <SelectableAvatar
+                user={user}
+                setAnchorElUser={setAnchorElUser}
+                anchorElUser={anchorElUser}
+              />
             </Tooltip>
             {/* ------------------ user settings menu ----------------- */}
             <MenuItemCustom
@@ -194,7 +208,13 @@ function MainNavigation() {
               </Button>
             </NavLink>
             <CartButton textOnly onClick={handleShowCart}>
-              <ShoppingBasketIcon /> <small>({totalCartItems})</small>
+              <ShoppingBasketIcon />{' '}
+              <small>
+                ({totalCartItems})<br></br>
+              </small>
+              <small style={{ fontSize: '18px' }}>
+                Total:{currencyFormatter.format(total)}
+              </small>
             </CartButton>
           </Box>
         </Toolbar>
