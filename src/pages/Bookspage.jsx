@@ -28,7 +28,7 @@ export default function BooksPage() {
 export async function loaderBooks(request) {
   console.log(request.request.url);
   const requestedUrl = request.request.url.split('?');
-  //console.log(requestUrl);
+  console.log(requestedUrl[1]);
   const splitUrl = request.request.url.split('=');
   const search = splitUrl[1];
   const field = splitUrl[3];
