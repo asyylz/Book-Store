@@ -3,12 +3,10 @@ import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import { useState, useEffect } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SelectInput from './SelectInput';
-
-import debounce from 'lodash-es/debounce';
-
+import useDebounce from '../../hooks/useDebounce';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -55,22 +53,14 @@ export default function SearchInput() {
   const [searchValue, setSearchValue] = useState('');
   const [selection, setSelection] = useState('Title');
   const navigate = useNavigate();
-  //console.log(searchValue);
 
-  const debouncedNavigate = debounce((search, field) => {
-    navigate(`/books?searchValue=${search}=&field=${field}`);
-  }, 2500); // Delay of 2000ms
+  const debouncedValue = useDebounce(searchValue, 600);
 
   useEffect(() => {
-   
-    if (searchValue && selection) {
-      debouncedNavigate(searchValue, selection);
+    if (debouncedValue) {
+      navigate(`/books?q=${selection.toLowerCase()}:${searchValue}`);
     }
-  }, [searchValue, selection]);
-
-  const handleInputChange = (event) => {
-    setSearchValue(event.target.value);
-  };
+  }, [debouncedValue]);
 
   return (
     <>
@@ -84,7 +74,7 @@ export default function SearchInput() {
             placeholder="Title,author,keyword or ISBN"
             inputProps={{ 'aria-label': 'search' }}
             value={searchValue}
-            onChange={handleInputChange}
+            onChange={(e) => setSearchValue(e.target.value)}
           />
         </Search>
       </Box>

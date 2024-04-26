@@ -26,12 +26,22 @@ export default function BooksPage() {
 }
 
 export async function loaderBooks(request) {
+  console.log(request.request.url);
+  const requestedUrl = request.request.url.split('?');
+  //console.log(requestUrl);
   const splitUrl = request.request.url.split('=');
   const search = splitUrl[1];
   const field = splitUrl[3];
-  const booksUrl = `${BASE_URL}?q=${
-    field ? field : 'subject'
-  }:${search}&projection=full&key=${apiKey}`;
+  console.log(search);
+  console.log(field);
+  const booksUrl = `${BASE_URL}?${requestedUrl[1]}`;
+
+  // `${BASE_URL}?q=inauthor:"Roald Dahl"&key=${apiKey}`;
+  
+  // const booksUrl = `${BASE_URL}?q=${
+  //   field ? field : 'subject'
+  // }:${search}&projection=full&key=${apiKey}`;
+
   const books = await fetchCachedData(booksUrl, nodeCache);
   return { items: books, header: search };
 }
