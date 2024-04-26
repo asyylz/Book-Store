@@ -58,18 +58,18 @@ export default function SearchInput() {
   //console.log(searchValue);
 
   const debouncedNavigate = debounce((search, field) => {
-    navigate(`/books?searchValue=${searchValue}=&field=${selection}`);
-  }, 2000); // Delay of 2000ms
+    navigate(`/books?searchValue=${search}=&field=${field}`);
+  }, 2500); // Delay of 2000ms
 
   useEffect(() => {
-    // Call the debounced navigate function whenever searchValue or selection changes
+   
     if (searchValue && selection) {
       debouncedNavigate(searchValue, selection);
     }
   }, [searchValue, selection]);
 
   const handleInputChange = (event) => {
-    setSearchValue(event.target.value); // Set the search value as user types
+    setSearchValue(event.target.value);
   };
 
   return (

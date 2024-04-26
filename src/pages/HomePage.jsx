@@ -60,7 +60,7 @@ export default function HomePage() {
                       buttonName={book.name}
                       id={book.id}
                       to={book.name}
-                    />
+                   side='left' />
                   </Item>
                 </Grid>
               ))}
@@ -95,6 +95,7 @@ export default function HomePage() {
                       buttonName={book.name}
                       id={book.id}
                       to={book.name}
+                      side='right'
                       //to="books"
                     />
                   </Item>

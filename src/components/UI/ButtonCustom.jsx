@@ -1,5 +1,5 @@
 import ButtonStyle from './ButtonStyle.jsx';
-export default function ButtonCustom({ buttonName, id, to, ...props }) {
+export default function ButtonCustom({ buttonName, id, to, side, ...props }) {
   if (!to) {
     return;
   }
@@ -10,7 +10,7 @@ export default function ButtonCustom({ buttonName, id, to, ...props }) {
   };
 
   return (
-    <ButtonStyle id={id} to={`books?search=${linkHandler(to)}`}>
+    <ButtonStyle id={id} to={`books?search=${linkHandler(to)}`} side={side}>
       <div className="style" style={{ color: 'black' }}>
         {buttonName}
       </div>
