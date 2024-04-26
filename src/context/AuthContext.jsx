@@ -16,7 +16,6 @@ import {
 import { createContext, useContext, useEffect, useState } from 'react';
 import { auth } from '../auth/firebase';
 import { useUserProfileContext } from './UserProfileContext';
-//import { useNavigate } from 'react-router-dom';
 const BASE_DB_URL = import.meta.env.VITE_APP_databaseURL;
 export const AuthContext = createContext();
 
@@ -42,8 +41,6 @@ const AuthContextProvider = ({ children }) => {
       await updateProfile(auth.currentUser, {
         displayName: displayName,
       });
-
-      //navigate('/');
       toastSuccessNotify('Registered!');
       createUserInDB(user.uid, displayName, email);
     } catch (error) {

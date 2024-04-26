@@ -46,7 +46,7 @@ export default function LoginForm() {
     const email = data.get('email');
     const password = data.get('password');
     login(email, password);
-  
+    navigate('/');
   };
 
   return (
