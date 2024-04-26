@@ -19,7 +19,7 @@ import { loaderFavBooks } from '../pages/UserPages/FavBooksPage.jsx';
 
 /* ------------------- import actions ------------------- */
 //import { action as logoutAction } from '../pages/Logout.jsx';
-import { action as newRegisterAction } from '../pages/AuthPage.jsx'
+//import { action as newRegisterAction } from '../pages/AuthPage.jsx'
 
 /* -------------------------- - ------------------------- */
 import UserPage from '../components/UserPageNavigation.jsx';
@@ -78,7 +78,6 @@ const router = createBrowserRouter([
       {
         path: 'auth',
         element: <AuthPage />,
-        action: newRegisterAction,
       },
 
       {

@@ -88,8 +88,8 @@ export default function RegisterForm() {
           <Box
             component="form"
             noValidate
-            //onSubmit={handleSubmit}
-            onSubmit={(e)=> e.preventDefault()}
+            onSubmit={handleSubmit}
+            //onSubmit={(e)=> e.preventDefault()}
             sx={{ mt: 3 }}
           >
             <Grid container spacing={3}>

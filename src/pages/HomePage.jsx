@@ -60,15 +60,19 @@ export default function HomePage() {
                       buttonName={book.name}
                       id={book.id}
                       to={book.name}
-                   side='left' />
+                      side="left"
+                    />
                   </Item>
                 </Grid>
               ))}
           </Grid>
           {/* ------------------------ Middle ------------------------*/}
           <Grid item xs={4}>
-            <Typography variant="h6" sx={{ textAlign: 'center' }}>
-              The Author of the week
+            <Typography
+              variant="h6"
+              sx={{ textAlign: 'center', fontFamily: 'Oswald' }}
+            >
+              Author Of The Week
             </Typography>
             <Box sx={{ height: '330px' }}>
               <Carousel>
@@ -95,7 +99,7 @@ export default function HomePage() {
                       buttonName={book.name}
                       id={book.id}
                       to={book.name}
-                      side='right'
+                      side="right"
                       //to="books"
                     />
                   </Item>
@@ -121,7 +125,6 @@ export default function HomePage() {
     </>
   );
 }
-
 
 const nodeCache = new Map();
 async function fetchCachedData(url) {
@@ -152,5 +155,40 @@ export async function loaderHomePageBooks() {
 
   const popularBooks = await fetchCachedData(popularBooksUrl);
   const newestBooks = await fetchCachedData(newestBooksUrl);
+
   return { newestBooks, popularBooks };
 }
+
+// export async function loaderHomePageBooks() {
+//   async function fetchPopularBooks() {
+//     //const response = await fetch(`${BASE_URL}?q=react+subject`);
+//     const response = await fetch(
+//       `${BASE_URL}?q=inauthor:"Roald Dahl"&key=${apiKey}`
+//     );
+//     const resData = await response.json();
+//     if (!response.ok) {
+//       throw json(
+//         { message: 'Could not load popular books...' },
+//         { status: 500 }
+//       );
+//     }
+//     return resData.items;
+//   }
+//   async function fetchNewestBooks() {
+//     //const response = await fetch(`${BASE_URL}?q=orderBy=newest&${apiKey}`);
+//     const response = await fetch(
+//       `${BASE_URL}?q=subject:fiction&orderBy=newest&key=${apiKey}`
+//     );
+//     const resData = await response.json();
+//     if (!response.ok) {
+//       throw json(
+//         { message: 'Could not load recommended books...' },
+//         { status: 500 }
+//       );
+//     }
+//     return resData.items;
+//   }
+//   const popularBooks = await fetchPopularBooks();
+//   const newestBooks = await fetchNewestBooks();
+//   return { newestBooks, popularBooks };
+// }

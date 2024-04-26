@@ -61,6 +61,7 @@ const settings = [{ label: 'Account', path: `${user?.uid}` }];
 
 function MainNavigation() {
   const user = JSON.parse(localStorage.getItem('user'));
+  //console.log(user)
   /* ----------------------- context ---------------------- */
   const { logout } = useAuthContext();
   const { items } = useCartContext();

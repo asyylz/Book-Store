@@ -11,32 +11,32 @@ export default function AuthPage() {
   return <>{isLogin ? <LoginForm /> : <RegisterForm />}</>;
 }
 
-export async function action({ request, params }) {
-  console.log(request.formData)
-  const data = await request.formData();
-console.log('clicked')
-  const eventData = {
-    email: data.get('email'),
-    password: data.get('password'),
-    displayName: data.get('firstName'),
-  };
-  console.log(eventData.email)
-  try {
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      eventData.email,
-      eventData.password
-    );
-    const { user } = userCredential;
-    console.log(user)
-    await updateProfile(auth.currentUser, {
-      displayName: displayName,
-    });
-    toastSuccessNotify('Registered!');
-    //createUserInDB(user.uid, displayName, email);
-  } catch (error) {
-    console.log(error);
-    toastErrorNotify(error.message);
-  }
-  return redirect('/');
-}
+// export async function action({ request, params }) {
+//   console.log(request.formData)
+//   const data = await request.formData();
+// console.log('clicked')
+//   const eventData = {
+//     email: data.get('email'),
+//     password: data.get('password'),
+//     displayName: data.get('firstName'),
+//   };
+//   console.log(eventData.email)
+//   try {
+//     const userCredential = await createUserWithEmailAndPassword(
+//       auth,
+//       eventData.email,
+//       eventData.password
+//     );
+//     const { user } = userCredential;
+//     console.log(user)
+//     await updateProfile(auth.currentUser, {
+//       displayName: displayName,
+//     });
+//     toastSuccessNotify('Registered!');
+//     //createUserInDB(user.uid, displayName, email);
+//   } catch (error) {
+//     console.log(error);
+//     toastErrorNotify(error.message);
+//   }
+//   return redirect('/');
+// }

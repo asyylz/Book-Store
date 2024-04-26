@@ -46,6 +46,7 @@ export default function LoginForm() {
     const email = data.get('email');
     const password = data.get('password');
     login(email, password);
+  
   };
 
   return (
@@ -119,7 +120,7 @@ export default function LoginForm() {
                 type="submit"
                 fullWidth
                 variant="contained"
-                onClick={() => navigate('/')}
+                //onClick={() => navigate('/')}
                 sx={{ mt: 3, mb: 2 }}
               >
                 Sign In

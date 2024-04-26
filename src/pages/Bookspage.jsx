@@ -53,9 +53,6 @@ export async function loaderBooks(request) {
   const splitUrl = request.request.url.split('=');
   const search = splitUrl[1];
   const field = splitUrl[3];
-  console.log(search);
-  console.log(field);
-
   const booksUrl = `${BASE_URL}?q=${
     field ? field : 'subject'
   }:${search}&projection=full&key=${apiKey}`;

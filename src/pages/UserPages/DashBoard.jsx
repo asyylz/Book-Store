@@ -10,7 +10,7 @@ export default function DashBoard() {
   //console.log(user);
   return (
     <Box>
-      <Typography>{user.username}</Typography>
+      <Typography>{user?.username}</Typography>
       <Button>Fetch Users</Button>
     </Box>
   );

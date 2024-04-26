@@ -5,7 +5,6 @@ export default function SelectableAvatar({ ...props }) {
   const handleOpenUserMenu = (event) => {
     props.setAnchorElUser(event.currentTarget);
   };
-console.log(props.user.uid)
   return (
     <IconButton
       onClick={handleOpenUserMenu}
