@@ -3,36 +3,37 @@ import { useUserProfileContext } from '../context/UserProfileContext';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShareIcon from '@mui/icons-material/Share';
+import { update, getDatabase, ref, get, set } from 'firebase/database';
 export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
-  const { userData, user } = useUserProfileContext();
+  const { userData, user, handleFavClick } = useUserProfileContext();
 
-  async function handleFavClick() {
-    const db = getDatabase();
-    const userRef = ref(db, `users/${user.uid}`);
+  //   async function handleFavClick() {
+  //     const db = getDatabase();
+  //     const userRef = ref(db, `users/${user.uid}`);
 
-    try {
-      const snapshot = await get(userRef);
-      if (snapshot.exists()) {
-        const userData = snapshot.val() || {};
-        let favBooks = userData.favBooks || [];
-        const isAlreadyFavorite = favBooks.some((book) => book.id === id);
-        console.log(isAlreadyFavorite);
+  //     try {
+  //       const snapshot = await get(userRef);
+  //       if (snapshot.exists()) {
+  //         const userData = snapshot.val() || {};
+  //         let favBooks = userData.favBooks || [];
+  //         const isAlreadyFavorite = favBooks.some((book) => book.id === id);
+  //         console.log(isAlreadyFavorite);
 
-        if (isAlreadyFavorite) {
-          alert('This book has already in your favorites...');
-          return;
-        } else {
-          favBooks.push({ volumeInfo, id, saleInfo });
-        }
-        await update(userRef, { favBooks });
-        console.log('Favorite books updated successfully.');
-      } else {
-        console.log('No user data available.');
-      }
-    } catch (error) {
-      console.error('Error updating favorite books:', error);
-    }
-  }
+  //         if (isAlreadyFavorite) {
+  //           alert('This book has already in your favorites...');
+  //           return;
+  //         } else {
+  //           favBooks.push({ volumeInfo, id, saleInfo });
+  //         }
+  //         await update(userRef, { favBooks });
+  //         console.log('Favorite books updated successfully.');
+  //       } else {
+  //         console.log('No user data available.');
+  //       }
+  //     } catch (error) {
+  //       console.error('Error updating favorite books:', error);
+  //     }
+  //   }
 
   const titleTrimmer = (title) => {
     const countWords = title.split(' ');
@@ -119,6 +120,7 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
       >
         {isFav ? (
           <FavoriteIcon
+            onClick={handleFavClick}
             className="icon"
             sx={{
               color: 'red',
@@ -129,6 +131,7 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
           />
         ) : (
           <FavoriteBorderIcon
+            onClick={() => handleFavClick(id, volumeInfo, saleInfo)}
             className="icon"
             sx={{
               color: '#7D898C',

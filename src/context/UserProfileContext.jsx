@@ -1,5 +1,5 @@
 import { useState, createContext, useContext } from 'react';
-import { getDatabase, ref, set, get, onValue } from 'firebase/database';
+import { getDatabase, ref, set, get, onValue, update } from 'firebase/database';
 import { useEffect } from 'react';
 const BASE_DB_URL = import.meta.env.VITE_APP_databaseURL;
 export const UserProfileContext = createContext();
@@ -69,6 +69,33 @@ const UserProfileContextProvider = ({ children }) => {
       throw new Error('Failed to fetch user data');
     }
   };
+  async function handleFavClick(id, volumeInfo, saleInfo) {
+    const db = getDatabase();
+    const userRef = ref(db, `users/${user.uid}`);
+
+    try {
+      const snapshot = await get(userRef);
+      if (snapshot.exists()) {
+        const userData = snapshot.val() || {};
+        let favBooks = userData.favBooks || [];
+        const isAlreadyFavorite = favBooks.some((book) => book.id === id);
+        console.log(isAlreadyFavorite);
+
+        if (isAlreadyFavorite) {
+          alert('This book has already in your favorites...');
+          return;
+        } else {
+          favBooks.push({ volumeInfo, id, saleInfo });
+        }
+        await update(userRef, { favBooks });
+        console.log('Favorite books updated successfully.');
+      } else {
+        console.log('No user data available.');
+      }
+    } catch (error) {
+      console.error('Error updating favorite books:', error);
+    }
+  }
 
   return (
     <UserProfileContext.Provider
@@ -79,6 +106,7 @@ const UserProfileContextProvider = ({ children }) => {
         user,
         favBookIds,
         setFavBookIds,
+        handleFavClick,
       }}
     >
       {children}

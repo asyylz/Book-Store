@@ -21,7 +21,6 @@ export default function BookList({ searchedBooks, header }) {
             component="h1"
             mt={'1rem'}
             color="secondary.second"
-            //textTransform={'uppercase'}
             fontFamily="Oswald"
           >
             {`${header}`}
