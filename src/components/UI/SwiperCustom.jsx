@@ -4,15 +4,16 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import { Box, Typography } from '@mui/material';
+import { Badge, Box, Typography } from '@mui/material';
 import swiperConfig from './SwiperConfig';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ShareIcon from '@mui/icons-material/Share';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useCartContext } from '../../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 
 function SwiperCustom({ books }) {
-  const { addItem } = useCartContext()
+  const navigate = useNavigate();
+  const { addItem } = useCartContext();
 
   function handleAddBookToCart(book) {
     addItem(book);
@@ -48,8 +49,6 @@ function SwiperCustom({ books }) {
         navigation
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
-        //onSwiper={(swiper) => console.log(swiper)}
-        //onSlideChange={() => console.log('slide change')}
         style={{ width: '90vw', height: '40vh', padding: '0 4rem' }}
       >
         {books.map((book, index) => (
@@ -87,41 +86,44 @@ function SwiperCustom({ books }) {
                   color: '#0B2559',
                 }}
               >
-                <small
-                  style={{
+                <Badge
+                  sx={{
                     fontSize: '20px',
                     marginRight: '5px',
                   }}
                 >
                   £
-                </small>
+                </Badge>
                 {book.saleInfo.listPrice?.amount
                   ? book.saleInfo.listPrice?.amount
                   : '10.00'}
-                <small
-                  style={{
+                <Badge
+                  sx={{
                     color: '#818274',
                     textDecoration: 'underline',
                     marginLeft: '15px',
                     cursor: 'pointer',
+                    '&:hover': { color: '#F29F05' },
                   }}
-                  //onClick={()=>console.log('clicked')}
                   onClick={() => handleAddBookToCart(book)}
                 >
                   Add to Basket
-                </small>
+                </Badge>
               </Typography>
               <Box
                 sx={{ display: 'flex', justifyContent: 'center', mt: '1rem' }}
               >
-                <FavoriteBorderIcon sx={{ mr: '10px' }} />
-                <ShareIcon sx={{ mr: '10px' }} />
+                <FavoriteBorderIcon sx={{ mr: '10px', cursor: 'pointer' }} />
+                <ShareIcon sx={{ mr: '10px', cursor: 'pointer' }} />
                 <Typography
                   sx={{
                     color: '#818274',
                     textDecoration: 'underline',
                     marginLeft: '15px',
+                    cursor: 'pointer',
+                    '&:hover': { color: '#F29F05' },
                   }}
+                  onClick={() => navigate(`/books/${book.id}`)}
                 >
                   See details
                 </Typography>
