@@ -106,6 +106,7 @@ function MainNavigation() {
       sx={{
         backgroundColor: ColourSchema.navy,
         color: ColourSchema.beige,
+        fontFamily: 'Oswald',
       }}
     >
       <Container maxWidth="xl">
@@ -172,7 +173,11 @@ function MainNavigation() {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page, index) => (
               <NavLink key={index} to={page.path}>
-                <Button sx={{ color: ColourSchema.beige }}>{page.label}</Button>
+                <Button
+                  sx={{ color: ColourSchema.beige, fontFamily: 'Oswald', fontSize:'20px' }}
+                >
+                  {page.label}
+                </Button>
               </NavLink>
             ))}
           </Box>

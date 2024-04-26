@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Typography, Grid } from '@mui/material';
 import { useLoaderData } from 'react-router-dom';
 import { getDatabase, ref, get, onValue } from 'firebase/database';
 
@@ -9,9 +9,11 @@ export default function DashBoard() {
   const { user } = useLoaderData();
   //console.log(user);
   return (
-    <Box>
-      <Typography>{user?.username}</Typography>
-      <Button>Fetch Users</Button>
+    <Box sx={{ m: 3 }}>
+      <Grid container spacing={2}>
+        <Typography>{user?.username}</Typography>
+        <Button>Fetch Users</Button>
+      </Grid>
     </Box>
   );
 }

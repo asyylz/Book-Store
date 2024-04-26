@@ -6,7 +6,6 @@ import ListItemText from '@mui/material/ListItemText';
 import Toolbar from '@mui/material/Toolbar';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useUserProfileContext } from '../context/UserProfileContext';
 
 //const icon = (name) => `/assets/navbar/${name}.svg`;
 
@@ -66,12 +65,11 @@ const selectedStyle = {
 const UserPageMenuList = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  //const {userId} =useUserProfileContext()
   const user = JSON.parse(localStorage.getItem('user')) || '';
 
-  function handleNavigate(route) { // ASK
+  function handleNavigate(route) {
+    // ASK
     if (route === '/') {
-      //navigate(`${user.uid}`);
       return;
     } else {
       navigate(route);
@@ -97,7 +95,8 @@ const UserPageMenuList = () => {
                   bgcolor: 'currentColor',
                 }}
               />
-              <ListItemText primary={item.title} />
+              {/* ASK font family  */}
+              <ListItemText  primary={item.title}/>
             </ListItemButton>
           </ListItem>
         ))}
