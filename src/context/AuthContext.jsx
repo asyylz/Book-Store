@@ -19,15 +19,11 @@ import { useUserProfileContext } from './UserProfileContext';
 const BASE_DB_URL = import.meta.env.VITE_APP_databaseURL;
 export const AuthContext = createContext();
 
-
-
 const AuthContextProvider = ({ children }) => {
   const { createUserInDB } = useUserProfileContext();
-  //const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem('user')) || ''
   );
-  // console.log(currentUser);
 
   /* ---------------------- register ---------------------- */
   const register = async (email, password, displayName) => {
@@ -38,6 +34,7 @@ const AuthContextProvider = ({ children }) => {
         password
       );
       const { user } = userCredential;
+      console.log(userCredential)
       await updateProfile(auth.currentUser, {
         displayName: displayName,
       });
@@ -50,10 +47,8 @@ const AuthContextProvider = ({ children }) => {
   };
   /* ------------------------ login ----------------------- */
   const login = async (email, password) => {
-    console.log('login:clicked');
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate('/');
       toastSuccessNotify('Logged in!');
     } catch (error) {
       toastErrorNotify(error.message);

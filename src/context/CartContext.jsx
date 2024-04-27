@@ -10,7 +10,6 @@ const CartContext = createContext({
 
 function cartReducer(state, action) {
   if (action.type === 'ADD_ITEM') {
-    console.log('Add:clicked')
     const existingCartItemIndex = state.items.findIndex(
       (item) => item.id === action.item.id
     );

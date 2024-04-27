@@ -8,7 +8,7 @@ const UserProfileContextProvider = ({ children }) => {
   const [userData, setUserData] = useState();
   const [favBookIds, setFavBookIds] = useState([]);
   const user = JSON.parse(localStorage.getItem('user'));
-
+console.log(user)
   useEffect(() => {
     async function fetchData() {
       try {
@@ -79,7 +79,6 @@ const UserProfileContextProvider = ({ children }) => {
         const userData = snapshot.val() || {};
         let favBooks = userData.favBooks || [];
         const isAlreadyFavorite = favBooks.some((book) => book.id === id);
-        console.log(isAlreadyFavorite);
 
         if (!isAlreadyFavorite) {
           favBooks.push({ volumeInfo, id, saleInfo });

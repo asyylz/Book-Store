@@ -6,7 +6,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import { titleTrimmer } from '../utils/titleTrimmer.js';
 export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
   const { handleFavClick } = useUserProfileContext();
-  
+
   return (
     <Box
       container
@@ -24,7 +24,7 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
           <Badge sx={{ position: 'absolute' }}>
             <img
               alt="Static Badge"
-              src="https://img.shields.io/badge/Digital%20available-yellow?style=plastic&logo=E-Book&logoColor=yellow&labelColor=black"
+              src="https://img.shields.io/badge/Digital%20available-yellow?style=plastic&logo=E-Book&logoColor=yellow&labelColor=navy"
             />
           </Badge>
         ) : (
@@ -34,7 +34,7 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
           <Badge sx={{ position: 'absolute', left: '120px' }}>
             <img
               alt="Static Badge"
-              src="https://img.shields.io/badge/Free-green?style=plastic&logo=E-Book&logoColor=yellow&labelColor=black"
+              src="https://img.shields.io/badge/Free-green?style=plastic&logo=E-Book&logoColor=yellow&labelColor=navy"
             />
           </Badge>
         ) : (

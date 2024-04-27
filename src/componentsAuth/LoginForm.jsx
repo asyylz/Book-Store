@@ -37,6 +37,7 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function LoginForm() {
+  
   const navigate = useNavigate();
   const { login } = useAuthContext();
 
@@ -120,7 +121,6 @@ export default function LoginForm() {
                 type="submit"
                 fullWidth
                 variant="contained"
-                //onClick={() => navigate('/')}
                 sx={{ mt: 3, mb: 2 }}
               >
                 Sign In

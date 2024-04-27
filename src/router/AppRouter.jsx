@@ -15,12 +15,11 @@ import { loaderHomePageBooks } from '../pagesMain/HomePage.jsx';
 import AuthPage from '../pagesMain/AuthPage.jsx';
 import { loaderBook } from '../pagesMain/BookDetailsPage.jsx';
 import { loaderUser } from '../pagesUser/DashBoard.jsx';
-import UserFavBooksPage, { loaderFavBooks } from '../pagesUser/UserFavBooksPage.jsx';
-//import { loaderUserBooks } from '../pagesUser/UserBooksPage.jsx';
+import UserFavBooksPage, {
+  loaderFavBooks,
+} from '../pagesUser/UserFavBooksPage.jsx';
 
 /* ------------------- import actions ------------------- */
-//import { action as logoutAction } from '../pages/Logout.jsx';
-//import { action as newRegisterAction } from '../pages/AuthPage.jsx'
 
 /* -------------------------- - ------------------------- */
 import BookDetailsPage from '../pagesMain/BookDetailsPage.jsx';
@@ -28,6 +27,7 @@ import DashBoard from '../pagesUser/DashBoard.jsx';
 import UserPageLayout from '../layouts/UserPageLayout.jsx';
 import UserEBooksPage from '../pagesUser/UserEbooksPage.jsx';
 import UserPurchasedBooksPage from '../pagesUser/UserPurchasedBooksPage.jsx';
+import PrivateRoute from './PrivateRoute.jsx';
 /* ----------------------- router ----------------------- */
 
 const router = createBrowserRouter([
@@ -56,7 +56,11 @@ const router = createBrowserRouter([
       },
       {
         path: ':userId',
-        element: <UserPageLayout />,
+        element: (
+          <PrivateRoute>
+            <UserPageLayout />
+          </PrivateRoute>
+        ),
         children: [
           {
             index: true,

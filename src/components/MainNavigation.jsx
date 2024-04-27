@@ -70,7 +70,6 @@ function MainNavigation() {
   const { showCart } = useUserProgressContext();
 
   /* ------------------------ cart ------------------------ */
-  console.log(items);
   const totalCartItems = items.reduce((totalNumberOfItems, item) => {
     return totalNumberOfItems + item.quantity;
   }, 0);
@@ -170,11 +169,14 @@ function MainNavigation() {
           <SearchInput />
           <Box sx={{ flexGrow: 0, textAlign: 'center' }}>
             <Tooltip title="Open settings">
-              <SelectableAvatar
-                user={user}
-                setAnchorElUser={setAnchorElUser}
-                anchorElUser={anchorElUser}
-              />
+            
+              {user && (
+                <SelectableAvatar
+                  user={user}
+                  setAnchorElUser={setAnchorElUser}
+                  anchorElUser={anchorElUser}
+                />
+              )}
             </Tooltip>
             {/* ------------------ user settings menu ----------------- */}
             <MenuItemCustom
