@@ -1,7 +1,6 @@
 import { useLoaderData } from 'react-router-dom';
 import { getDatabase, ref, get, onValue } from 'firebase/database';
-import BookCard from '../components/BookCard';
-import { Box, Grid } from '@mui/material';
+import UserPageBookList from '../componentsUser/UserPageBookList';
 import { useState, useEffect } from 'react';
 
 export default function UserFavBooksPage() {
@@ -32,31 +31,8 @@ export default function UserFavBooksPage() {
     // Cleanup function to unsubscribe when the component unmounts
     return () => unsubscribe();
   }, []);
-  return (
-    <Box sx={{ mb: '2rem' }}>
-      <Grid container spacing={3} columnSpacing={3} m={3} width="80vw">
-        {favBooks.map((book) => (
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            md={5}
-            lg={4}
-            xl={3}
-            key={book.id}
-            sx={{
-              m: { md: 'auto', lg: 'unset', xl: 'unset' },
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <BookCard {...book} isFav />
-          </Grid>
-        ))}
-      </Grid>
-    </Box>
-  );
+
+  return <UserPageBookList books={favBooks} />;
 }
 
 export async function loaderFavBooks() {

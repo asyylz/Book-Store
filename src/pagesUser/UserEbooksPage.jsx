@@ -4,9 +4,11 @@ import UserPageBookList from '../componentsUser/UserPageBookList';
 
 export default function UserEBooksPage() {
   const { favBooks } = useLoaderData();
-  return <UserPageBookList books={favBooks} />;
+  const eBooks = favBooks.filter((book) => book.saleInfo.isEbook);
+  return <UserPageBookList books={eBooks} />;
 }
 
+// We use same favBookList for eBooksPage
 export async function loaderFavBooks() {
   const user = JSON.parse(localStorage.getItem('user'));
 
