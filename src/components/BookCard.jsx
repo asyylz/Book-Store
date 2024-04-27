@@ -19,7 +19,7 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
       }}
     >
       <img
-        src={volumeInfo.imageLinks.thumbnail}
+        src={volumeInfo.imageLinks?.thumbnail}
         alt={volumeInfo.title}
         style={{
           height: '60%',

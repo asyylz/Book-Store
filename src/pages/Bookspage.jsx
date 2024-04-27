@@ -33,7 +33,8 @@ export async function loaderBooks(request) {
   const field = splitUrl[3];
   console.log(search);
   console.log(field);
-  const booksUrl = `${BASE_URL}?${requestedUrl[1]}`;
+  const booksUrl = `${BASE_URL}?${requestedUrl[1]}&key${apiKey}`;
+  console.log(booksUrl)
   const books = await fetchCachedData(booksUrl, nodeCache);
 
   return { items: books, header: 'Your search results' };

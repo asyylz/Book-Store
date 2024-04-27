@@ -26,7 +26,7 @@ const bookSection = [
   { id: 4, name: 'Fantasy books' },
   { id: 5, name: 'Self-Help books' },
   { id: 6, name: 'Fiction books' },
-  { id: 7, name: 'E-books' },
+  { id: 7, name: 'E-Books' },
   { id: 8, name: 'Free E-Books books' },
 ];
 
