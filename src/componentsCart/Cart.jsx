@@ -9,6 +9,7 @@ import { useUserProgressContext } from '../context/UserProgressContext.jsx';
 export default function Cart() {
   const { items, addItem, removeItem } = useCartContext();
   const { progress, hideCart, showCheckout } = useUserProgressContext();
+  console.log(items);
 
   function handleCloseCart() {
     hideCart();
@@ -19,7 +20,10 @@ export default function Cart() {
   }
 
   const totalPrice = items.reduce(
-    (totalPrice, item) => totalPrice + item.quantity * item.price,
+    (totalPrice, item) =>
+      totalPrice +
+      item.quantity *
+        (item.saleInfo.listPrice?.amount ? item.saleInfo.listPrice.amount : 10),
     0
   );
   return (
@@ -33,8 +37,12 @@ export default function Cart() {
         {items.map((item) => (
           <CartItem
             key={item.id}
-            name={item.name}
-            price={item.price}
+            name={item.volumeInfo.title}
+            price={
+              item.saleInfo.listPrice?.amount
+                ? item.saleInfo.listPrice.amount
+                : 10
+            }
             quantity={item.quantity}
             onIncrease={() => addItem(item)}
             onDecrease={() => removeItem(item.id)}

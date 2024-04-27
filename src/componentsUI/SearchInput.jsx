@@ -56,11 +56,7 @@ const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0, // extra-small devices
-      sm1: 800,
-      sm2: 856, // small devices (customized from 600px to 480px)
-      md: 996, // medium devices (customized from 900px to 768px)
-      lg: 990, // large devices (customized from 1200px to 1024px)
-      xl: 1173, // extra-large devices (customized from 1536px to 1440px)
+      sm: 800,
     },
   },
 });
@@ -83,13 +79,13 @@ export default function SearchInput() {
       <Box
         sx={{
           display: 'flex',
-          flexDirection: { xs: 'column', sm1: 'row' },
+          flexDirection: { xs: 'column', sm: 'row' },
           justifyContent: 'center',
           alignItems: 'center',
         }}
       >
         <SelectInput selection={selection} setSelection={setSelection} />
-        <Box sx={{ flexGrow: 1, m: '10px', width:{xs:'230px',sm1:'350px'}, height: '40px' }}>
+        <Box sx={{ flexGrow: 1, m: '10px', width:{xs:'230px',sm:'350px'}, height: '40px' }}>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />

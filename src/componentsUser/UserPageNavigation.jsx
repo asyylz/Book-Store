@@ -6,12 +6,12 @@ const drawerWidth = 240;
 const theme = createTheme({
   breakpoints: {
     values: {
-      xs: 0, // extra-small devices
+      xs: 0,
       sm1: 800,
-      sm2: 856, // small devices (customized from 600px to 480px)
-      md: 900, // medium devices (customized from 900px to 768px)
-      lg: 990, // large devices (customized from 1200px to 1024px)
-      xl: 1173, // extra-large devices (customized from 1536px to 1440px)
+      sm2: 856, 
+      md: 900, 
+      lg: 990, 
+      xl: 1173,
     },
   },
 });
@@ -33,7 +33,7 @@ export default function UserPageNavigation() {
               lg: '80px',
               xl: '80px',
             },
-            border: '1px solid red',
+            //border: '1px solid red',
           },
         }}
         open
