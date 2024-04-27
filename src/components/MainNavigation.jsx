@@ -11,11 +11,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-import MenuItemCustom from '../components/UI/MenuItemCustom.jsx';
+import MenuItemCustom from '../componentsUI/MenuItemCustom.jsx';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useAuthContext } from '../context/AuthContext';
-import SearchInput from './UI/SearchInput.jsx';
-import CartButton from '../componentsCart/CartButton.jsx'
+import SearchInput from '../componentsUI/SearchInput.jsx';
+import CartButton from '../componentsCart/CartButton.jsx';
 import { useState } from 'react';
 import { useCartContext } from '../context/CartContext.jsx';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';

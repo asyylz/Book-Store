@@ -2,13 +2,13 @@
 import { json, useLoaderData } from 'react-router-dom';
 import * as React from 'react';
 import Carousel from 'react-material-ui-carousel';
-import Footer from '../components/UI/Footer';
+import Footer from '../componentsUI/Footer';
 
 /* ----------------- material ui imports ---------------- */
 import { IconButton, Typography, Box, Grid, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import ButtonCustom from '../components/UI/ButtonCustom';
-import SwiperCustom from '../components/UI/SwiperCustom';
+import ButtonCustom from '../componentsUI/ButtonCustom';
+import SwiperCustom from '../componentsUI/SwiperCustom';
 import { useUserProfileContext } from '../context/UserProfileContext';
 /* -------------------- react imports ------------------- */
 

@@ -8,7 +8,7 @@ import { Badge, Box, Rating, Typography } from '@mui/material';
 import swiperConfig from './SwiperConfig';
 import ShareIcon from '@mui/icons-material/Share';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { useCartContext } from '../../context/CartContext';
+import { useCartContext } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
 
 function SwiperCustom({ books }) {

@@ -6,7 +6,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SelectInput from './SelectInput';
-import useDebounce from '../../hooks/useDebounce';
+import useDebounce from '../hooks/useDebounce';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
