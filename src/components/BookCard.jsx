@@ -6,8 +6,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import { titleTrimmer } from '../utils/titleTrimmer.js';
 export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
   const { handleFavClick } = useUserProfileContext();
-  console.log(saleInfo.isEbook);
-
+  
   return (
     <Box
       container

@@ -2,7 +2,7 @@
 import { json, useLoaderData } from 'react-router-dom';
 import * as React from 'react';
 import Carousel from 'react-material-ui-carousel';
-import Footer from '../componentsUI/Footer';
+import Footer from '../components/Footer';
 
 /* ----------------- material ui imports ---------------- */
 import { IconButton, Typography, Box, Grid, Paper } from '@mui/material';

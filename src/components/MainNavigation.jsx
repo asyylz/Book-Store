@@ -20,7 +20,7 @@ import { useState } from 'react';
 import { useCartContext } from '../context/CartContext.jsx';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { useUserProgressContext } from '../context/UserProgressContext.jsx';
-import SelectableAvatar from '../components/SelectableAvatar.jsx';
+import SelectableAvatar from '../componentsUser/SelectableAvatar.jsx';
 import { currencyFormatter } from '../utils/currencyFormatter.js';
 
 /* -------------------- Colour Schema -------------------- */
@@ -168,9 +168,7 @@ function MainNavigation() {
             ))}
           </Box>
           <SearchInput />
-          <Box
-            sx={{ flexGrow: 0, textAlign: 'center' }}
-          >
+          <Box sx={{ flexGrow: 0, textAlign: 'center' }}>
             <Tooltip title="Open settings">
               <SelectableAvatar
                 user={user}
