@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
 import { Link } from 'react-router-dom';
-import BookCard from './BookCardLast';
+import BookCard from './BookCard';
 export default function BookList({ searchedBooks, header }) {
   console.log(searchedBooks);
 

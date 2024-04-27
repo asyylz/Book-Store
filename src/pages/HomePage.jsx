@@ -26,6 +26,8 @@ const bookSection = [
   { id: 4, name: 'Fantasy books' },
   { id: 5, name: 'Self-Help books' },
   { id: 6, name: 'Fiction books' },
+  { id: 7, name: 'E-books' },
+  { id: 8, name: 'Free E-Books books' },
 ];
 
 const Item = styled(Paper)(() => ({
@@ -55,7 +57,7 @@ export default function HomePage() {
           {/* ------------------------ Left ------------------------*/}
           <Grid item xs={4}>
             {bookSection
-              .filter((_, index) => index > 2)
+              .filter((_, index) => index > 3)
               .map((book) => (
                 <Grid item xs={12} key={book.id}>
                   <Item>
@@ -94,7 +96,7 @@ export default function HomePage() {
           {/* ------------------------ Right ------------------------*/}
           <Grid item xs={4}>
             {bookSection
-              .filter((_, index) => index < 3)
+              .filter((_, index) => index < 4)
               .map((book) => (
                 <Grid item xs={12} key={book.id}>
                   <Item>

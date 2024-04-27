@@ -6,6 +6,9 @@ const ColourSchema = [
   { name: 'blue', value: '#9ACDD9' },
   { name: 'purple', value: '#BE9BF3' },
   { name: 'green', value: '#AAF2A7' },
+  { name: 'pink', value: '#F2BBD9' },
+  { name: 'cinnamon', value: '#F29F05' },
+  { name: 'blue', value: '#43BDD9' },
 ];
 import { Link } from 'react-router-dom';
 

@@ -10,11 +10,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 //const icon = (name) => `/assets/navbar/${name}.svg`;
 
 const links = [
-  // {
-  //   title: 'Dashboard',
-  //   url: '/',
-  //   //icon: icon("ic_analytics"),
-  // },
+  {
+    title: 'Dashboard',
+    url: '/',
+    //icon: icon("ic_analytics"),
+  },
   {
     title: 'Favorites',
     url: 'favs',
@@ -70,7 +70,7 @@ const UserPageMenuList = () => {
   function handleNavigate(route) {
     // ASK
     if (route === '/') {
-      return;
+      navigate(`/${user.uid}`);
     } else {
       navigate(route);
     }
@@ -96,7 +96,7 @@ const UserPageMenuList = () => {
                 }}
               />
               {/* ASK font family  */}
-              <ListItemText  primary={item.title}/>
+              <ListItemText primary={item.title} />
             </ListItemButton>
           </ListItem>
         ))}

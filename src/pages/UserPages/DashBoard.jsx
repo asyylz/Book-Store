@@ -6,6 +6,7 @@ import {
   Divider,
   ListItem,
   ListItemText,
+  TextField,
 } from '@mui/material';
 import { useLoaderData } from 'react-router-dom';
 import { getDatabase, ref, get, onValue } from 'firebase/database';
@@ -16,10 +17,15 @@ export default function DashBoard() {
   //const { fetchUser } = useUserProfileContext();
   const { user } = useLoaderData();
   //console.log(user);
-  return <Box sx={{ m: 3, fontFamily: 'Oswald' }}>
-
-    
-  </Box>;
+  return (
+    <Box sx={{ m: 3, fontFamily: 'Oswald' }}>
+      <Typography sx={{ fontFamily: 'Oswald', fontSize: '20px' }}>
+        Your profile information
+      </Typography>
+      <Divider />
+      <Typography sx={{ mt: '20px' }}> Will be here soon</Typography>
+    </Box>
+  );
 }
 
 export async function loaderUser({ _, params }) {

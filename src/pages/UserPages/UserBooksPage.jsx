@@ -3,7 +3,7 @@ import { getDatabase, ref, get } from 'firebase/database';
 import BookCard from '../../components/BookCard';
 import { Box, Grid } from '@mui/material';
 
-export default function FavBooksPage() {
+export default function UserBooksPage() {
   const { favBooks } = useLoaderData();
   return (
     <Box sx={{ mb: '2rem' }}>
@@ -32,7 +32,7 @@ export default function FavBooksPage() {
   );
 }
 
-export async function loaderFavBooks() {
+export async function loaderUserBooks() {
   const user = JSON.parse(localStorage.getItem('user'));
 
   const db = getDatabase();
