@@ -1,6 +1,6 @@
 import { Outlet, useNavigation } from 'react-router-dom';
 import MainNavigation from '../components/MainNavigation';
-import Cart from '../components/cart/Cart';
+import Cart from '../componentsCart/Cart';
 import { ToastContainer } from 'react-toastify';
 function RootLayout() {
   const navigation = useNavigation();

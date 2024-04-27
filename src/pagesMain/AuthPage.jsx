@@ -1,6 +1,6 @@
 import { useSearchParams, useNavigation } from 'react-router-dom';
-import RegisterForm from '../components/RegisterForm';
-import LoginForm from '../components/LoginForm';
+import RegisterForm from '../componentsAuth/RegisterForm';
+import LoginForm from '../componentsAuth/LoginForm';
 
 export default function AuthPage() {
   const navigation = useNavigation();

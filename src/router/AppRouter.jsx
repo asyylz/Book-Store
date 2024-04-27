@@ -3,31 +3,31 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 /* --------------------- Route Pages -------------------- */
 import BooksRootLayout from '../layouts/BooksRootLayout.jsx';
-import HomePage from '../pages/HomePage.jsx';
+import HomePage from '../pagesMain/HomePage.jsx';
 import RootLayout from '../layouts/RootLayout.jsx';
-import ErrorPage from '../pages/ErrorPage.jsx';
-import { action as logoutAction } from '../pages/Logout.jsx';
+import ErrorPage from '../pagesMain/ErrorPage.jsx';
+import { action as logoutAction } from '../pagesMain/Logout.jsx';
 /* ------------------- loader imports ------------------- */
-import { loaderBooks } from '../pages/BooksPage.jsx';
-import BooksPage from '../pages/BooksPage.jsx';
+import { loaderBooks } from '../pagesMain/BooksPage.jsx';
+import BooksPage from '../pagesMain/BooksPage.jsx';
 
-import { loaderHomePageBooks } from '../pages/HomePage.jsx';
-import AuthPage from '../pages/AuthPage.jsx';
-import { loaderBook } from '../pages/BookDetailsPage.jsx';
-import { loaderUser } from '../pages/UserPages/DashBoard.jsx';
-import { loaderFavBooks } from '../pages/UserPages/FavBooksPage.jsx';
-import { loaderUserBooks } from '../pages/UserPages/UserBooksPage.jsx';
+import { loaderHomePageBooks } from '../pagesMain/HomePage.jsx';
+import AuthPage from '../pagesMain/AuthPage.jsx';
+import { loaderBook } from '../pagesMain/BookDetailsPage.jsx';
+import { loaderUser } from '../pagesUser/DashBoard.jsx';
+import { loaderFavBooks } from '../pagesUser/FavBooksPage.jsx';
+import { loaderUserBooks } from '../pagesUser/UserBooksPage.jsx';
 
 /* ------------------- import actions ------------------- */
 //import { action as logoutAction } from '../pages/Logout.jsx';
 //import { action as newRegisterAction } from '../pages/AuthPage.jsx'
 
 /* -------------------------- - ------------------------- */
-import BookDetailsPage from '../pages/BookDetailsPage.jsx';
-import DashBoard from '../pages/UserPages/DashBoard.jsx';
-import FavBooksPage from '../pages/UserPages/FavBooksPage.jsx';
+import BookDetailsPage from '../pagesMain/BookDetailsPage.jsx';
+import DashBoard from '../pagesUser/DashBoard.jsx';
+import FavBooksPage from '../pagesUser/FavBooksPage.jsx';
 import UserPageLayout from '../layouts/UserPageLayout.jsx';
-import UserBooksPage from '../pages/UserPages/UserBooksPage.jsx';
+import UserBooksPage from '../pagesUser/UserBooksPage.jsx';
 /* ----------------------- router ----------------------- */
 
 const router = createBrowserRouter([

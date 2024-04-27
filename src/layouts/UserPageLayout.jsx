@@ -1,5 +1,5 @@
 import { Box, Divider, Typography, ListItem } from '@mui/material';
-import UserPageNavigation from '../components/UserPageNavigation';
+import UserPageNavigation from '../componentsUser/UserPageNavigation';
 import { Outlet } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 const drawerWidth = 240;

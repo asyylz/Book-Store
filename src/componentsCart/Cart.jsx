@@ -1,10 +1,10 @@
-import { useCartContext } from '../../context/CartContext.jsx';
-import { currencyFormatter } from '../../utils/currencyFormatter.js';
+import { useCartContext } from '../context/CartContext.jsx';
+import { currencyFormatter } from '../utils/currencyFormatter.js';
 import CartButton from './CartButton.jsx';
 import CartItem from './CartItem.jsx';
 import './style.css';
 import Modal from './Modal.jsx';
-import { useUserProgressContext } from '../../context/UserProgressContext.jsx';
+import { useUserProgressContext } from '../context/UserProgressContext.jsx';
 
 export default function Cart() {
   const { items, addItem, removeItem } = useCartContext();

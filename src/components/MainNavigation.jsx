@@ -15,7 +15,7 @@ import MenuItemCustom from '../components/UI/MenuItemCustom.jsx';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useAuthContext } from '../context/AuthContext';
 import SearchInput from './UI/SearchInput.jsx';
-import CartButton from './cart/CartButton.jsx';
+import CartButton from '../componentsCart/CartButton.jsx'
 import { useState } from 'react';
 import { useCartContext } from '../context/CartContext.jsx';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
