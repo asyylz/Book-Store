@@ -1,138 +1,144 @@
+import { Badge, Box, Rating, Typography } from '@mui/material';
+import { useUserProfileContext } from '../context/UserProfileContext.jsx';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShareIcon from '@mui/icons-material/Share';
-import BookCardStyle from './BookCardStyle';
-import { Box, Typography, Grid, Button, IconButton } from '@mui/material';
-import { Link } from 'react-router-dom';
-import { useUserProfileContext } from '../context/UserProfileContext';
-import { update, getDatabase, ref, get, set } from 'firebase/database';
+import { titleTrimmer } from '../utils/titleTrimmer.js';
+export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
+  const { handleFavClick } = useUserProfileContext();
 
-const btnStyle = {
-  boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px;',
-  width: 100,
-  marginTop: 1,
-  color: 'gray',
-};
-
-export default function BookCard({ volumeInfo, id , isFav }) {
-  const { userData,user } = useUserProfileContext();
-
-  // const isFav = userData?.favBooks.some((book) => book.id === id);
-  // console.log(isFav);
-
-  async function handleFavClick() {
-    const db = getDatabase();
-    const userRef = ref(db, `users/${user.uid}`);
-
-    try {
-      const snapshot = await get(userRef);
-      if (snapshot.exists()) {
-        const userData = snapshot.val() || {};
-        let favBooks = userData.favBooks || [];
-        const isAlreadyFavorite = favBooks.some((book) => book.id === id);
-        console.log(isAlreadyFavorite);
-
-        if (isAlreadyFavorite) {
-          alert('This book has already in your favorites...');
-          return;
-        } else {
-          favBooks.push({ volumeInfo, id });
-        }
-        await update(userRef, { favBooks });
-        console.log('Favorite books updated successfully.');
-      } else {
-        console.log('No user data available.');
-      }
-    } catch (error) {
-      console.error('Error updating favorite books:', error);
-    }
-  }
   return (
     <Box
+      container
       sx={{
-        border: '1px solid gray',
-        borderRadius: '10px',
-        height: '60vmin',
+        height: '470px',
+        width: '210px',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-around',
+        //border:'1px solid red'
       }}
     >
+      <img
+        src={volumeInfo.imageLinks.thumbnail}
+        alt={volumeInfo.title}
+        style={{
+          height: '60%',
+          width: '100%',
+          boxShadow:
+            'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px',
+          borderRadius: '10px',
+        }}
+      />
       <Typography
-        variant="h4"
         sx={{
-          textAlign: 'center',
-          mt: '10px',
           fontFamily: 'Oswald',
-          fontWeight: '200',
+          textAlign: 'center',
+          mt: '1rem',
+          fontSize: '20px',
         }}
       >
-        {volumeInfo.authors}
+        {titleTrimmer(volumeInfo.title)}
       </Typography>
-      <BookCardStyle coverImage={volumeInfo.imageLinks?.thumbnail}>
-        <Box className="wrap">
-          <Box className="overlay">
-            <Box className="image-content"></Box>
-          </Box>
-          <Box className="text">
-            <p style={{ fontSize: '30px', fontWeight: '200' }}>
-              {volumeInfo.description}
-            </p>
-          </Box>
-          {isFav ? (
-            <FavoriteIcon
-              className="icon"
-              sx={{
-                zIndex: '1',
-                position: 'absolute',
-                right: '10px',
-                top: '10px',
-                fontSize: '2.7rem',
-                color: 'red',
-              }}
-            />
-          ) : (
-            <FavoriteBorderIcon
-              className="icon"
-              sx={{
-                zIndex: '1',
-                position: 'absolute',
-                right: '10px',
-                top: '10px',
-                fontSize: '2.7rem',
-                color: '#7D898C',
-              }}
-            />
-          )}
-        </Box>
-      </BookCardStyle>
-      <Grid
-        columnSpacing={4}
+      <Typography
         sx={{
-          ml: '10px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          mr: '10px',
+          fontFamily: 'Oswald',
+          textAlign: 'center',
+          mt: '5px',
+          color: '#0B2559',
+          textDecoration: 'line-through',
         }}
       >
-        <Box sx={{ mr: '20px' }}>
-          <Typography sx={{}}>Title: {volumeInfo.title}</Typography>
-          <Typography>Publisher: {volumeInfo.publisher}</Typography>
-          <Typography>Published Date: {volumeInfo.publishedDate}</Typography>
-          <Typography>Page Count: {volumeInfo.pageCount}</Typography>
-        </Box>
-        <Box sx={{ display: 'flex', flexDirection: 'column', mr: '20px' }}>
-          <Link to={id}>
-            <Button sx={btnStyle}>More Details</Button>
-          </Link>
-          <Button sx={btnStyle} onClick={handleFavClick}>
-            {isFav ? 'Remove' : 'Add'}
-          </Button>
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton>
-        </Box>
-      </Grid>
+        {saleInfo.retailPrice?.amount ? (
+          `£${saleInfo.retailPrice?.amount}`
+        ) : (
+          <br></br>
+        )}
+      </Typography>
+      <Typography
+        variant="h6"
+        sx={{
+          fontFamily: 'Oswald',
+          textAlign: 'center',
+          mt: '5px',
+          color: '#0B2559',
+        }}
+      >
+        <Badge
+          sx={{
+            fontSize: '20px',
+            marginRight: '5px',
+          }}
+        >
+          £
+        </Badge>
+        {saleInfo.listPrice?.amount ? saleInfo.listPrice?.amount : '10.00'}
+        <Badge
+          sx={{
+            color: '#818274',
+            textDecoration: 'underline',
+            marginLeft: '15px',
+            cursor: 'pointer',
+            '&:hover': { color: '#F29F05' },
+          }}
+          onClick={() => handleAddBookToCart(book)}
+        >
+          Add to Basket
+        </Badge>
+      </Typography>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          mt: '1rem',
+        }}
+      >
+        {isFav ? (
+          <FavoriteIcon
+            onClick={handleFavClick}
+            className="icon"
+            sx={{
+              color: 'red',
+              mr: '10px',
+              cursor: 'pointer',
+              fontSize: '2rem',
+            }}
+          />
+        ) : (
+          <FavoriteBorderIcon
+            onClick={() => handleFavClick(id, volumeInfo, saleInfo)}
+            className="icon"
+            sx={{
+              color: '#7D898C',
+              mr: '10px',
+              cursor: 'pointer',
+              fontSize: '2rem',
+            }}
+          />
+        )}
+        <ShareIcon sx={{ mr: '10px', cursor: 'pointer' }} />
+        <Typography
+          sx={{
+            color: '#818274',
+            textDecoration: 'underline',
+            marginLeft: '15px',
+            cursor: 'pointer',
+            '&:hover': { color: '#F29F05' },
+          }}
+          onClick={() => navigate(`/books/${id}`)}
+        >
+          See details
+        </Typography>
+      </Box>
+      <Box sx={{ mt: '10px', textAlign: 'center' }}>
+        <Rating
+          sx={{ textAlign: 'center' }}
+          name="read-only"
+          value={volumeInfo.averageRating}
+          //value={4}
+          readOnly
+        />
+      </Box>
     </Box>
   );
 }

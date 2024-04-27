@@ -37,7 +37,7 @@ export default function BookList({ searchedBooks, header }) {
               Back to Main Page
             </Button>
           </Link>
-          <Grid container spacing={2} columnSpacing={2} mt={3} width="80vw">
+          <Grid container spacing={5}  mt={4} width="80vw">
             {searchedBooks?.map((book) => (
               <Grid
                 item

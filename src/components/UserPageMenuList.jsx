@@ -10,31 +10,31 @@ import { useLocation, useNavigate } from 'react-router-dom';
 //const icon = (name) => `/assets/navbar/${name}.svg`;
 
 const links = [
-  {
-    title: 'Dashboard',
-    url: '/',
-    //icon: icon("ic_analytics"),
-  },
+  // {
+  //   title: 'Dashboard',
+  //   url: '/',
+  //   //icon: icon("ic_analytics"),
+  // },
   {
     title: 'Favorites',
     url: 'favs',
     //icon: icon("purchase"),
   },
-  {
-    title: 'To Read',
-    //icon: icon("sales"),
-    url: 'toread',
-  },
+  // {
+  //   title: 'To Read',
+  //   //icon: icon("sales"),
+  //   url: 'toread',
+  // },
   {
     title: 'My e-books',
     //icon: icon("firms"),
     url: 'my-e-book',
   },
-  {
-    title: 'Reading Now',
-    //icon: icon("brand"),
-    url: 'readingNow',
-  },
+  // {
+  //   title: 'Reading Now',
+  //   //icon: icon("brand"),
+  //   url: 'readingNow',
+  // },
   {
     title: 'Purchased',
     //icon: icon("ic_cart"),

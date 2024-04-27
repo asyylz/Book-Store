@@ -4,7 +4,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import { Badge, Box, Typography } from '@mui/material';
+import { Badge, Box, Rating, Typography } from '@mui/material';
 import swiperConfig from './SwiperConfig';
 import ShareIcon from '@mui/icons-material/Share';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -12,6 +12,7 @@ import { useCartContext } from '../../context/CartContext';
 import { useNavigate } from 'react-router-dom';
 
 function SwiperCustom({ books }) {
+  //console.log(books)
   const navigate = useNavigate();
   const { addItem } = useCartContext();
 
@@ -127,6 +128,15 @@ function SwiperCustom({ books }) {
                 >
                   See details
                 </Typography>
+              </Box>
+              <Box sx={{mt:'10px', textAlign: 'center' }}>
+                <Rating
+                  sx={{ textAlign: 'center' }}
+                  name="read-only"
+                  //value={book.volumeInfo.averageRating}
+                  value={4}
+                  readOnly
+                />
               </Box>
             </Box>
           </SwiperSlide>

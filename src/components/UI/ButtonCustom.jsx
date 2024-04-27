@@ -5,7 +5,7 @@ export default function ButtonCustom({ buttonName, id, to, side, ...props }) {
   }
   const linkHandler = (linkName) => {
     const path = linkName.split(' ');
-    console.log(path)
+    //console.log(path)
     const queryLink = path[0].toLowerCase();
     return queryLink;
   };

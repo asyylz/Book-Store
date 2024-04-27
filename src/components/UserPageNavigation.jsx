@@ -9,13 +9,12 @@ export default function UserPageNavigation() {
     <Drawer
       variant="permanent"
       sx={{
-        display: { sm: 'none' ,sm:'block'}, // sm:'block'
+        display: { sm: 'none' ,md:'block'}, // sm:'block'
         '& .MuiDrawer-paper': {
           boxSizing: 'border-box',
           width: drawerWidth,
-          position: 'absolute',
+          //position: 'absolute',
           top: '80px',
-
         },
       }}
       open
