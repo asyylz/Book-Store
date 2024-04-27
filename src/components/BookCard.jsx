@@ -4,8 +4,14 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShareIcon from '@mui/icons-material/Share';
 import { titleTrimmer } from '../utils/titleTrimmer.js';
+import { useCartContext } from '../context/CartContext.jsx';
 export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
+  const { addItem } = useCartContext();
   const { handleFavClick } = useUserProfileContext();
+
+  function handleAddBookToCart(book) {
+    addItem(book);
+  }
 
   return (
     <Box
@@ -103,7 +109,9 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
             cursor: 'pointer',
             '&:hover': { color: '#F29F05' },
           }}
-          onClick={() => handleAddBookToCart(book)}
+          onClick={() =>
+            handleAddBookToCart({ volumeInfo, id, isFav, saleInfo })
+          }
         >
           Add to Basket
         </Badge>

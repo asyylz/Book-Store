@@ -1,7 +1,6 @@
 import React from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useUserProfileContext } from '../context/UserProfileContext';
-import { Outlet } from 'react-router-dom';
 import { toastWarnNotify } from '../helper/toastNotify';
 
 export default function PrivateRoute({children}) {
@@ -11,7 +10,7 @@ export default function PrivateRoute({children}) {
 
   if (user) {
     console.log('User is authenticated');
-    return children; // Renders child routes if the user is authenticated
+    return children; 
   } else {
     console.log('User is not authenticated');
     toastWarnNotify('You need to login first!');

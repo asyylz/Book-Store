@@ -9,6 +9,7 @@ import { IconButton, Typography, Box, Grid, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import ButtonCustom from '../componentsUI/ButtonCustom';
 import SwiperCustom from '../componentsUI/SwiperCustom';
+import SwiperCustomCopy from '../componentsUI/SwiperCustomCopy';
 import { useUserProfileContext } from '../context/UserProfileContext';
 /* -------------------- react imports ------------------- */
 
@@ -39,6 +40,7 @@ const Item = styled(Paper)(() => ({
 
 const nodeCache = new Map();
 export default function HomePage() {
+  
   const { newestBooks, popularBooks } = useLoaderData();
 
   return (
@@ -122,7 +124,7 @@ export default function HomePage() {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <SwiperCustom books={newestBooks} />
+            <SwiperCustomCopy books={newestBooks} />
           </Grid>
         </Grid>
       </Box>
