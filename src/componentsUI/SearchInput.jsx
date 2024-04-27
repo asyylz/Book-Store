@@ -3,10 +3,12 @@ import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import { useState, useRef, useCallback, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SelectInput from './SelectInput';
 import useDebounce from '../hooks/useDebounce';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -16,6 +18,7 @@ const Search = styled('div')(({ theme }) => ({
   },
   marginLeft: 0,
   width: '100%',
+
   [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(1),
     width: 'auto',
@@ -49,6 +52,19 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0, // extra-small devices
+      sm1: 800,
+      sm2: 856, // small devices (customized from 600px to 480px)
+      md: 996, // medium devices (customized from 900px to 768px)
+      lg: 990, // large devices (customized from 1200px to 1024px)
+      xl: 1173, // extra-large devices (customized from 1536px to 1440px)
+    },
+  },
+});
+
 export default function SearchInput() {
   const [searchValue, setSearchValue] = useState('');
   const [selection, setSelection] = useState('Title');
@@ -63,21 +79,30 @@ export default function SearchInput() {
   }, [debouncedValue]);
 
   return (
-    <>
-      <SelectInput selection={selection} setSelection={setSelection} />
-      <Box sx={{ flexGrow: 1, mr: '1rem' }}>
-        <Search>
-          <SearchIconWrapper>
-            <SearchIcon />
-          </SearchIconWrapper>
-          <StyledInputBase
-            placeholder="Title,author,keyword or ISBN"
-            inputProps={{ 'aria-label': 'search' }}
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-          />
-        </Search>
+    <ThemeProvider theme={theme}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', sm1: 'row' },
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <SelectInput selection={selection} setSelection={setSelection} />
+        <Box sx={{ flexGrow: 1, m: '10px', width:{xs:'230px',sm1:'350px'}, height: '40px' }}>
+          <Search>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Title,author,keyword or ISBN"
+              inputProps={{ 'aria-label': 'search' }}
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+            />
+          </Search>
+        </Box>
       </Box>
-    </>
+    </ThemeProvider>
   );
 }

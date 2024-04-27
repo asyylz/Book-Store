@@ -7,10 +7,10 @@ const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0, // extra-small devices
-      sm1: 787,
+      sm1: 800,
       sm2: 856, // small devices (customized from 600px to 480px)
       md: 900, // medium devices (customized from 900px to 768px)
-      lg: 1066, // large devices (customized from 1200px to 1024px)
+      lg: 990, // large devices (customized from 1200px to 1024px)
       xl: 1173, // extra-large devices (customized from 1536px to 1440px)
     },
   },
@@ -27,13 +27,13 @@ export default function UserPageNavigation() {
             width: drawerWidth,
             position: 'absolute',
             top: {
-              sm1: '190px',
-              sm2: '170px',
-              md: '200px',
-              lg: '150px',
+              sm1: '170px',
+              sm2: '130px',
+              md: '130px',
+              lg: '80px',
               xl: '80px',
             },
-            //border: '1px solid red',
+            border: '1px solid red',
           },
         }}
         open

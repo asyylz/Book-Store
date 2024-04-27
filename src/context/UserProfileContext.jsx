@@ -84,6 +84,7 @@ const UserProfileContextProvider = ({ children }) => {
         if (!isAlreadyFavorite) {
           favBooks.push({ volumeInfo, id, saleInfo });
         } else {
+          alert('Would you like to remove this book from your favorites?')
           favBooks = favBooks.filter((book) => book.id !== id);
         }
         await update(userRef, { favBooks });

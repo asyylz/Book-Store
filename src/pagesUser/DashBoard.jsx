@@ -1,15 +1,6 @@
-import {
-  Box,
-  Button,
-  Typography,
-  Grid,
-  Divider,
-  ListItem,
-  ListItemText,
-  TextField,
-} from '@mui/material';
+import { Box, Typography, Divider } from '@mui/material';
 import { useLoaderData } from 'react-router-dom';
-import { getDatabase, ref, get, onValue } from 'firebase/database';
+import { getDatabase, ref, get } from 'firebase/database';
 
 const BASE_DB_URL = import.meta.env.VITE_APP_databaseURL;
 
