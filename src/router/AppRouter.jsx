@@ -15,8 +15,8 @@ import { loaderHomePageBooks } from '../pagesMain/HomePage.jsx';
 import AuthPage from '../pagesMain/AuthPage.jsx';
 import { loaderBook } from '../pagesMain/BookDetailsPage.jsx';
 import { loaderUser } from '../pagesUser/DashBoard.jsx';
-import { loaderFavBooks } from '../pagesUser/FavBooksPage.jsx';
-import { loaderUserBooks } from '../pagesUser/UserBooksPage.jsx';
+import UserFavBooksPage, { loaderFavBooks } from '../pagesUser/UserFavBooksPage.jsx';
+//import { loaderUserBooks } from '../pagesUser/UserBooksPage.jsx';
 
 /* ------------------- import actions ------------------- */
 //import { action as logoutAction } from '../pages/Logout.jsx';
@@ -25,9 +25,9 @@ import { loaderUserBooks } from '../pagesUser/UserBooksPage.jsx';
 /* -------------------------- - ------------------------- */
 import BookDetailsPage from '../pagesMain/BookDetailsPage.jsx';
 import DashBoard from '../pagesUser/DashBoard.jsx';
-import FavBooksPage from '../pagesUser/FavBooksPage.jsx';
 import UserPageLayout from '../layouts/UserPageLayout.jsx';
-import UserBooksPage from '../pagesUser/UserBooksPage.jsx';
+import UserEBooksPage from '../pagesUser/UserEbooksPage.jsx';
+import UserPurchasedBooksPage from '../pagesUser/UserPurchasedBooksPage.jsx';
 /* ----------------------- router ----------------------- */
 
 const router = createBrowserRouter([
@@ -65,24 +65,19 @@ const router = createBrowserRouter([
           },
           {
             path: 'favs',
-            element: <FavBooksPage />,
+            element: <UserFavBooksPage />,
             loader: loaderFavBooks,
           },
           {
             path: 'my-e-book',
-            element: <UserBooksPage />,
-            loader: loaderUserBooks,
+            element: <UserEBooksPage />,
+            loader: loaderFavBooks,
           },
 
           {
-            path: 'readingNow',
-            element: <UserBooksPage />,
-            loader: loaderUserBooks,
-          },
-          {
             path: 'purchased',
-            element: <UserBooksPage />,
-            loader: loaderUserBooks,
+            element: <UserPurchasedBooksPage />,
+            loader: loaderFavBooks,
           },
         ],
       },
