@@ -52,10 +52,12 @@ const bookCategories = [
 
 /* ---------------- MainNavigation Links ---------------- */
 const user = JSON.parse(localStorage.getItem('user'));
+
+// more page section can be added here
 const pages = [
   { label: 'Home', path: '/' },
-  { label: 'Offers', path: 'offers' },
-  { label: 'Categories', path: 'category' },
+  // { label: 'Offers', path: 'offers' },
+  // { label: 'Categories', path: 'category' },
 ];
 const settings = [{ label: 'Account', path: `${user?.uid}` }];
 
@@ -106,7 +108,7 @@ function MainNavigation() {
       sx={{
         backgroundColor: ColourSchema.navy,
         color: ColourSchema.beige,
-        fontFamily: 'Oswald',  
+        fontFamily: 'Oswald',
       }}
     >
       <Container maxWidth="xl">

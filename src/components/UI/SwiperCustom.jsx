@@ -55,6 +55,26 @@ function SwiperCustom({ books }) {
         {books.map((book, index) => (
           <SwiperSlide style={{ zIndex: '-1' }} key={index}>
             <Box sx={{ height: '300px', width: '200px' }}>
+              {book.saleInfo.isEbook ? (
+                <Badge sx={{ position: 'absolute' }}>
+                  <img
+                    alt="Static Badge"
+                    src="https://img.shields.io/badge/Digital%20available-yellow?style=plastic&logo=E-Book&logoColor=yellow&labelColor=black"
+                  />
+                </Badge>
+              ) : (
+                ''
+              )}
+              {book.saleInfo.saleability === 'FREE' ? (
+                <Badge sx={{ mb: '5px' }}>
+                  <img
+                    alt="Static Badge"
+                    src="https://img.shields.io/badge/Free-green?style=plastic&logo=E-Book&logoColor=yellow&labelColor=black"
+                  />
+                </Badge>
+              ) : (
+                ''
+              )}
               <img
                 src={book.volumeInfo.imageLinks.thumbnail}
                 alt={book.volumeInfo.title}
@@ -129,7 +149,7 @@ function SwiperCustom({ books }) {
                   See details
                 </Typography>
               </Box>
-              <Box sx={{mt:'10px', textAlign: 'center' }}>
+              <Box sx={{ mt: '10px', textAlign: 'center' }}>
                 <Rating
                   sx={{ textAlign: 'center' }}
                   name="read-only"

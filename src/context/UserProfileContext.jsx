@@ -81,11 +81,10 @@ const UserProfileContextProvider = ({ children }) => {
         const isAlreadyFavorite = favBooks.some((book) => book.id === id);
         console.log(isAlreadyFavorite);
 
-        if (isAlreadyFavorite) {
-          alert('This book has already in your favorites...');
-          return;
-        } else {
+        if (!isAlreadyFavorite) {
           favBooks.push({ volumeInfo, id, saleInfo });
+        } else {
+          favBooks = favBooks.filter((book) => book.id !== id);
         }
         await update(userRef, { favBooks });
         console.log('Favorite books updated successfully.');

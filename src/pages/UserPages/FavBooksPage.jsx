@@ -1,5 +1,5 @@
 import { useLoaderData } from 'react-router-dom';
-import { getDatabase, ref, get } from 'firebase/database';
+import { getDatabase, ref, get, onValue } from 'firebase/database';
 import BookCard from '../../components/BookCard';
 import { Box, Grid } from '@mui/material';
 
@@ -41,7 +41,7 @@ export async function loaderFavBooks() {
     const snapshot = await get(favBooksRef);
     if (snapshot.exists()) {
       const favBooks = snapshot.val();
-      console.log(favBooks);
+
       return { favBooks };
     } else {
       console.log('No data available');

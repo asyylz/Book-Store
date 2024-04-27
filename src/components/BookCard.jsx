@@ -6,6 +6,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import { titleTrimmer } from '../utils/titleTrimmer.js';
 export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
   const { handleFavClick } = useUserProfileContext();
+  console.log(saleInfo.isEbook);
 
   return (
     <Box
@@ -18,6 +19,29 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
         //border:'1px solid red'
       }}
     >
+      {' '}
+      <Box sx={{ display: 'flex', position: 'relative' }}>
+        {saleInfo.isEbook ? (
+          <Badge sx={{ position: 'absolute' }}>
+            <img
+              alt="Static Badge"
+              src="https://img.shields.io/badge/Digital%20available-yellow?style=plastic&logo=E-Book&logoColor=yellow&labelColor=black"
+            />
+          </Badge>
+        ) : (
+          ''
+        )}
+        {saleInfo.saleability === 'FREE' ? (
+          <Badge sx={{ position: 'absolute', left: '120px' }}>
+            <img
+              alt="Static Badge"
+              src="https://img.shields.io/badge/Free-green?style=plastic&logo=E-Book&logoColor=yellow&labelColor=black"
+            />
+          </Badge>
+        ) : (
+          ''
+        )}
+      </Box>
       <img
         src={volumeInfo.imageLinks?.thumbnail}
         alt={volumeInfo.title}
@@ -95,7 +119,6 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
       >
         {isFav ? (
           <FavoriteIcon
-            onClick={handleFavClick}
             className="icon"
             sx={{
               color: 'red',
@@ -103,6 +126,7 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
               cursor: 'pointer',
               fontSize: '2rem',
             }}
+            onClick={() => handleFavClick(id, volumeInfo, saleInfo)}
           />
         ) : (
           <FavoriteBorderIcon

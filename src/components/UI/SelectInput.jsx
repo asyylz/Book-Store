@@ -11,7 +11,6 @@ const preFixes = [
   'Publisher',
   'ISBN',
   'Subject',
-  'Categories',
 ];
 export default function SelectInput({
   selection,
