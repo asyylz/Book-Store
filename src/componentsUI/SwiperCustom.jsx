@@ -13,9 +13,8 @@ function SwiperCustom({ books }) {
     <Box
       sx={{
         width: '98vw',
-        height: '40vh',
+        minHeight: '55vh',
         position: 'absolute',
-        left: '1rem',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -34,7 +33,7 @@ function SwiperCustom({ books }) {
         navigation
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
-        style={{ width: '90vw', height: '31vh', padding: '0 4rem' }}
+        style={{ width: '90vw', height: '50vh', padding: '0 4rem' }}
       >
         {books.map((book, index) => (
           <SwiperSlide style={{ zIndex: '-1' }} key={index}>

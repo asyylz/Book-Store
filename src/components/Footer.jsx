@@ -1,124 +1,188 @@
-import { Grid3x3Outlined } from '@mui/icons-material';
-import { Grid3x3 } from '@mui/icons-material';
-import { Paper, Container, Box, Typography, Grid } from '@mui/material';
+import { Container, Box, Typography, Grid } from '@mui/material';
 import XIcon from '@mui/icons-material/X';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import YouTubeIcon from '@mui/icons-material/YouTube';
-export default function GuestFooter() {
+import * as React from 'react';
+import Link from '@mui/material/Link';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+
+function Copyright() {
   return (
-    <Paper
+    <Typography variant="body2" color="text.secondary">
+      {'Copyright © '}
+      <Link color="inherit" href="https://mui.com/">
+        Asiye Yaliz
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
+const listShoppingWithUs = [
+  'Contact Us',
+  'Bookshops',
+  'Click & Collect',
+  'Delivery Options',
+  'Online Pricing',
+  'Returning Items',
+  'Student Discount',
+  'Gift Cards',
+];
+
+const listAboutUs = ['About', 'App', 'Careers', 'Independent Publishers'];
+
+function CustomList(list) {
+  return (
+    <List component="nav" aria-label="main mailbox folders">
+      {list.map((item, index) => (
+        <ListItem
+          component={Link}
+          key={index}
+          href=""
+          sx={{
+            lineHeight: '12px',
+            fontFamily: 'Oswald',
+          }}
+        >
+          <Link
+            sx={{
+              color: 'black',
+              textDecoration: 'none',
+              '&:hover': { color: 'grey' },
+            }}
+          >
+            {item}
+          </Link>
+        </ListItem>
+      ))}
+    </List>
+  );
+}
+
+export default function Footer() {
+  return (
+    <Box
       sx={{
-        //marginTop: 'calc(10% + 60px)',
-        minWidth: '99%',
-        position: 'fixed',
-        bottom: 0,
-        zIndex: 1,
-        m: 'auto',
-        //border:'1px solid red'
         display: 'flex',
         flexDirection: 'column',
+        minHeight: '90vh',
       }}
-      component="footer"
-      square
-      variant="outlined"
     >
-      <Grid
-        container
-        sx={{
-          backgroundColor: '#D9D2D0',
-          m: '1rem',
-          p: '1rem',
-          overflow: 'hidden',
-          //border:'1px solid red',
-          width: '99%',
-        }}
-      >
-        <Grid item xs={4} sx={{ textAlign: 'center' }}>
-          <Typography
-            sx={{
-              fontFamily: 'Oswald',
-              lineHeight: '12px',
-              textDecoration: 'underLine',
-            }}
-          >
-            SHOPPING WITH US
-            <p>Contact Us</p>
-            <p>Bookshops</p>
-            <p>Click & Colect</p>
-            <p>Delivery Options</p>
-            <p>Returning Items</p>
-            <p>Gift Cards</p>
-            <p>Student Discount</p>
-          </Typography>
-        </Grid>
-        <Grid item xs={4} sx={{ textAlign: 'center' }}>
-          <Typography
-            sx={{ fontFamily: 'Oswald', textDecoration: 'underLine' }}
-          >
-            ABOUT US
-            <p>About</p>
-            <p>App</p>
-            <p>Careers</p>
-            <p>Independent Publishers</p>
-          </Typography>
-        </Grid>
-        <Grid item xs={4} sx={{ textAlign: 'center' }}>
-          <Typography
-            sx={{
-              fontFamily: 'Oswald',
-              textDecoration: 'underLine',
-            }}
-          >
-            FOLLOW US
-          </Typography>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              mt: '.3rem',
-              //border: '1px solid red',
-            }}
-          >
-            <Box display="flex" flexDirection="column" alignItems="start">
-              <Box display="flex" alignItems="center">
-                <XIcon sx={{ mr: '10px' }} />
-                <small>X</small>
-              </Box>
-              <Box display="flex" alignItems="center">
-                <FacebookIcon sx={{ mr: '10px' }} />
-                <span>Facebook</span>
-              </Box>
-              <Box display="flex" alignItems="center">
-                <YouTubeIcon sx={{ mr: '10px' }} />
-                <span>YouTube</span>
-              </Box>
-              <Box display="flex" alignItems="center">
-                <InstagramIcon sx={{ mr: '10px' }} />
-                <span>Instagram</span>
-              </Box>
-            </Box>
-          </Box>
-        </Grid>
-      </Grid>
-
       <Box
+        component="footer"
         sx={{
-          flexGrow: 1,
-          justifyContent: 'center',
-          display: 'flex',
-          m: 2,
+          py: 3,
+          px: 2,
+          mt: 'auto',
+          backgroundColor: (theme) =>
+            theme.palette.mode === 'light'
+              ? theme.palette.grey[200]
+              : theme.palette.grey[800],
         }}
       >
-        <Typography
-          sx={{ fontFamily: 'Oswald', fontSize: 18 }}
-          variant="caption"
-          color="initial"
-        >
-          Copyright ©2024 Asiye Yaliz
-        </Typography>
+        <Container maxWidth="xl">
+          <Grid
+            container
+            sx={{
+              backgroundColor: '#D9D2D0',
+              m: '1rem',
+              p: '1rem',
+            }}
+          >
+            <Grid item xs={4}>
+              <Typography
+                sx={{
+                  fontFamily: 'Oswald',
+                  lineHeight: '12px',
+                  textDecoration: 'underLine',
+                }}
+              >
+                SHOPPING WITH US
+              </Typography>
+              {CustomList(listShoppingWithUs)}
+            </Grid>
+            <Grid item xs={4}>
+              <Typography
+                sx={{ fontFamily: 'Oswald', textDecoration: 'underLine' }}
+              >
+                ABOUT US
+                {CustomList(listAboutUs)}
+              </Typography>
+            </Grid>
+            <Grid item xs={4} sx={{ textAlign: 'center' }}>
+              <Typography
+                sx={{
+                  fontFamily: 'Oswald',
+                  textDecoration: 'underLine',
+                }}
+              >
+                FOLLOW US
+              </Typography>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  mt: '.3rem',
+                  //border: '1px solid red',
+                }}
+              >
+                <List display="flex" flexDirection="column" alignItems="start">
+                  <ListItem
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      '&:hover': { color: 'grey' },
+                      cursor: 'pointer',
+                    }}
+                  >
+                    <XIcon sx={{ mr: '10px' }} />
+                    <small>X</small>
+                  </ListItem>
+                  <ListItem
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      '&:hover': { color: 'grey' },
+                      cursor: 'pointer',
+                    }}
+                  >
+                    <FacebookIcon sx={{ mr: '10px' }} />
+                    <span>Facebook</span>
+                  </ListItem>
+                  <ListItem
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      '&:hover': { color: 'grey' },
+                      cursor: 'pointer',
+                    }}
+                  >
+                    <YouTubeIcon sx={{ mr: '10px' }} />
+                    <span>YouTube</span>
+                  </ListItem>
+                  <ListItem
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      '&:hover': { color: 'grey' },
+                      cursor: 'pointer',
+                    }}
+                  >
+                    <InstagramIcon sx={{ mr: '10px' }} />
+                    <span>Instagram</span>
+                  </ListItem>
+                </List>
+              </Box>
+            </Grid>
+          </Grid>
+        </Container>
+        <Container maxWidth="sm">
+          <Copyright />
+        </Container>
       </Box>
-    </Paper>
+    </Box>
   );
 }

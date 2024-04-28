@@ -13,7 +13,7 @@ const nodeCache = new Map();
 export default function BooksPage() {
   const { items, header } = useLoaderData();
   const { user, favBooksUpdated } = useUserProfileContext(); //favBookIds removed
-  const favBookIds = favBooksUpdated.map((book) => book.id);
+  const favBookIds = favBooksUpdated?.map((book) => book.id);
   return (
     <BookList
       searchedBooks={items.map((book) => ({
