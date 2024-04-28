@@ -41,7 +41,10 @@ function SwiperCustom({ books }) {
       >
         {books.map((book, index) => (
           <SwiperSlide style={{ zIndex: '-1' }} key={index}>
-            <BookCard {...book} />
+            <BookCard
+              {...book}
+              isFav={favBookIds.some((id) => book.id === id)}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
