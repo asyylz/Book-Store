@@ -1,7 +1,6 @@
 import { useState, createContext, useContext } from 'react';
 import { getDatabase, ref, set, get, onValue, update } from 'firebase/database';
 import { useEffect } from 'react';
-const BASE_DB_URL = import.meta.env.VITE_APP_databaseURL;
 export const UserProfileContext = createContext();
 
 const UserProfileContextProvider = ({ children }) => {
@@ -22,18 +21,18 @@ const UserProfileContextProvider = ({ children }) => {
     fetchData();
   }, [user?.uid]);
 
-  useEffect(() => {
-    const db = getDatabase();
-    const favBooksRef = ref(db, `users/${user?.uid}/favBooks`);
+  // useEffect(() => {
+  //   const db = getDatabase();
+  //   const favBooksRef = ref(db, `users/${user?.uid}/favBooks`);
 
-    const unsubscribe = onValue(favBooksRef, (snapshot) => {
-      const favBooks = snapshot.val() || [];
-      const favBookIds = favBooks.map((book) => book.id);
-      setFavBookIds(favBookIds);
-    });
+  //   const unsubscribe = onValue(favBooksRef, (snapshot) => {
+  //     const favBooks = snapshot.val() || [];
+  //     const favBookIds = favBooks.map((book) => book.id);
+  //     setFavBookIds(favBookIds);
+  //   });
 
-    return () => unsubscribe(); // Clean up the subscription
-  }, [user?.uid]);
+  //   return () => unsubscribe(); // Clean up the subscription
+  // }, [user?.uid]);
 
   const createUserInDB = async (userId, name, email) => {
     const db = getDatabase();
@@ -96,7 +95,7 @@ const UserProfileContextProvider = ({ children }) => {
   }
 
   /* ---------------------- listener ---------------------- */
-  const [favBooksUpdated, setfavBooksUpdated] = useState('');
+  const [favBooksUpdated, setFavBooksUpdated] = useState('');
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     const db = getDatabase();
@@ -108,9 +107,9 @@ const UserProfileContextProvider = ({ children }) => {
       (snapshot) => {
         if (snapshot.exists()) {
           const updatedBooks = snapshot.val();
-          setfavBooksUpdated(updatedBooks);
+          setFavBooksUpdated(updatedBooks);
         } else {
-          setfavBooksUpdated([]); // Handle no data scenario
+          setFavBooksUpdated([]); // Handle no data scenario
         }
       },
       (error) => {
@@ -120,7 +119,7 @@ const UserProfileContextProvider = ({ children }) => {
 
     // Cleanup function to unsubscribe when the component unmounts
     return () => unsubscribe();
-  }, []);
+  }, [user?.uid]);
 
   return (
     <UserProfileContext.Provider
