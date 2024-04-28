@@ -2,6 +2,8 @@ import { Box, Divider, Typography, ListItem } from '@mui/material';
 import UserPageNavigation from '../componentsUser/UserPageNavigation';
 import { Outlet } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { getDatabase, ref, get, onValue } from 'firebase/database';
+import { useLoaderData } from 'react-router-dom';
 const drawerWidth = 240;
 const theme = createTheme({
   breakpoints: {
@@ -16,8 +18,10 @@ const theme = createTheme({
   },
 });
 export default function UserPageLayout() {
-  const user = JSON.parse(localStorage.getItem('user')) || '';
 
+  //const user = JSON.parse(localStorage.getItem('user')) || '';
+  const { user } = useLoaderData();
+ 
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ ml: { xs: 0, sm1: `${drawerWidth}px` } }}>
@@ -35,3 +39,56 @@ export default function UserPageLayout() {
     </ThemeProvider>
   );
 }
+
+async function loaderFavBooks() {
+  const user = JSON.parse(localStorage.getItem('user'));
+  const db = getDatabase();
+  const favBooksRef = ref(db, `users/${user.uid}/favBooks`);
+  try {
+    const snapshot = await get(favBooksRef);
+    if (snapshot.exists()) {
+      const favBooks = snapshot.val();
+      return favBooks;
+    } else {
+      console.log('No data available');
+      return {};
+    }
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to fetch user data');
+  }
+}
+
+async function loaderUser(userId) {
+  
+  const db = getDatabase();
+  const userRef = ref(db, `users/${userId}`);
+  try {
+    const snapshot = await get(userRef);
+    if (snapshot.exists()) {
+      const user = snapshot.val();
+      return user;
+    } else {
+      console.log('No data available');
+      return {};
+    }
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to fetch user data');
+  }
+}
+
+export async function combinedLoader({ params }) {
+  const userId = params.userId;
+  try {
+    const [favBooks, user] = await Promise.all([
+      loaderFavBooks(userId),
+      loaderUser(userId)
+    ]);
+    return { favBooks, user };
+  } catch (error) {
+    console.error('Error in combined loader:', error);
+    throw new Error('Failed to load data');
+  }
+}
+

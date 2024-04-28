@@ -8,7 +8,6 @@ const UserProfileContextProvider = ({ children }) => {
   const [userData, setUserData] = useState();
   const [favBookIds, setFavBookIds] = useState([]);
   const user = JSON.parse(localStorage.getItem('user'));
-console.log(user)
   useEffect(() => {
     async function fetchData() {
       try {
@@ -83,7 +82,7 @@ console.log(user)
         if (!isAlreadyFavorite) {
           favBooks.push({ volumeInfo, id, saleInfo });
         } else {
-          alert('Would you like to remove this book from your favorites?')
+          alert('Would you like to remove this book from your favorites?');
           favBooks = favBooks.filter((book) => book.id !== id);
         }
         await update(userRef, { favBooks });
@@ -96,6 +95,33 @@ console.log(user)
     }
   }
 
+  const [favBooksUpdated, setfavBooksUpdated] = useState('');
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const db = getDatabase();
+    const favBooksRef = ref(db, `users/${user.uid}/favBooks`);
+
+    // Listener for real-time updates
+    const unsubscribe = onValue(
+      favBooksRef,
+      (snapshot) => {
+        if (snapshot.exists()) {
+          const updatedBooks = snapshot.val();
+          setfavBooksUpdated(updatedBooks);
+        } else {
+          setfavBooksUpdated([]); // Handle no data scenario
+        }
+      },
+      (error) => {
+        console.error('Failed to fetch fav books:', error);
+      }
+    );
+
+    // Cleanup function to unsubscribe when the component unmounts
+    return () => unsubscribe();
+  }, []);
+
   return (
     <UserProfileContext.Provider
       value={{
@@ -106,6 +132,7 @@ console.log(user)
         favBookIds,
         setFavBookIds,
         handleFavClick,
+        favBooksUpdated,
       }}
     >
       {children}

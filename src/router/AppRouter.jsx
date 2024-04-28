@@ -14,11 +14,11 @@ import BooksPage from '../pagesMain/BooksPage.jsx';
 import { loaderHomePageBooks } from '../pagesMain/HomePage.jsx';
 import AuthPage from '../pagesMain/AuthPage.jsx';
 import { loaderBook } from '../pagesMain/BookDetailsPage.jsx';
-import { loaderUser } from '../pagesUser/DashBoard.jsx';
-import UserFavBooksPage, {
-  loaderFavBooks,
-} from '../pagesUser/UserFavBooksPage.jsx';
+//import { loaderUser } from '../pagesUser/DashBoard.jsx';
+import UserFavBooksPage from '../pagesUser/UserFavBooksPage.jsx';
 
+//import { loaderFavBooks } from '../layouts/UserPageLayout.jsx';
+import { combinedLoader } from '../layouts/UserPageLayout.jsx';
 /* ------------------- import actions ------------------- */
 
 /* -------------------------- - ------------------------- */
@@ -56,33 +56,34 @@ const router = createBrowserRouter([
       },
       {
         path: ':userId',
+        id: 'user',
         element: (
           <PrivateRoute>
             <UserPageLayout />
           </PrivateRoute>
         ),
-        //loader:loaderFavBooks,
+        loader: combinedLoader,
         children: [
           {
             index: true,
             element: <DashBoard />,
-            loader: loaderUser,
+            //loader: loaderUser,
           },
           {
             path: 'favs',
             element: <UserFavBooksPage />,
-            loader: loaderFavBooks,
+            //loader: loaderFavBooks,
           },
           {
             path: 'my-e-book',
             element: <UserEBooksPage />,
-            loader: loaderFavBooks,
+            //loader: loaderFavBooks,
           },
 
           {
             path: 'purchased',
             element: <UserPurchasedBooksPage />,
-            loader: loaderFavBooks,
+            //loader: loaderFavBooks,
           },
         ],
       },
