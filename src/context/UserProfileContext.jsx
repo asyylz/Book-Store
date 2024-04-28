@@ -7,6 +7,7 @@ const UserProfileContextProvider = ({ children }) => {
   const [userData, setUserData] = useState();
   const [favBookIds, setFavBookIds] = useState([]);
   const user = JSON.parse(localStorage.getItem('user'));
+  
   useEffect(() => {
     async function fetchData() {
       try {

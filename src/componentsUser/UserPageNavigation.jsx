@@ -25,6 +25,7 @@ export default function UserPageNavigation() {
           '& .MuiDrawer-paper': {
             boxSizing: 'border-box',
             width: drawerWidth,
+            height:'73vh',
             position: 'absolute',
             top: {
               sm1: '170px',
@@ -33,6 +34,7 @@ export default function UserPageNavigation() {
               lg: '80px',
               xl: '80px',
             },
+          
             //border: '1px solid red',
           },
         }}

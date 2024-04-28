@@ -7,8 +7,12 @@ import 'swiper/css/scrollbar';
 import { Box } from '@mui/material';
 import swiperConfig from './SwiperConfig';
 import BookCard from '../components/BookCard';
+import { useUserProfileContext } from '../context/UserProfileContext';
 
 function SwiperCustom({ books }) {
+  const { favBooksUpdated } = useUserProfileContext();
+  const favBookIds = favBooksUpdated.map((book) => book.id);
+
   return (
     <Box
       sx={{
