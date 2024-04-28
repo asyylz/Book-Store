@@ -89,7 +89,7 @@ const UserProfileContextProvider = ({ children }) => {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     const db = getDatabase();
-    const favBooksRef = ref(db, `users/${user.uid}/favBooks`);
+    const favBooksRef = ref(db, `users/${user?.uid}/favBooks`);
 
     // Listener for real-time updates
     const unsubscribe = onValue(

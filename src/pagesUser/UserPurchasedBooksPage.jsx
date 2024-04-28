@@ -1,27 +1,10 @@
 import { useLoaderData } from 'react-router-dom';
 import UserPageBookList from '../componentsUser/UserPageBookList';
+import { useRouteLoaderData } from 'react-router-dom';
 export default function UserPurchasedBooksPage() {
-  const { favBooks } = useLoaderData();
-  return <UserPageBookList books={favBooks} />;
-}
-
-export async function loaderFavBooks() {
-  const user = JSON.parse(localStorage.getItem('user'));
-
-  const db = getDatabase();
-  const favBooksRef = ref(db, `users/${user.uid}/favBooks`);
-  try {
-    const snapshot = await get(favBooksRef);
-    if (snapshot.exists()) {
-      const favBooks = snapshot.val();
-
-      return { favBooks, user };
-    } else {
-      console.log('No data available');
-      return {};
-    }
-  } catch (error) {
-    console.error(error);
-    throw new Error('Failed to fetch user data');
-  }
+  const { user } = useRouteLoaderData('user');
+  console.log(user.orders);
+  const purchasedBooks = Object.values(user.orders).flatMap((order) => order.items);
+  console.log(purchasedBooks);
+  return <UserPageBookList books={purchasedBooks} />;
 }

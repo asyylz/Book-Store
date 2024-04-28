@@ -9,11 +9,11 @@ import { useState } from 'react';
 
 export default function Checkout() {
   const { items, clearCart } = useCartContext();
-  const { progress, hideCheckout, createOrder } = useUserProgressContext();
+  const { progress, hideCheckout, createOrder, error, setError } =
+    useUserProgressContext();
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const [isSending, setIsSending] = useState(false);
-  const [error, setError] = useState();
-  const [data, setData] = useState();
 
   const cartTotal = items.reduce(
     (totalPrice, item) =>
@@ -25,15 +25,18 @@ export default function Checkout() {
 
   function handleClose() {
     hideCheckout();
+    setError('');
   }
 
   function handleFinish() {
     hideCheckout();
     clearCart();
+    setError('');
   }
-
+console.log(error)
   async function handleSubmit(event) {
     event.preventDefault();
+    //console.log('clicked');
     const fd = new FormData(event.target);
     const customerData = Object.fromEntries(fd.entries());
     const orderDate = new Date().toISOString();
@@ -42,13 +45,11 @@ export default function Checkout() {
       customer: customerData,
       orderDate: orderDate,
     };
-    setData(orderData);
-    setIsSending(true);
+
     try {
       await createOrder(orderData);
-      setIsSending(false);
     } catch (error) {
-      setError(error);
+      console.log(error);
     }
   }
 
@@ -65,7 +66,7 @@ export default function Checkout() {
     actions = <span>Sending order data...</span>;
   }
 
-  if (!error && data) {
+  if (!error && user) {
     return (
       <Modal open={progress === 'checkout'} onClose={handleFinish}>
         <h2>Success!</h2>
