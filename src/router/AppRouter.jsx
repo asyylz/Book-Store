@@ -14,7 +14,7 @@ import BooksPage from '../pagesMain/BooksPage.jsx';
 import { loaderHomePageBooks } from '../pagesMain/HomePage.jsx';
 import AuthPage from '../pagesMain/AuthPage.jsx';
 import { loaderBook } from '../pagesMain/BookDetailsPage.jsx';
-import { loaderUser } from '../pagesUser/DashBoard.jsx';
+import { loaderUser } from '../layouts/UserPageLayout.jsx';
 import UserFavBooksPage from '../pagesUser/UserFavBooksPage.jsx';
 
 //import { combinedLoader } from '../layouts/UserPageLayout.jsx';

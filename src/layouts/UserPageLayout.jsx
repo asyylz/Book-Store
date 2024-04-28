@@ -18,16 +18,14 @@ const theme = createTheme({
   },
 });
 export default function UserPageLayout() {
-
-  //const user = JSON.parse(localStorage.getItem('user')) || '';
   const { user } = useLoaderData();
- 
+
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ ml: { xs: 0, sm1: `${drawerWidth}px` } }}>
         <ListItem>
           <Typography sx={{ fontFamily: 'Oswald' }} variant="h3">
-            {`Welcome ${user?.displayName}`}
+            {`Welcome ${user.username}`}
           </Typography>
         </ListItem>
         <Divider variant="inset" />
@@ -59,15 +57,16 @@ export default function UserPageLayout() {
 //   }
 // }
 
-async function loaderUser(userId) {
-  
+export async function loaderUser({ params }) {
+  const userId = params.userId;
+  console.log(userId);
   const db = getDatabase();
   const userRef = ref(db, `users/${userId}`);
   try {
     const snapshot = await get(userRef);
     if (snapshot.exists()) {
       const user = snapshot.val();
-      return {user};
+      return { user };
     } else {
       console.log('No data available');
       return {};
@@ -91,4 +90,3 @@ async function loaderUser(userId) {
 //     throw new Error('Failed to load data');
 //   }
 // }
-

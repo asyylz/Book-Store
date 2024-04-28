@@ -6,10 +6,8 @@ import { useRouteLoaderData } from 'react-router-dom';
 const BASE_DB_URL = import.meta.env.VITE_APP_databaseURL;
 
 export default function DashBoard() {
-
-  const data = useRouteLoaderData('user');
-  console.log(data);
-  console.log(data.user);
+  const { user } = useRouteLoaderData('user');
+  console.log(user);
   return (
     <Box sx={{ m: 3, fontFamily: 'Oswald' }}>
       <Typography sx={{ fontFamily: 'Oswald', fontSize: '20px' }}>
@@ -20,4 +18,3 @@ export default function DashBoard() {
     </Box>
   );
 }
-
