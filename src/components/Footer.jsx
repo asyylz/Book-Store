@@ -7,42 +7,28 @@ export default function GuestFooter() {
         width: '100%',
         position: 'fixed',
         bottom: 0,
+        zIndex: 1,
       }}
       component="footer"
       square
       variant="outlined"
     >
-      <Container maxWidth="lg">
-        <Box
-          sx={{
-            flexGrow: 1,
-            justifyContent: 'center',
-            display: 'flex',
-            my: 1,
-          }}
+      <Box
+        sx={{
+          flexGrow: 1,
+          justifyContent: 'center',
+          display: 'flex',
+          m: 2,
+        }}
+      >
+        <Typography
+          sx={{ fontFamily: 'Oswald', fontSize: 18 }}
+          variant="caption"
+          color="initial"
         >
-          <div>
-            {/* /<Image priority src="/Logo.svg" width={75} height={30} alt="Logo" /> */}
-          </div>
-        </Box>
-
-        <Box
-          sx={{
-            flexGrow: 1,
-            justifyContent: 'center',
-            display: 'flex',
-            mb: 2,
-          }}
-        >
-          <Typography
-            sx={{ fontFamily: 'Oswald', fontSize: 18 }}
-            variant="caption"
-            color="initial"
-          >
-            Copyright ©2024 Asiye Yaliz
-          </Typography>
-        </Box>
-      </Container>
+          Copyright ©2024 Asiye Yaliz
+        </Typography>
+      </Box>
     </Paper>
   );
 }

@@ -165,8 +165,7 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
         <Rating
           sx={{ textAlign: 'center' }}
           name="read-only"
-          value={volumeInfo.averageRating}
-          //value={4}
+          value={volumeInfo.averageRating ? volumeInfo.averageRating : 4}
           readOnly
         />
       </Box>

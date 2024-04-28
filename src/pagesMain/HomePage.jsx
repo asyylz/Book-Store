@@ -9,7 +9,6 @@ import { IconButton, Typography, Box, Grid, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import ButtonCustom from '../componentsUI/ButtonCustom';
 import SwiperCustom from '../componentsUI/SwiperCustom';
-import SwiperCustomCopy from '../componentsUI/SwiperCustomCopy';
 import { useUserProfileContext } from '../context/UserProfileContext';
 /* -------------------- react imports ------------------- */
 
@@ -124,7 +123,7 @@ export default function HomePage() {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <SwiperCustomCopy books={newestBooks} />
+            <SwiperCustom books={newestBooks} />
           </Grid>
         </Grid>
       </Box>
@@ -140,7 +139,7 @@ export async function loaderHomePageBooks() {
 
     const popularBooks = await fetchCachedData(popularBooksUrl, nodeCache);
     const newestBooks = await fetchCachedData(newestBooksUrl, nodeCache);
-
+console.log(newestBooks)
     return { newestBooks, popularBooks };
   } catch (error) {
     console.error('Failed to load book data:', error);

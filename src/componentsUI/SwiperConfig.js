@@ -1,4 +1,3 @@
-// swiperConfig.js
 
 const swiperConfig = {
     breakpoints: {
