@@ -61,6 +61,7 @@ const router = createBrowserRouter([
             <UserPageLayout />
           </PrivateRoute>
         ),
+        //loader:loaderFavBooks,
         children: [
           {
             index: true,

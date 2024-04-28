@@ -39,7 +39,6 @@ const Item = styled(Paper)(() => ({
 
 const nodeCache = new Map();
 export default function HomePage() {
-  
   const { newestBooks, popularBooks } = useLoaderData();
 
   return (
@@ -122,7 +121,15 @@ export default function HomePage() {
               Discover newest releases...
             </Typography>
           </Grid>
-          <Grid item xs={12}>
+          <Grid
+            item
+            xs={12}
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              //border: '1px solid red',
+            }}
+          >
             <SwiperCustom books={newestBooks} />
           </Grid>
         </Grid>
@@ -139,7 +146,7 @@ export async function loaderHomePageBooks() {
 
     const popularBooks = await fetchCachedData(popularBooksUrl, nodeCache);
     const newestBooks = await fetchCachedData(newestBooksUrl, nodeCache);
-console.log(newestBooks)
+    console.log(newestBooks);
     return { newestBooks, popularBooks };
   } catch (error) {
     console.error('Failed to load book data:', error);

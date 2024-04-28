@@ -6,8 +6,6 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { Box } from '@mui/material';
 import swiperConfig from './SwiperConfig';
-import { useCartContext } from '../context/CartContext';
-import { useNavigate } from 'react-router-dom';
 import BookCard from '../components/BookCard';
 
 function SwiperCustom({ books }) {
