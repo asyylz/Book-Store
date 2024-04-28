@@ -8,13 +8,12 @@ import Error from './Error.jsx';
 import { useState } from 'react';
 
 export default function Checkout() {
-  const { items } = useCartContext();
-  const { progress, hideCheckout, clearCart, clearData, createOrder } =
-    useUserProgressContext();
-  const user = JSON.parse(localStorage.getItem('user'));
+  const { items, clearCart } = useCartContext();
+  const { progress, hideCheckout, createOrder } = useUserProgressContext();
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isSending, setIsSending] = useState(false);
   const [error, setError] = useState();
+  const [data, setData] = useState();
 
   const cartTotal = items.reduce(
     (totalPrice, item) =>
@@ -31,10 +30,9 @@ export default function Checkout() {
   function handleFinish() {
     hideCheckout();
     clearCart();
-    clearData();
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     const fd = new FormData(event.target);
     const customerData = Object.fromEntries(fd.entries());
@@ -44,7 +42,14 @@ export default function Checkout() {
       customer: customerData,
       orderDate: orderDate,
     };
-    createOrder(orderData);
+    setData(orderData);
+    setIsSending(true);
+    try {
+      await createOrder(orderData);
+      setIsSending(false);
+    } catch (error) {
+      setError(error);
+    }
   }
 
   let actions = (
@@ -56,25 +61,25 @@ export default function Checkout() {
     </>
   );
 
-  // if (isSending) {
-  //   actions = <span>Sending order data...</span>;
-  // }
+  if (isSending) {
+    actions = <span>Sending order data...</span>;
+  }
 
-  // if (data && !error) {
-  //   return (
-  //     <Modal open={progress === 'checkout'} onClose={handleFinish}>
-  //       <h2>Success!</h2>
-  //       <p>Your order was submitted successfully.</p>
-  //       <p>
-  //         We will get back to you with more details via email within the next
-  //         few minutes.
-  //       </p>
-  //       <p className="modal-actions">
-  //         <Button onClick={handleFinish}>Okay</Button>
-  //       </p>
-  //     </Modal>
-  //   );
-  // }
+  if (!error && data) {
+    return (
+      <Modal open={progress === 'checkout'} onClose={handleFinish}>
+        <h2>Success!</h2>
+        <p>Your order was submitted successfully.</p>
+        <p>
+          We will get back to you with more details via email within the next
+          few minutes.
+        </p>
+        <p className="modal-actions">
+          <Button onClick={handleFinish}>Okay</Button>
+        </p>
+      </Modal>
+    );
+  }
 
   return (
     <Modal open={progress === 'checkout'} onClose={handleClose}>
@@ -90,7 +95,7 @@ export default function Checkout() {
           <Input label="City" type="text" id="city" />
         </div>
 
-        {/* {error && <Error title="Failed to submit order" message={error} />} */}
+        {error && <Error title="Failed to submit order" message={error} />}
 
         <p className="modal-actions">{actions}</p>
       </form>
