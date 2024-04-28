@@ -14,11 +14,10 @@ import BooksPage from '../pagesMain/BooksPage.jsx';
 import { loaderHomePageBooks } from '../pagesMain/HomePage.jsx';
 import AuthPage from '../pagesMain/AuthPage.jsx';
 import { loaderBook } from '../pagesMain/BookDetailsPage.jsx';
-//import { loaderUser } from '../pagesUser/DashBoard.jsx';
+import { loaderUser } from '../pagesUser/DashBoard.jsx';
 import UserFavBooksPage from '../pagesUser/UserFavBooksPage.jsx';
 
-//import { loaderFavBooks } from '../layouts/UserPageLayout.jsx';
-import { combinedLoader } from '../layouts/UserPageLayout.jsx';
+//import { combinedLoader } from '../layouts/UserPageLayout.jsx';
 /* ------------------- import actions ------------------- */
 
 /* -------------------------- - ------------------------- */
@@ -62,28 +61,24 @@ const router = createBrowserRouter([
             <UserPageLayout />
           </PrivateRoute>
         ),
-        loader: combinedLoader,
+        loader: loaderUser,
         children: [
           {
             index: true,
             element: <DashBoard />,
-            //loader: loaderUser,
           },
           {
             path: 'favs',
             element: <UserFavBooksPage />,
-            //loader: loaderFavBooks,
           },
           {
             path: 'my-e-book',
             element: <UserEBooksPage />,
-            //loader: loaderFavBooks,
           },
 
           {
             path: 'purchased',
             element: <UserPurchasedBooksPage />,
-            //loader: loaderFavBooks,
           },
         ],
       },

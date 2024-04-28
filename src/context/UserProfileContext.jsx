@@ -95,8 +95,8 @@ const UserProfileContextProvider = ({ children }) => {
     }
   }
 
+  /* ---------------------- listener ---------------------- */
   const [favBooksUpdated, setfavBooksUpdated] = useState('');
-
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     const db = getDatabase();

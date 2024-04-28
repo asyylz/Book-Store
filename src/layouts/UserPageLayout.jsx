@@ -40,24 +40,24 @@ export default function UserPageLayout() {
   );
 }
 
-async function loaderFavBooks() {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const db = getDatabase();
-  const favBooksRef = ref(db, `users/${user.uid}/favBooks`);
-  try {
-    const snapshot = await get(favBooksRef);
-    if (snapshot.exists()) {
-      const favBooks = snapshot.val();
-      return favBooks;
-    } else {
-      console.log('No data available');
-      return {};
-    }
-  } catch (error) {
-    console.error(error);
-    throw new Error('Failed to fetch user data');
-  }
-}
+// async function loaderFavBooks() {
+//   const user = JSON.parse(localStorage.getItem('user'));
+//   const db = getDatabase();
+//   const favBooksRef = ref(db, `users/${user.uid}/favBooks`);
+//   try {
+//     const snapshot = await get(favBooksRef);
+//     if (snapshot.exists()) {
+//       const favBooks = snapshot.val();
+//       return favBooks;
+//     } else {
+//       console.log('No data available');
+//       return {};
+//     }
+//   } catch (error) {
+//     console.error(error);
+//     throw new Error('Failed to fetch user data');
+//   }
+// }
 
 async function loaderUser(userId) {
   
@@ -67,7 +67,7 @@ async function loaderUser(userId) {
     const snapshot = await get(userRef);
     if (snapshot.exists()) {
       const user = snapshot.val();
-      return user;
+      return {user};
     } else {
       console.log('No data available');
       return {};
@@ -78,17 +78,17 @@ async function loaderUser(userId) {
   }
 }
 
-export async function combinedLoader({ params }) {
-  const userId = params.userId;
-  try {
-    const [favBooks, user] = await Promise.all([
-      loaderFavBooks(userId),
-      loaderUser(userId)
-    ]);
-    return { favBooks, user };
-  } catch (error) {
-    console.error('Error in combined loader:', error);
-    throw new Error('Failed to load data');
-  }
-}
+// export async function combinedLoader({ params }) {
+//   const userId = params.userId;
+//   try {
+//     const [favBooks, user] = await Promise.all([
+//       loaderFavBooks(userId),
+//       loaderUser(userId)
+//     ]);
+//     return { favBooks, user };
+//   } catch (error) {
+//     console.error('Error in combined loader:', error);
+//     throw new Error('Failed to load data');
+//   }
+// }
 
