@@ -1,4 +1,10 @@
-import { children, createContext, useState, useReducer, useContext } from 'react';
+import {
+  children,
+  createContext,
+  useState,
+  useReducer,
+  useContext,
+} from 'react';
 
 // it is good for auto complete
 const CartContext = createContext({
@@ -57,7 +63,7 @@ function cartReducer(state, action) {
 
 export function CartContextProvider({ children }) {
   const [cart, dispatchCartAction] = useReducer(cartReducer, { items: [] });
-console.log(cart)
+
   function addItem(item) {
     dispatchCartAction({ type: 'ADD_ITEM', item });
   }
@@ -68,8 +74,7 @@ console.log(cart)
   function clearCart() {
     dispatchCartAction({ type: 'CLEAR_CART' });
   }
-
-
+  
   return (
     <CartContext.Provider
       value={{ items: cart.items, addItem, removeItem, clearCart }}

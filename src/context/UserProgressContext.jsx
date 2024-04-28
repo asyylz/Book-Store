@@ -1,5 +1,6 @@
 import { createContext, useState,useContext } from 'react';
-
+import { getDatabase, ref, set } from "firebase/database";
+import { v4 as uuidv4 } from 'uuid';
 const UserProgressContext = createContext({
   progress: '', // 'cart', 'checkout'
   showCart: () => {},
@@ -10,6 +11,7 @@ const UserProgressContext = createContext({
 
 export function UserProgressContextProvider({ children }) {
   const [userProgress, setUserProgress] = useState('');
+  const user = JSON.parse(localStorage.getItem('user'));
 
   function showCart() {
     setUserProgress('cart');
@@ -26,6 +28,22 @@ export function UserProgressContextProvider({ children }) {
   function hideCheckout() {
     setUserProgress('');
   }
+  const createOrder = async (orderData) => {
+    if (user && user.uid) {
+      const db = getDatabase();
+      const orderId = uuidv4();
+      const orderRef = ref(db, `users/${user.uid}/orders/${orderId}`);
+      await set(orderRef, orderData)
+        .then(() => {
+          console.log(`Order saved successfully!${orderId}`);
+        })
+        .catch((error) => {
+          console.error('Failed to save order:', error);
+        });
+    } else {
+      console.log('No user logged in, cannot save order.');
+    }
+  };
 
   return (
     <UserProgressContext.Provider
@@ -35,6 +53,7 @@ export function UserProgressContextProvider({ children }) {
         hideCart,
         showCheckout,
         hideCheckout,
+        createOrder
       }}
     >
       {children}

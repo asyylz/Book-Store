@@ -2,9 +2,10 @@ import { Outlet, useNavigation } from 'react-router-dom';
 import MainNavigation from '../components/MainNavigation';
 import Cart from '../componentsCart/Cart';
 import { ToastContainer } from 'react-toastify';
-import { Box, CssBaseline, Container } from '@mui/material';
-import { Padding } from '@mui/icons-material';
+import { Box } from '@mui/material';
+
 import Footer from '../components/Footer';
+import Checkout from '../componentsCart/Checkout';
 function RootLayout() {
   const navigation = useNavigation();
   navigation.state === 'loading';
@@ -19,6 +20,7 @@ function RootLayout() {
       <ToastContainer />
       <MainNavigation />
       <Cart />
+      <Checkout />
       <Box sx={{ paddingTop: '0' }}>
         {/* Solution-1 for loadin state  */}
         {navigation.state === 'loading' && <p>Loading...</p>}

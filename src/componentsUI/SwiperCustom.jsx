@@ -11,7 +11,7 @@ import { useUserProfileContext } from '../context/UserProfileContext';
 
 function SwiperCustom({ books }) {
   const { favBooksUpdated } = useUserProfileContext();
-  const favBookIds = favBooksUpdated.map((book) => book.id);
+  const favBookIds = favBooksUpdated?.map((book) => book.id);
 
   return (
     <Box
@@ -37,7 +37,7 @@ function SwiperCustom({ books }) {
         navigation
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
-        style={{ width: '90vw', height: '50vh', padding: '0 4rem' }}
+        style={{ width: '90vw', height: '50vh', padding: '0 4rem', zIndex:1301}}
       >
         {books.map((book, index) => (
           <SwiperSlide style={{ zIndex: '-1' }} key={index}>

@@ -7,7 +7,7 @@ const UserProfileContextProvider = ({ children }) => {
   const [userData, setUserData] = useState();
   const [favBookIds, setFavBookIds] = useState([]);
   const user = JSON.parse(localStorage.getItem('user'));
-  
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -22,23 +22,10 @@ const UserProfileContextProvider = ({ children }) => {
     fetchData();
   }, [user?.uid]);
 
-  // useEffect(() => {
-  //   const db = getDatabase();
-  //   const favBooksRef = ref(db, `users/${user?.uid}/favBooks`);
-
-  //   const unsubscribe = onValue(favBooksRef, (snapshot) => {
-  //     const favBooks = snapshot.val() || [];
-  //     const favBookIds = favBooks.map((book) => book.id);
-  //     setFavBookIds(favBookIds);
-  //   });
-
-  //   return () => unsubscribe(); // Clean up the subscription
-  // }, [user?.uid]);
-
   const createUserInDB = async (userId, name, email) => {
     const db = getDatabase();
     try {
-      set(ref(db, 'users/' + userId), {
+      await set(ref(db, 'users/' + userId), {
         username: name,
         email: email,
         //profile_picture: imageUrl,
@@ -49,8 +36,6 @@ const UserProfileContextProvider = ({ children }) => {
   };
 
   const fetchUserData = async (userId) => {
-    //console.log('fetchuserdata:clicked');
-    //console.log(userId);
     const db = getDatabase();
     const userRef = ref(db, `users/${userId}`);
     try {
@@ -68,6 +53,10 @@ const UserProfileContextProvider = ({ children }) => {
       throw new Error('Failed to fetch user data');
     }
   };
+
+
+  /* ---------------------- favclick ---------------------- */
+
   async function handleFavClick(id, volumeInfo, saleInfo) {
     const db = getDatabase();
     const userRef = ref(db, `users/${user.uid}`);
@@ -122,13 +111,14 @@ const UserProfileContextProvider = ({ children }) => {
     return () => unsubscribe();
   }, [user?.uid]);
 
+
   return (
     <UserProfileContext.Provider
       value={{
         createUserInDB,
         fetchUserData,
         userData,
-        user,
+        //user,
         favBookIds,
         setFavBookIds,
         handleFavClick,

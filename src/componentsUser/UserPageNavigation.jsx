@@ -8,9 +8,9 @@ const theme = createTheme({
     values: {
       xs: 0,
       sm1: 800,
-      sm2: 856, 
-      md: 900, 
-      lg: 990, 
+      sm2: 856,
+      md: 900,
+      lg: 990,
       xl: 1173,
     },
   },
@@ -25,7 +25,7 @@ export default function UserPageNavigation() {
           '& .MuiDrawer-paper': {
             boxSizing: 'border-box',
             width: drawerWidth,
-            height:'73vh',
+            height: '100vh',
             position: 'absolute',
             top: {
               sm1: '170px',
@@ -34,8 +34,6 @@ export default function UserPageNavigation() {
               lg: '80px',
               xl: '80px',
             },
-          
-            //border: '1px solid red',
           },
         }}
         open

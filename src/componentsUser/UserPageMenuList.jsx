@@ -51,6 +51,7 @@ const iconStyle = {
     backgroundColor: '#F2F0EB',
     color: '#7D898C',
   },
+ 
 };
 const selectedStyle = {
   backgroundColor: '#F2F0EB',
@@ -60,6 +61,7 @@ const selectedStyle = {
     backgroundColor: '#F2F0EB',
     color: '#7D898C',
   },
+  
 };
 
 const UserPageMenuList = () => {
@@ -78,7 +80,6 @@ const UserPageMenuList = () => {
 
   return (
     <div>
-      <Toolbar />
       <List>
         {links.map((item, index) => (
           <ListItem key={item.title} disablePadding>
@@ -92,7 +93,7 @@ const UserPageMenuList = () => {
                   height: 24,
                   mask: `url(${item.icon}) no-repeat center / contain`,
                   mr: 2,
-                  bgcolor: 'currentColor',
+                  bgcolor: 'currentColor'
                 }}
               />
               {/* ASK font family  */}
