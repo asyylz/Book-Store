@@ -38,6 +38,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
   width: '100%',
+  fontSize: { xs: '10px', sm: '20px' },
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
@@ -85,12 +86,20 @@ export default function SearchInput() {
         }}
       >
         <SelectInput selection={selection} setSelection={setSelection} />
-        <Box sx={{ flexGrow: 1, m: '10px', width:{xs:'230px',sm:'350px'}, height: '40px' }}>
+        <Box
+          sx={{
+            flexGrow: 1,
+            m: '10px',
+            width: { xs: '150px', sm: '200px', md: '100%' },
+            height: '40px',
+          }}
+        >
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
+              sx={{ fontSize: { xs: '12px', sm: '20px', md: '24px' } }}
               placeholder="Title,author,keyword or ISBN"
               inputProps={{ 'aria-label': 'search' }}
               value={searchValue}

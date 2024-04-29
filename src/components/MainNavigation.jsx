@@ -108,12 +108,12 @@ function MainNavigation() {
         backgroundColor: ColourSchema.navy,
         color: ColourSchema.beige,
         fontFamily: 'Oswald',
-        width:{xs:'100%'}
+        width: { xs: '120%', sm: '100%' },
       }}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' } }} />
           <Typography
             variant="h6"
             noWrap

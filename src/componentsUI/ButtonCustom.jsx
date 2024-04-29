@@ -34,7 +34,7 @@ export default function ButtonCustom({ buttonName, id, to, side, ...props }) {
         sx={{
           color: 'black',
           fontSize: { xs: '16px', sm: '20px', md: '1.4rem' },
-          width: { xs: '130px', sm: '150px', md: '200px', xl: '300px' },
+          width: { xs: '130px', sm: '200px', md: '200px', xl: '300px' },
         }}
       >
         {buttonName}

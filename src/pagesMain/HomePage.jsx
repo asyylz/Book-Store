@@ -61,9 +61,11 @@ export default function HomePage() {
         sx={{
           // mt: '1rem',
           // ml: '4rem',
-          marginRight: { xs: '4rem', sm: '5rem' },
-          marginLeft: '2rem',
+          //marginRight: { xs: '4rem', sm: '5rem' },
+          // marginLeft: '2rem',
+          margin: { xs: '0 3rem' },
           fontFamily: 'Oswald',
+          //backgroundColor:'red',
         }}
       >
         {/* <Grid container spacing={2} sx={{ border: '1px solid red' }}> */}

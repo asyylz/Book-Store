@@ -19,6 +19,7 @@ export default function MenuItemCustom({ menuList, anchor, setAnchor, mode }) {
           xs: mode === 'nav' ? 'block' : undefined,
           md: mode === 'nav' ? 'none' : undefined,
         },
+        
       }}
       anchorEl={anchor}
       anchorOrigin={{
