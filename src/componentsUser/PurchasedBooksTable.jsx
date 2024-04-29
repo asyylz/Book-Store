@@ -7,38 +7,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { titleTrimmer } from '../utils/titleTrimmer';
-
-const TAX_RATE = 0.07;
-
-function ccyFormat(num) {
-  return `${num.toFixed(2)}`;
-}
-
-function priceRow(qty, unit) {
-  return qty * unit;
-}
-
-function createRow(desc, qty, unit) {
-  const price = priceRow(qty, unit);
-  return { desc, qty, unit, price };
-}
-
-function subtotal(items) {
-  return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
-}
-
-const rows = [
-  createRow('Paperclips (Box)', 100, 1.15),
-  createRow('Paper (Case)', 10, 45.99),
-  createRow('Waste Basket', 2, 17.99),
-];
-
-const invoiceSubtotal = subtotal(rows);
-const invoiceTaxes = TAX_RATE * invoiceSubtotal;
-const invoiceTotal = invoiceTaxes + invoiceSubtotal;
+import { currencyFormatter } from '../utils/currencyFormatter';
 
 export default function PurchasedBooksTable({ orders }) {
-  console.log(orders);
   return (
     <TableContainer component={Paper} sx={{ fontFamily: 'Oswald' }}>
       <Table sx={{ minWidth: 700 }} aria-label="spanning table">
@@ -85,25 +56,39 @@ export default function PurchasedBooksTable({ orders }) {
         <TableBody>
           {orders.map((order) => (
             <React.Fragment key={order.id}>
-              {order.items.map((item) => (
+              <TableRow sx={{ fontSize: '16px' }}>
+                Order date:{order.orderDate}
+              </TableRow>
+              {order.items.map((item, index) => (
                 <TableRow key={item.id}>
-                  <TableCell>{titleTrimmer(item.volumeInfo.title)}</TableCell>
-                  <TableCell align="right">{item.quantity}</TableCell>
-                  <TableCell align="right">
-                    {item.saleInfo.listPrice?.amount ?? 10}
+                  <TableCell sx={{ fontSize: '16px' }}>
+                    {`${index + 1}-`} {titleTrimmer(item.volumeInfo.title)}
                   </TableCell>
-                  <TableCell align="right">
-                    {ccyFormat(
+                  <TableCell align="right" sx={{ fontSize: '16px' }}>
+                    {item.quantity}
+                  </TableCell>
+                  <TableCell align="right" sx={{ fontSize: '16px' }}>
+                    {currencyFormatter.format(
+                      item.saleInfo.listPrice?.amount ?? 10
+                    )}
+                  </TableCell>
+                  <TableCell align="right" sx={{ fontSize: '16px' }}>
+                    {currencyFormatter.format(
                       (item.saleInfo.listPrice?.amount ?? 10) * item.quantity
                     )}
                   </TableCell>
                 </TableRow>
               ))}
               <TableRow>
-                <TableCell rowSpan={1} />
-                <TableCell colSpan={2}>Subtotal</TableCell>
-                <TableCell align="right">
-                  {ccyFormat(
+                <TableCell rowSpan={1} sx={{ backgroundColor: '#eeeeee' }} />
+                <TableCell
+                  colSpan={2}
+                  sx={{ fontSize: '16px', backgroundColor: '#eeeeee' }}
+                >
+                  Subtotal
+                </TableCell>
+                <TableCell align="right" sx={{ backgroundColor: '#D9D2D0' }}>
+                  {currencyFormatter.format(
                     order.items.reduce(
                       (total, item) =>
                         total +
