@@ -1,15 +1,14 @@
 /* ------------------ react-router-dom-imports ------------------ */
-import { json, useLoaderData } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import * as React from 'react';
 import Carousel from 'react-material-ui-carousel';
-import Footer from '../components/Footer';
+
 
 /* ----------------- material ui imports ---------------- */
-import { IconButton, Typography, Box, Grid, Paper } from '@mui/material';
+import {  Typography, Box, Grid, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import ButtonCustom from '../componentsUI/ButtonCustom';
 import SwiperCustom from '../componentsUI/SwiperCustom';
-import { useUserProfileContext } from '../context/UserProfileContext';
 /* -------------------- react imports ------------------- */
 
 /* -------------------------- helper actions ------------------------- */

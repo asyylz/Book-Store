@@ -54,10 +54,10 @@ export default function PurchasedBooksTable({ orders }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {orders.map((order) => (
+          {orders?.map((order) => (
             <React.Fragment key={order.id}>
               <TableRow sx={{ fontSize: '16px' }}>
-                Order date:{order.orderDate}
+                Order date:{order?.orderDate}
               </TableRow>
               {order.items.map((item, index) => (
                 <TableRow key={item.id}>

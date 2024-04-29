@@ -16,7 +16,6 @@ import {
 import { createContext, useContext, useEffect, useState } from 'react';
 import { auth } from '../auth/firebase';
 import { useUserProfileContext } from './UserProfileContext';
-const BASE_DB_URL = import.meta.env.VITE_APP_databaseURL;
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
@@ -34,12 +33,13 @@ const AuthContextProvider = ({ children }) => {
         password
       );
       const { user } = userCredential;
-      console.log(userCredential)
+      console.log('clicked');
       await updateProfile(auth.currentUser, {
         displayName: displayName,
       });
       toastSuccessNotify('Registered!');
       createUserInDB(user.uid, displayName, email);
+
     } catch (error) {
       console.log(error);
       toastErrorNotify(error.message);

@@ -14,16 +14,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
 import { useUserProfileContext } from '../context/UserProfileContext';
-import { useState } from 'react';
-import { Password } from '@mui/icons-material';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../auth/firebase';
-import {
-  toastErrorNotify,
-  toastSuccessNotify,
-  toastWarnNotify,
-} from '../helper/toastNotify';
-import { Form } from 'react-router-dom';
 import { redirect } from 'react-router-dom';
 
 const textFields = [
@@ -53,10 +43,8 @@ const defaultTheme = createTheme();
 
 /* -------------------- REGISTER FORM ------------------- */
 export default function RegisterForm() {
-
   const navigate = useNavigate();
-  const { register, signGoogleProvider, currentUser } = useAuthContext();
-  const { createUserInDB } = useUserProfileContext();
+  const { register } = useAuthContext();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -65,6 +53,7 @@ export default function RegisterForm() {
     const password = data.get('password');
     const displayName = data.get('firstName');
     await register(email, password, displayName);
+    redirect('/');
   };
 
   return (
@@ -129,7 +118,6 @@ export default function RegisterForm() {
               type="submit"
               fullWidth
               variant="contained"
-              onClick={() => navigate('/')}
               sx={{ mt: 3, mb: 2 }}
             >
               Sign Up
@@ -148,5 +136,3 @@ export default function RegisterForm() {
     </ThemeProvider>
   );
 }
-
-
