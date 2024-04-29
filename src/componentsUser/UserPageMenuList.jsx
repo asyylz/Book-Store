@@ -3,9 +3,9 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import Toolbar from '@mui/material/Toolbar';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../context/AuthContext';
 
 //const icon = (name) => `/assets/navbar/${name}.svg`;
 
@@ -51,7 +51,6 @@ const iconStyle = {
     backgroundColor: '#F2F0EB',
     color: '#7D898C',
   },
- 
 };
 const selectedStyle = {
   backgroundColor: '#F2F0EB',
@@ -61,18 +60,17 @@ const selectedStyle = {
     backgroundColor: '#F2F0EB',
     color: '#7D898C',
   },
-  
 };
 
 const UserPageMenuList = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const user = JSON.parse(localStorage.getItem('user')) || '';
+  const { currentUser } = useAuthContext();
 
   function handleNavigate(route) {
     // ASK
     if (route === '/') {
-      navigate(`/${user.uid}`);
+      navigate(`/${currentUser.uid}`);
     } else {
       navigate(route);
     }
@@ -93,7 +91,7 @@ const UserPageMenuList = () => {
                   height: 24,
                   mask: `url(${item.icon}) no-repeat center / contain`,
                   mr: 2,
-                  bgcolor: 'currentColor'
+                  bgcolor: 'currentColor',
                 }}
               />
               {/* ASK font family  */}

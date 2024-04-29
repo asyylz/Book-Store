@@ -1,39 +1,30 @@
 import { useState, createContext, useContext } from 'react';
-import { getDatabase, ref, set, get, onValue, update } from 'firebase/database';
+import { getDatabase, ref, get, onValue, update } from 'firebase/database';
 import { useEffect } from 'react';
+import { useAuthContext } from './AuthContext';
 export const UserProfileContext = createContext();
 
 const UserProfileContextProvider = ({ children }) => {
   const [userData, setUserData] = useState();
   const [favBookIds, setFavBookIds] = useState([]);
-  const user = JSON.parse(localStorage.getItem('user'));
+  const { currentUser } = useAuthContext();
+
+
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const data = await fetchUserData(user?.uid);
+        const data = await fetchUserData(currentUser?.uid);
         setUserData(data);
       } catch (error) {
         console.error('Failed to fetch user data:', error);
-        // Handle errors as appropriate
       }
     }
 
     fetchData();
-  }, [user?.uid]);
+  }, [currentUser?.uid]);
 
-  const createUserInDB = async (userId, name, email) => {
-    const db = getDatabase();
-    try {
-      await set(ref(db, 'users/' + userId), {
-        username: name,
-        email: email,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+  /* ------------------- fetch userdata ------------------- */
   const fetchUserData = async (userId) => {
     const db = getDatabase();
     const userRef = ref(db, `users/${userId}`);
@@ -41,7 +32,6 @@ const UserProfileContextProvider = ({ children }) => {
       const snapshot = await get(userRef);
       if (snapshot.exists()) {
         const user = snapshot.val();
-        //console.log(user);
         return user;
       } else {
         console.log('No data available');
@@ -75,6 +65,7 @@ const UserProfileContextProvider = ({ children }) => {
         await update(userRef, { favBooks });
         console.log('Favorite books updated successfully.');
       } else {
+        alert('Please login.')
         console.log('No user data available.');
       }
     } catch (error) {
@@ -85,9 +76,8 @@ const UserProfileContextProvider = ({ children }) => {
   /* ---------------------- listener ---------------------- */
   const [favBooksUpdated, setFavBooksUpdated] = useState('');
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
     const db = getDatabase();
-    const favBooksRef = ref(db, `users/${user?.uid}/favBooks`);
+    const favBooksRef = ref(db, `users/${currentUser?.uid}/favBooks`);
 
     // Listener for real-time updates
     const unsubscribe = onValue(
@@ -107,15 +97,13 @@ const UserProfileContextProvider = ({ children }) => {
 
     // Cleanup function to unsubscribe when the component unmounts
     return () => unsubscribe();
-  }, [user?.uid]);
+  }, [currentUser?.uid]);
 
   return (
     <UserProfileContext.Provider
       value={{
-        createUserInDB,
         fetchUserData,
         userData,
-        //user,
         favBookIds,
         setFavBookIds,
         handleFavClick,
