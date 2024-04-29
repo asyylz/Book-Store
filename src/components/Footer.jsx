@@ -43,9 +43,9 @@ function CustomList(list) {
           key={index}
           href=""
           sx={{
-            lineHeight: { xs: '18px', sm: '16px' },
+            lineHeight: { xs: '18px', sm: '18px' },
             fontFamily: 'Oswald',
-            fontSize: { xs: '14px', sm: '20px' },
+            fontSize: { xs: '14px', sm: '18px' },
           }}
         >
           <Link
