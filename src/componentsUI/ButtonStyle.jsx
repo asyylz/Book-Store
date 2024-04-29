@@ -14,12 +14,12 @@ import { Link } from 'react-router-dom';
 
 const ButtonStyle = styled(Link)`
   text-decoration: none;
-  font-size: 1.7rem;
+  ${'' /* font-size: 1.7rem; */}
   font-weight: 200;
   letter-spacing: 1px;
 
   .style {
-    padding: 13px 20px 13px;
+    ${'' /* padding: 13px 20px 13px; */}
     outline: 0;
     border: 1px solid black;
     cursor: pointer;
@@ -31,8 +31,8 @@ const ButtonStyle = styled(Link)`
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-    height: 40px;
-    width: 80%;
+    height: 30px;
+    ${'' /* width: 70%; */}
     margin-bottom: 1rem;
 
     &:after {

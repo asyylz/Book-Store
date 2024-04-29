@@ -50,9 +50,6 @@ const bookCategories = [
   { label: 'Young Adult', path: '/category/young-adult' },
 ];
 
-/* ---------------- MainNavigation Links ---------------- */
-const user = JSON.parse(localStorage.getItem('user'));
-
 // more page section can be added here
 const pages = [
   { label: 'Home', path: '/' },
@@ -60,7 +57,7 @@ const pages = [
   // { label: 'Categories', path: 'category' },
 ];
 
-//onst settings = [{ label: 'Account', path: `/${user?.uid}` }];
+//const settings = [{ label: 'Account', path: `/${user?.uid}` }];
 
 function MainNavigation() {
   //const user = JSON.parse(localStorage.getItem('user'));
@@ -111,6 +108,7 @@ function MainNavigation() {
         backgroundColor: ColourSchema.navy,
         color: ColourSchema.beige,
         fontFamily: 'Oswald',
+        width:{xs:'100%'}
       }}
     >
       <Container maxWidth="xl">

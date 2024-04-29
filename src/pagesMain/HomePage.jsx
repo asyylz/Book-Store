@@ -59,20 +59,26 @@ export default function HomePage() {
       {/* --------------------- Top Section -------------------- */}
       <Box
         sx={{
-          flexGrow: 1,
-          mt: '1rem',
-          ml: '4rem',
-          mr: '4rem',
+          // mt: '1rem',
+          // ml: '4rem',
+          marginRight: { xs: '4rem', sm: '5rem' },
+          marginLeft: '2rem',
           fontFamily: 'Oswald',
         }}
       >
+        {/* <Grid container spacing={2} sx={{ border: '1px solid red' }}> */}
         <Grid container spacing={2}>
           {/* ------------------------ Left ------------------------*/}
           <Grid item xs={4}>
             {bookSection
               .filter((_, index) => index > 3)
               .map((book) => (
-                <Grid item xs={12} key={book.id}>
+                <Grid
+                  item
+                  xs={12}
+                  sx={{ display: 'flex', justifyContent: 'center' }}
+                  key={book.id}
+                >
                   <Item>
                     <ButtonCustom
                       buttonName={book.name}
@@ -85,15 +91,36 @@ export default function HomePage() {
               ))}
           </Grid>
           {/* ------------------------ Middle ------------------------*/}
-          <Grid item xs={4}>
+          <Grid
+            item
+            xs={4}
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
             <Typography
               variant="h6"
-              sx={{ textAlign: 'center', fontFamily: 'Oswald' }}
+              sx={{
+                textAlign: 'center',
+                fontFamily: 'Oswald',
+                display: { xs: 'none', sm: 'block' },
+              }}
             >
               Author Of The Week
             </Typography>
-            <Box sx={{ height: '330px' }}>
-              <Carousel>
+            <Box
+              sx={{
+                height: '330px',
+              }}
+            >
+              <Carousel
+                sx={{
+                  display: { xs: 'none', sm: 'flex' },
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                }}
+              >
                 {popularBooks?.map((book) => (
                   <Item key={book.volumeInfo.title}>
                     <img
@@ -111,7 +138,12 @@ export default function HomePage() {
             {bookSection
               ?.filter((_, index) => index < 4)
               .map((book) => (
-                <Grid item xs={12} key={book.id}>
+                <Grid
+                  item
+                  xs={12}
+                  sx={{ display: 'flex', justifyContent: 'center' }}
+                  key={book.id}
+                >
                   <Item>
                     <ButtonCustom
                       buttonName={book.name}
@@ -127,10 +159,17 @@ export default function HomePage() {
         </Grid>
       </Box>
       {/* -------------- Recommendations  Section -------------- */}
-      <Box sx={{ mt: '2rem' }}>
+      <Box sx={{ mt: '2rem', border: '1px solid red' }}>
         <Grid container spacing={2}>
           <Grid item xs={12} sx={{ textAlign: 'center' }}>
-            <Typography sx={{ fontFamily: 'Oswald', mt: '1rem' }} variant="h4">
+            <Typography
+              sx={{
+                fontFamily: 'Oswald',
+                mt: '1rem',
+                fontSize: { xs: '16px', md: '1.7rem' },
+              }}
+              variant="h4"
+            >
               Discover newest releases...
             </Typography>
           </Grid>

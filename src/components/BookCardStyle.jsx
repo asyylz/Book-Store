@@ -11,7 +11,7 @@ const BookCardStyle = styled.div`
   }
   p {
     font-size: max(10pt, 2.5vmin);
-    line-height: 1.4;
+    ${'' /* line-height: 1.4; */}
     margin-bottom: 1.5rem;
   }
 

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ButtonStyle from './ButtonStyle.jsx';
+import { Box } from '@mui/material';
 export default function ButtonCustom({ buttonName, id, to, side, ...props }) {
   const [isEbook, setIsEbook] = useState({ ebook: false, free: false });
   if (!to) {
@@ -28,9 +29,16 @@ export default function ButtonCustom({ buttonName, id, to, side, ...props }) {
       }
       side={side}
     >
-      <div className="style" style={{ color: 'black' }}>
+      <Box
+        className="style"
+        sx={{
+          color: 'black',
+          fontSize: { xs: '16px', sm: '20px', md: '1.4rem' },
+          width: { xs: '130px', sm: '150px', md: '200px', xl: '300px' },
+        }}
+      >
         {buttonName}
-      </div>
+      </Box>
     </ButtonStyle>
   );
 }
