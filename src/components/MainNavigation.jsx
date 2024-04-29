@@ -109,6 +109,8 @@ function MainNavigation() {
         color: ColourSchema.beige,
         fontFamily: 'Oswald',
         width: { xs: '120%', sm: '100%' },
+        //display:'flex',
+        //justifyContent:'space-between',
       }}
     >
       <Container maxWidth="xl">
@@ -151,8 +153,16 @@ function MainNavigation() {
             />
           </Box>
 
-          {/* -------------- large screen nav sections ------------- */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          {/* -------------- large screen sections ------------- */}
+          <Box
+            sx={{
+              display: {
+                xs: 'none',
+                md: 'flex',
+              },
+              border: '1px solid green',
+            }}
+          >
             {pages.map((page, index) => (
               <NavLink key={index} to={page.path}>
                 <Button
@@ -167,12 +177,15 @@ function MainNavigation() {
               </NavLink>
             ))}
           </Box>
-          <SearchInput />
+          <Box sx={{ border: '1px solid red', flexGrow: 1 }}>
+            <SearchInput />
+          </Box>
+
           <Box
             sx={{
               flexGrow: 0,
               textAlign: 'center',
-              marginRight: { xs: '3rem', sm: '1rem' },
+              border: '1px solid yellow',
             }}
           >
             <Tooltip title="Open settings">

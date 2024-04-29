@@ -19,7 +19,7 @@ export default function BookList({ searchedBooks, header }) {
             align="center"
             variant="h4"
             component="h1"
-            mt={'1rem'}
+            margin={2}
             color="secondary.second"
             fontFamily="Oswald"
           >
@@ -31,13 +31,15 @@ export default function BookList({ searchedBooks, header }) {
                 backgroundColor: '#F2F0EB',
                 color: 'gray',
                 '&:hover': { color: '#F29F05', backgroundColor: 'inherit' },
+                fontSize: { xs: '10px', sm: '14px' },
+                width:{xs:'100px', sm:'200px'}
               }}
               variant="contained"
             >
               Back to Main Page
             </Button>
           </Link>
-          <Grid container spacing={5}  mt={4} width="80vw">
+          <Grid container spacing={5} mt={4} width="80vw">
             {searchedBooks?.map((book) => (
               <Grid
                 item
