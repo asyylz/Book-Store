@@ -188,7 +188,7 @@ function MainNavigation() {
               mode="user"
             />
             <NavLink
-              to={!user && 'auth?mode=login'}
+              to={!currentUser && 'auth?mode=login'}
               onClick={() => handleClick(currentUser ? 'logout' : 'login')}
             >
               <Button
@@ -203,7 +203,7 @@ function MainNavigation() {
               </Button>
             </NavLink>
             <CartButton textOnly onClick={handleShowCart}>
-              <ShoppingBasketIcon />{' '}
+              <ShoppingBasketIcon />
               <small>
                 ({totalCartItems})<br></br>
               </small>

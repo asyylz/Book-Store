@@ -100,6 +100,7 @@ export default function RegisterForm() {
                       id={key}
                       label={value}
                       autoComplete="off"
+                      type={value}
                       autoFocus={index === 0}
                     />
                   </Grid>

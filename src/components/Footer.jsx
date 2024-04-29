@@ -7,6 +7,7 @@ import * as React from 'react';
 import Link from '@mui/material/Link';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
+import { useAuthContext } from '../context/AuthContext';
 
 function Copyright() {
   return (
@@ -62,15 +63,37 @@ function CustomList(list) {
 }
 
 export default function Footer() {
-  return (
-    <Box
-      sx={{
+  const { currentUser } = useAuthContext();
+  const path = window.location.href;
+
+  const styleChecker = () => {
+    // Check if the current path includes the currentUser's UID
+    if (path.includes(currentUser.uid)) {
+      return {
+        display: 'flex',
+        minHeight: '60vh',
+        //position: 'fixed',
+        bottom: 0, // Corrected typo
+        left: '250px',
+        flexDirection: 'column',
+        zIndex: 1201,
+        //border: '1px solid red',
+        width: '100vw',
+      };
+    } else {
+      return {
         display: 'flex',
         flexDirection: 'column',
         minHeight: '90vh',
-        zIndex: 1300,
-      }}
-    >
+        zIndex: 1201,
+        bottom:0,
+        //border: '1px solid red',
+      };
+    }
+  };
+
+  return (
+    <Box sx={styleChecker()}>
       <Box
         component="footer"
         sx={{
@@ -88,7 +111,6 @@ export default function Footer() {
             container
             sx={{
               backgroundColor: '#D9D2D0',
-              m: '1rem',
               p: '1rem',
             }}
           >

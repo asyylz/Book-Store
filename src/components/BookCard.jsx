@@ -19,7 +19,7 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
     <Box
       container
       sx={{
-        height: '470px',
+        height: '450px',
         width: '210px',
         display: 'flex',
         flexDirection: 'column',
