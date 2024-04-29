@@ -168,7 +168,13 @@ function MainNavigation() {
             ))}
           </Box>
           <SearchInput />
-          <Box sx={{ flexGrow: 0, textAlign: 'center' }}>
+          <Box
+            sx={{
+              flexGrow: 0,
+              textAlign: 'center',
+              marginRight: { xs: '3rem', sm: '1rem' },
+            }}
+          >
             <Tooltip title="Open settings">
               {currentUser && (
                 <SelectableAvatar
