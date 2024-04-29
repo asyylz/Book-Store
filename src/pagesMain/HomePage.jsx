@@ -36,6 +36,21 @@ const Item = styled(Paper)(() => ({
 }));
 
 const nodeCache = new Map();
+
+export async function loaderHomePageBooks() {
+  try {
+    const popularBooksUrl = `${BASE_URL}?q=inauthor:"Roald Dahl"&key=${apiKey}`;
+    const newestBooksUrl = `${BASE_URL}?q=subject:fiction&orderBy=newest&key=${apiKey}`;
+
+    const popularBooks = await fetchCachedData(popularBooksUrl, nodeCache);
+    const newestBooks = await fetchCachedData(newestBooksUrl, nodeCache);
+    console.log(newestBooks);
+    return { newestBooks, popularBooks };
+  } catch (error) {
+    console.error('Failed to load book data:', error);
+    return { newestBooks: [], popularBooks: [], error: error.message };
+  }
+}
 export default function HomePage() {
   const { newestBooks, popularBooks } = useLoaderData();
 
@@ -82,7 +97,7 @@ export default function HomePage() {
                 {popularBooks?.map((book) => (
                   <Item key={book.volumeInfo.title}>
                     <img
-                      src={book.volumeInfo.imageLinks.thumbnail}
+                      src={book?.volumeInfo?.imageLinks?.thumbnail}
                       alt={book.volumeInfo.title}
                     />
                     <h2>{book.volumeInfo.title}</h2>
@@ -134,19 +149,4 @@ export default function HomePage() {
       </Box>
     </>
   );
-}
-
-export async function loaderHomePageBooks() {
-  try {
-    const popularBooksUrl = `${BASE_URL}?q=inauthor:"Roald Dahl"&key=${apiKey}`;
-    const newestBooksUrl = `${BASE_URL}?q=subject:fiction&orderBy=newest&key=${apiKey}`;
-
-    const popularBooks = await fetchCachedData(popularBooksUrl, nodeCache);
-    const newestBooks = await fetchCachedData(newestBooksUrl, nodeCache);
-    console.log(newestBooks);
-    return { newestBooks, popularBooks };
-  } catch (error) {
-    console.error('Failed to load book data:', error);
-    return { newestBooks: [], popularBooks: [], error: error.message };
-  }
 }
