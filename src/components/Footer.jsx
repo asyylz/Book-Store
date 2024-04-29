@@ -43,8 +43,9 @@ function CustomList(list) {
           key={index}
           href=""
           sx={{
-            lineHeight: '12px',
+            lineHeight: { xs: '18px', sm: '16px' },
             fontFamily: 'Oswald',
+            fontSize: { xs: '14px', sm: '20px' },
           }}
         >
           <Link
@@ -82,7 +83,7 @@ export default function Footer() {
         flexDirection: 'column',
         minHeight: '90vh',
         zIndex: 1201,
-        bottom:0,
+        bottom: 0,
         marginTop: '10vh',
         //border: '1px solid red',
       };
@@ -95,7 +96,7 @@ export default function Footer() {
         component="footer"
         sx={{
           py: 3,
-          px: 2,
+          px: { xs: '0', sm: '2' },
           mt: 'auto',
           backgroundColor: (theme) =>
             theme.palette.mode === 'light'
@@ -115,7 +116,8 @@ export default function Footer() {
               <Typography
                 sx={{
                   fontFamily: 'Oswald',
-                  lineHeight: '12px',
+                  fontSize: { xs: '14px', sm: '18px' },
+                  lineHeight: { xs: '18px', sm: '12px' },
                   textDecoration: 'underLine',
                 }}
               >
@@ -125,7 +127,12 @@ export default function Footer() {
             </Grid>
             <Grid item xs={4}>
               <Typography
-                sx={{ fontFamily: 'Oswald', textDecoration: 'underLine' }}
+                sx={{
+                  fontFamily: 'Oswald',
+                  fontSize: { xs: '14px', sm: '18px' },
+                  lineHeight: { xs: '18px', sm: '12px' },
+                  textDecoration: 'underLine',
+                }}
               >
                 ABOUT US
                 {CustomList(listAboutUs)}
@@ -135,6 +142,8 @@ export default function Footer() {
               <Typography
                 sx={{
                   fontFamily: 'Oswald',
+                  fontSize: { xs: '14px', sm: '18px' },
+                  lineHeight: { xs: '18px', sm: '12px' },
                   textDecoration: 'underLine',
                 }}
               >
