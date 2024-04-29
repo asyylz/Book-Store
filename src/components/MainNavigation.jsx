@@ -160,7 +160,7 @@ function MainNavigation() {
                 xs: 'none',
                 md: 'flex',
               },
-              border: '1px solid green',
+              //border: '1px solid green',
             }}
           >
             {pages.map((page, index) => (
@@ -177,7 +177,7 @@ function MainNavigation() {
               </NavLink>
             ))}
           </Box>
-          <Box sx={{ border: '1px solid red', flexGrow: 1 }}>
+          <Box sx={{ flexGrow: 1 }}>
             <SearchInput />
           </Box>
 
@@ -185,7 +185,6 @@ function MainNavigation() {
             sx={{
               flexGrow: 0,
               textAlign: 'center',
-              border: '1px solid yellow',
             }}
           >
             <Tooltip title="Open settings">

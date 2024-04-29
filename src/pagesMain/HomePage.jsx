@@ -59,11 +59,11 @@ export default function HomePage() {
       {/* --------------------- Top Section -------------------- */}
       <Box
         sx={{
-          // mt: '1rem',
+         // mt: '1rem',
           // ml: '4rem',
           //marginRight: { xs: '4rem', sm: '5rem' },
           // marginLeft: '2rem',
-          margin: { xs: '0 3rem' },
+          margin: { xs:' 3rem' },
           fontFamily: 'Oswald',
           //backgroundColor:'red',
         }}
@@ -161,7 +161,7 @@ export default function HomePage() {
         </Grid>
       </Box>
       {/* -------------- Recommendations  Section -------------- */}
-      <Box sx={{ mt: '2rem', border: '1px solid red' }}>
+      <Box sx={{ mt: '2rem' }}>
         <Grid container spacing={2}>
           <Grid item xs={12} sx={{ textAlign: 'center' }}>
             <Typography
