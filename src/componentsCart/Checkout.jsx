@@ -27,12 +27,14 @@ export default function Checkout() {
   function handleClose() {
     hideCheckout();
     setError('');
+    setData(false);
   }
 
   function handleFinish() {
     hideCheckout();
     clearCart();
     setError('');
+    setData(false);
   }
 
   async function handleSubmit(event) {
@@ -49,10 +51,10 @@ export default function Checkout() {
 
     try {
       await createOrder(orderData);
-      setData(false);
     } catch (error) {
       console.log(error);
     }
+    
   }
 
   let actions = (

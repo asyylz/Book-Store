@@ -67,14 +67,10 @@ export default function Footer() {
   const path = window.location.href;
 
   const styleChecker = () => {
-    // Check if the current path includes the currentUser's UID
     if (path.includes(currentUser.uid)) {
       return {
         display: 'flex',
-        minHeight: '60vh',
-        //position: 'fixed',
-        bottom: 0, // Corrected typo
-        left: '250px',
+        marginTop: '30vh',
         flexDirection: 'column',
         zIndex: 1201,
         //border: '1px solid red',
@@ -87,6 +83,7 @@ export default function Footer() {
         minHeight: '90vh',
         zIndex: 1201,
         bottom:0,
+        marginTop: '10vh',
         //border: '1px solid red',
       };
     }
