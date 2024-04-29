@@ -13,7 +13,7 @@ export function UserProgressContextProvider({ children }) {
   const [userProgress, setUserProgress] = useState('');
   const user = JSON.parse(localStorage.getItem('user'));
   const [error, setError] = useState();
-
+  console.log(userProgress);
   function showCart() {
     setUserProgress('cart');
   }
@@ -30,8 +30,8 @@ export function UserProgressContextProvider({ children }) {
     setUserProgress('');
   }
   const createOrder = async (orderData) => {
-    console.log('clicked')
-    console.log(user)
+    console.log('clicked');
+    console.log(user);
     if (!user || !user.uid) {
       setError('No user logged in, cannot save order.');
       return;
@@ -58,7 +58,7 @@ export function UserProgressContextProvider({ children }) {
         hideCheckout,
         createOrder,
         error,
-        setError
+        setError,
       }}
     >
       {children}

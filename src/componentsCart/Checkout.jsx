@@ -12,6 +12,7 @@ export default function Checkout() {
   const { progress, hideCheckout, createOrder, error, setError } =
     useUserProgressContext();
   const user = JSON.parse(localStorage.getItem('user'));
+  const [data, setData] = useState();
 
   const [isSending, setIsSending] = useState(false);
 
@@ -33,7 +34,7 @@ export default function Checkout() {
     clearCart();
     setError('');
   }
-console.log(error)
+  console.log(error);
   async function handleSubmit(event) {
     event.preventDefault();
     //console.log('clicked');
@@ -45,6 +46,7 @@ console.log(error)
       customer: customerData,
       orderDate: orderDate,
     };
+    setData(orderData);
 
     try {
       await createOrder(orderData);
@@ -66,7 +68,7 @@ console.log(error)
     actions = <span>Sending order data...</span>;
   }
 
-  if (!error && user) {
+  if (!error && user && data) {
     return (
       <Modal open={progress === 'checkout'} onClose={handleFinish}>
         <h2>Success!</h2>
