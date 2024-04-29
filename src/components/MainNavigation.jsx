@@ -108,7 +108,7 @@ function MainNavigation() {
         backgroundColor: ColourSchema.navy,
         color: ColourSchema.beige,
         fontFamily: 'Oswald',
-        width: { xs: '120%', sm: '100%' },
+        minWidth: { xs: '100vw' },
         //display:'flex',
         //justifyContent:'space-between',
       }}
