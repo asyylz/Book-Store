@@ -37,7 +37,6 @@ export default function Checkout() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    //console.log('clicked');
     const fd = new FormData(event.target);
     const customerData = Object.fromEntries(fd.entries());
     const orderDate = new Date().toISOString();
@@ -50,6 +49,7 @@ export default function Checkout() {
 
     try {
       await createOrder(orderData);
+      setData(false);
     } catch (error) {
       console.log(error);
     }
