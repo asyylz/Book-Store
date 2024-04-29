@@ -6,6 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { titleTrimmer } from '../utils/titleTrimmer';
 
 const TAX_RATE = 0.07;
 
@@ -36,49 +37,84 @@ const invoiceSubtotal = subtotal(rows);
 const invoiceTaxes = TAX_RATE * invoiceSubtotal;
 const invoiceTotal = invoiceTaxes + invoiceSubtotal;
 
-export default function SpanningTable() {
+export default function PurchasedBooksTable({ orders }) {
+  console.log(orders);
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{ fontFamily: 'Oswald' }}>
       <Table sx={{ minWidth: 700 }} aria-label="spanning table">
         <TableHead>
           <TableRow>
-            <TableCell align="center" colSpan={3}>
+            <TableCell
+              align="center"
+              colSpan={3}
+              sx={{ fontFamily: 'Oswald', fontSize: '20px' }}
+            >
               Details
             </TableCell>
-            <TableCell align="right">Price</TableCell>
+            <TableCell
+              align="right"
+              sx={{ fontFamily: 'Oswald', fontSize: '20px' }}
+            >
+              Price
+            </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell>Desc</TableCell>
-            <TableCell align="right">Qty.</TableCell>
-            <TableCell align="right">Unit</TableCell>
-            <TableCell align="right">Sum</TableCell>
+            <TableCell sx={{ fontFamily: 'Oswald', fontSize: '20px' }}>
+              Desc
+            </TableCell>
+            <TableCell
+              align="right"
+              sx={{ fontFamily: 'Oswald', fontSize: '20px' }}
+            >
+              Qty.
+            </TableCell>
+            <TableCell
+              align="right"
+              sx={{ fontFamily: 'Oswald', fontSize: '20px' }}
+            >
+              Unit
+            </TableCell>
+            <TableCell
+              align="right"
+              sx={{ fontFamily: 'Oswald', fontSize: '20px' }}
+            >
+              Sum
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.desc}>
-              <TableCell>{row.desc}</TableCell>
-              <TableCell align="right">{row.qty}</TableCell>
-              <TableCell align="right">{row.unit}</TableCell>
-              <TableCell align="right">{ccyFormat(row.price)}</TableCell>
-            </TableRow>
+          {orders.map((order) => (
+            <React.Fragment key={order.id}>
+              {order.items.map((item) => (
+                <TableRow key={item.id}>
+                  <TableCell>{titleTrimmer(item.volumeInfo.title)}</TableCell>
+                  <TableCell align="right">{item.quantity}</TableCell>
+                  <TableCell align="right">
+                    {item.saleInfo.listPrice?.amount ?? 10}
+                  </TableCell>
+                  <TableCell align="right">
+                    {ccyFormat(
+                      (item.saleInfo.listPrice?.amount ?? 10) * item.quantity
+                    )}
+                  </TableCell>
+                </TableRow>
+              ))}
+              <TableRow>
+                <TableCell rowSpan={1} />
+                <TableCell colSpan={2}>Subtotal</TableCell>
+                <TableCell align="right">
+                  {ccyFormat(
+                    order.items.reduce(
+                      (total, item) =>
+                        total +
+                        (item.saleInfo.listPrice?.amount ?? 10) * item.quantity,
+                      0
+                    )
+                  )}
+                </TableCell>
+              </TableRow>
+            </React.Fragment>
           ))}
-          <TableRow>
-            <TableCell rowSpan={3} />
-            <TableCell colSpan={2}>Subtotal</TableCell>
-            <TableCell align="right">{ccyFormat(invoiceSubtotal)}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Tax</TableCell>
-            <TableCell align="right">{`${(TAX_RATE * 100).toFixed(
-              0
-            )} %`}</TableCell>
-            <TableCell align="right">{ccyFormat(invoiceTaxes)}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell colSpan={2}>Total</TableCell>
-            <TableCell align="right">{ccyFormat(invoiceTotal)}</TableCell>
-          </TableRow>
         </TableBody>
       </Table>
     </TableContainer>
