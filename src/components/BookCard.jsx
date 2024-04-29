@@ -1,4 +1,4 @@
-import { Badge, Box, Rating, Typography } from '@mui/material';
+import { Badge, Box, Grid, Rating, Typography } from '@mui/material';
 import { useUserProfileContext } from '../context/UserProfileContext.jsx';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -19,14 +19,12 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
     <Box
       container
       sx={{
-        height: '450px',
+        height: '550px',
         width: '210px',
         display: 'flex',
         flexDirection: 'column',
-        //border:'1px solid red'
       }}
     >
-      {' '}
       <Box sx={{ display: 'flex', position: 'relative' }}>
         {saleInfo.isEbook ? (
           <Badge sx={{ position: 'absolute' }}>
@@ -53,7 +51,7 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
         src={volumeInfo.imageLinks?.thumbnail}
         alt={volumeInfo.title}
         style={{
-          height: '60%',
+          height: '55%',
           width: '100%',
           boxShadow:
             'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px',
@@ -167,14 +165,28 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
           See details
         </Typography>
       </Box>
-      <Box sx={{ mt: '10px', textAlign: 'center' }}>
-        <Rating
-          sx={{ textAlign: 'center' }}
-          name="read-only"
-          value={volumeInfo.averageRating ? volumeInfo.averageRating : 4}
-          readOnly
-        />
-      </Box>
+      <Grid
+        sx={{
+          mt: '10px',
+          textAlign: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography sx={{ fontFamily: 'Oswald', mb: '5px', fontSize: '18px' }}>
+          Author:{volumeInfo.authors}
+        </Typography>
+        <div>
+          {' '}
+          <Rating
+            sx={{ textAlign: 'center' }}
+            name="read-only"
+            value={volumeInfo.averageRating ? volumeInfo.averageRating : 4}
+            readOnly
+          />
+        </div>
+      </Grid>
     </Box>
   );
 }
