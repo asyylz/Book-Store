@@ -66,7 +66,7 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
           fontSize: '20px',
         }}
       >
-        {titleTrimmer(volumeInfo.title)}
+        {titleTrimmer(volumeInfo.title, 5)}
       </Typography>
       <Typography
         sx={{
@@ -100,7 +100,7 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
         >
           £
         </Badge>
-        {saleInfo.listPrice?.amount ? saleInfo.listPrice?.amount : '10.00'}
+        {saleInfo.listPrice?.amount ?? '10.00'}
         <Badge
           sx={{
             color: '#818274',
@@ -171,18 +171,20 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
           textAlign: 'center',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
+          justifyContent: 'space-between',
+          //border: '1px solid red',
+          minHeight: '90px',
         }}
       >
         <Typography sx={{ fontFamily: 'Oswald', mb: '5px', fontSize: '18px' }}>
-          Author:{volumeInfo.authors}
+          Author:{titleTrimmer(volumeInfo?.authors[0], 10)}
         </Typography>
         <div>
           {' '}
           <Rating
             sx={{ textAlign: 'center' }}
             name="read-only"
-            value={volumeInfo.averageRating ? volumeInfo.averageRating : 4}
+            value={volumeInfo.averageRating ?? 4}
             readOnly
           />
         </div>

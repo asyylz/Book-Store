@@ -1,7 +1,7 @@
-export const titleTrimmer = (title) => {
+export const titleTrimmer = (title, amount) => {
   const countWords = title.split(' ');
-  if (countWords.length > 4) {
-    const newTitleWords = countWords.filter((_, index) => index < 3);
+  if (countWords.length > 5) {
+    const newTitleWords = countWords.filter((_, index) => index < amount);
     return newTitleWords.join(' ');
   } else {
     return title;
