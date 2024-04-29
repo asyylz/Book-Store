@@ -11,6 +11,7 @@ import { useUserProfileContext } from '../context/UserProfileContext';
 
 function SwiperCustom({ books }) {
   const { favBooksUpdated } = useUserProfileContext();
+  console.log(favBooksUpdated)
   const favBookIds = favBooksUpdated?.map((book) => book.id);
 
   return (

@@ -34,7 +34,7 @@ export default function Checkout() {
     clearCart();
     setError('');
   }
-  console.log(error);
+
   async function handleSubmit(event) {
     event.preventDefault();
     //console.log('clicked');

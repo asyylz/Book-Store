@@ -3,9 +3,8 @@ import { useLoaderData } from 'react-router-dom';
 import * as React from 'react';
 import Carousel from 'react-material-ui-carousel';
 
-
 /* ----------------- material ui imports ---------------- */
-import {  Typography, Box, Grid, Paper } from '@mui/material';
+import { Typography, Box, Grid, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import ButtonCustom from '../componentsUI/ButtonCustom';
 import SwiperCustom from '../componentsUI/SwiperCustom';
@@ -80,7 +79,7 @@ export default function HomePage() {
             </Typography>
             <Box sx={{ height: '330px' }}>
               <Carousel>
-                {popularBooks.map((book) => (
+                {popularBooks?.map((book) => (
                   <Item key={book.volumeInfo.title}>
                     <img
                       src={book.volumeInfo.imageLinks.thumbnail}
@@ -95,7 +94,7 @@ export default function HomePage() {
           {/* ------------------------ Right ------------------------*/}
           <Grid item xs={4}>
             {bookSection
-              .filter((_, index) => index < 4)
+              ?.filter((_, index) => index < 4)
               .map((book) => (
                 <Grid item xs={12} key={book.id}>
                   <Item>

@@ -74,7 +74,7 @@ const UserProfileContextProvider = ({ children }) => {
   }
 
   /* ---------------------- listener ---------------------- */
-  const [favBooksUpdated, setFavBooksUpdated] = useState('');
+  const [favBooksUpdated, setFavBooksUpdated] = useState([]);
   useEffect(() => {
     const db = getDatabase();
     const favBooksRef = ref(db, `users/${currentUser?.uid}/favBooks`);

@@ -3,12 +3,13 @@ import PurchasedBooksTable from '../componentsUser/PurchasedBooksTable';
 import Error from '../componentsCart/Error';
 export default function UserPurchasedBooksPage() {
   const { user } = useRouteLoaderData('user');
+console.log(user)
   let purchasedBooks;
   if (user.orders) {
     purchasedBooks = Object.values(user?.orders).map((order) => order);
-    return purchasedBooks;
-  }
 
+  }
+console.log(purchasedBooks)
   return purchasedBooks ? (
     <PurchasedBooksTable orders={purchasedBooks} />
   ) : (
