@@ -15,14 +15,15 @@ import {
 } from 'firebase/auth';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { auth } from '../auth/firebase';
-import { useUserProfileContext } from './UserProfileContext';
+import { getDatabase, ref, set, get, onValue, update } from 'firebase/database';
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
-  const { createUserInDB } = useUserProfileContext();
+  //const { createUserInDB } = useUserProfileContext();
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem('user')) || ''
   );
+  console.log('authContext:', currentUser);
 
   /* ---------------------- register ---------------------- */
   const register = async (email, password, displayName) => {
@@ -33,13 +34,11 @@ const AuthContextProvider = ({ children }) => {
         password
       );
       const { user } = userCredential;
-      console.log('clicked');
       await updateProfile(auth.currentUser, {
         displayName: displayName,
       });
       toastSuccessNotify('Registered!');
       createUserInDB(user.uid, displayName, email);
-
     } catch (error) {
       console.log(error);
       toastErrorNotify(error.message);
@@ -106,6 +105,20 @@ const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     userObserver(); // triggering userObserverı for user's sign in and out
   }, []);
+
+  /* ------------------ create user in DB ----------------- */
+
+  const createUserInDB = async (userId, name, email) => {
+    const db = getDatabase();
+    try {
+      await set(ref(db, 'users/' + userId), {
+        username: name,
+        email: email,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <AuthContext.Provider

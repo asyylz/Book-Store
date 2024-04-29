@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { Typography } from '@mui/material';
 
 export default function MenuItemCustom({ menuList, anchor, setAnchor, mode }) {
+  //console.log(menuList)
   const handleCloseMenu = () => {
     setAnchor(null);
   };

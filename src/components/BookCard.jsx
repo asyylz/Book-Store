@@ -5,9 +5,11 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShareIcon from '@mui/icons-material/Share';
 import { titleTrimmer } from '../utils/titleTrimmer.js';
 import { useCartContext } from '../context/CartContext.jsx';
+import { useAuthContext } from '../context/AuthContext.jsx';
 export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
   const { addItem } = useCartContext();
   const { handleFavClick } = useUserProfileContext();
+  const { currentUser } = useAuthContext();
 
   function handleAddBookToCart(book) {
     addItem(book);
@@ -133,11 +135,15 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
               cursor: 'pointer',
               fontSize: '2rem',
             }}
-            onClick={() => handleFavClick(id, volumeInfo, saleInfo)}
+            onClick={() =>
+              handleFavClick(id, volumeInfo, saleInfo, currentUser.uid)
+            }
           />
         ) : (
           <FavoriteBorderIcon
-            onClick={() => handleFavClick(id, volumeInfo, saleInfo)}
+            onClick={() =>
+              handleFavClick(id, volumeInfo, saleInfo, currentUser.uid)
+            }
             className="icon"
             sx={{
               color: '#7D898C',

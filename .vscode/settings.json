@@ -80,6 +80,69 @@
         "wholeMatch": false
       },
       "color": "darkgray"
+    },
+    {
+      "pattern": {
+        "type": "string",
+        "expression": "/* ------------------ create user in DB ----------------- */",
+        "ignoreCase": false,
+        "wholeMatch": false
+      },
+      "color": "darkkhaki"
+    },
+    {
+      "pattern": {
+        "type": "string",
+        "expression": "/* ----------------------user observer ---------------------- */",
+        "ignoreCase": false,
+        "wholeMatch": false
+      },
+      "color": "darkorange"
+    },
+    {
+      "pattern": {
+        "type": "string",
+        "expression": "/* ------------------- forget password ------------------ */",
+        "ignoreCase": false,
+        "wholeMatch": false
+      },
+      "color": "darksalmon"
+    },
+    {
+      "pattern": {
+        "type": "string",
+        "expression": "/* -------------------- google sign in ------------------- */",
+        "ignoreCase": false,
+        "wholeMatch": false
+      },
+      "color": "darkseagreen"
+    },
+    {
+      "pattern": {
+        "type": "string",
+        "expression": "/* ----------------------- logout ----------------------- */",
+        "ignoreCase": false,
+        "wholeMatch": false
+      },
+      "color": "darkviolet"
+    },
+    {
+      "pattern": {
+        "type": "string",
+        "expression": "/* ------------------------ login ----------------------- */",
+        "ignoreCase": false,
+        "wholeMatch": false
+      },
+      "color": "darkviolet"
+    },
+    {
+      "pattern": {
+        "type": "string",
+        "expression": "/* ---------------------- register ---------------------- */",
+        "ignoreCase": false,
+        "wholeMatch": false
+      },
+      "color": "darkviolet"
     }
   ]
 }

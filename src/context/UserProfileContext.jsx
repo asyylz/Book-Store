@@ -28,7 +28,6 @@ const UserProfileContextProvider = ({ children }) => {
       await set(ref(db, 'users/' + userId), {
         username: name,
         email: email,
-        //profile_picture: imageUrl,
       });
     } catch (error) {
       console.log(error);
@@ -54,12 +53,11 @@ const UserProfileContextProvider = ({ children }) => {
     }
   };
 
-
   /* ---------------------- favclick ---------------------- */
 
-  async function handleFavClick(id, volumeInfo, saleInfo) {
+  async function handleFavClick(id, volumeInfo, saleInfo, userId) {
     const db = getDatabase();
-    const userRef = ref(db, `users/${user.uid}`);
+    const userRef = ref(db, `users/${userId}`);
 
     try {
       const snapshot = await get(userRef);
@@ -110,7 +108,6 @@ const UserProfileContextProvider = ({ children }) => {
     // Cleanup function to unsubscribe when the component unmounts
     return () => unsubscribe();
   }, [user?.uid]);
-
 
   return (
     <UserProfileContext.Provider

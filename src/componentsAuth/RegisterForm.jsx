@@ -53,7 +53,7 @@ export default function RegisterForm() {
     const password = data.get('password');
     const displayName = data.get('firstName');
     await register(email, password, displayName);
-    redirect('/');
+    navigate('/');
   };
 
   return (

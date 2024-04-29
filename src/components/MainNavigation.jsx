@@ -59,15 +59,18 @@ const pages = [
   // { label: 'Offers', path: 'offers' },
   // { label: 'Categories', path: 'category' },
 ];
-const settings = [{ label: 'Account', path: `${user?.uid}` }];
+
+//onst settings = [{ label: 'Account', path: `/${user?.uid}` }];
 
 function MainNavigation() {
-  const user = JSON.parse(localStorage.getItem('user'));
+  //const user = JSON.parse(localStorage.getItem('user'));
 
   /* ----------------------- context ---------------------- */
-  const { logout } = useAuthContext();
+  const { logout, currentUser } = useAuthContext();
   const { items } = useCartContext();
   const { showCart } = useUserProgressContext();
+
+  const settings = [{ label: 'Account', path: `/${currentUser?.uid}` }];
 
   /* ------------------------ cart ------------------------ */
   const totalCartItems = items.reduce((totalNumberOfItems, item) => {
@@ -169,10 +172,9 @@ function MainNavigation() {
           <SearchInput />
           <Box sx={{ flexGrow: 0, textAlign: 'center' }}>
             <Tooltip title="Open settings">
-            
-              {user && (
+              {currentUser && (
                 <SelectableAvatar
-                  user={user}
+                  user={currentUser}
                   setAnchorElUser={setAnchorElUser}
                   anchorElUser={anchorElUser}
                 />
@@ -187,7 +189,7 @@ function MainNavigation() {
             />
             <NavLink
               to={!user && 'auth?mode=login'}
-              onClick={() => handleClick(user ? 'logout' : 'login')}
+              onClick={() => handleClick(currentUser ? 'logout' : 'login')}
             >
               <Button
                 sx={{
@@ -197,7 +199,7 @@ function MainNavigation() {
                   },
                 }}
               >
-                {user ? 'Logout' : 'Login'}
+                {currentUser ? 'Logout' : 'Login'}
               </Button>
             </NavLink>
             <CartButton textOnly onClick={handleShowCart}>

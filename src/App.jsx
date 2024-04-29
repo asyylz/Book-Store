@@ -11,15 +11,15 @@ import { UserProgressContextProvider } from './context/UserProgressContext.jsx';
 
 function App() {
   return (
-    <UserProfileContextProvider>
-      <AuthContextProvider>
+    <AuthContextProvider>
+      <UserProfileContextProvider>
         <UserProgressContextProvider>
           <CartContextProvider>
             <AppRouter />
           </CartContextProvider>
         </UserProgressContextProvider>
-      </AuthContextProvider>
-    </UserProfileContextProvider>
+      </UserProfileContextProvider>
+    </AuthContextProvider>
   );
 }
 
