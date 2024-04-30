@@ -62,7 +62,7 @@ function SwiperCustom({ books }) {
         style={{
           marginTop: '20px',
           width: '90vw',
-          minHeight: '40vh',
+          minHeight: '55vh',
           padding: '0 5rem',
           zIndex: 1301,
         }}

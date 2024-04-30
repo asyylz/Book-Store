@@ -19,15 +19,18 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
     <Box
       container
       sx={{
-        height:{xs:'680px'},
-        width: '210px',
+        minHeight: { xs: '400px' },
+        width: '300px',
         display: 'flex',
         flexDirection: 'column',
+        alignItems: 'center',
+        //border: '1px solid red',
+        justifyContent: 'center',
       }}
     >
-      <Box sx={{ display: 'flex', position: 'relative' }}>
+      <Box sx={{ display: 'flex', position: 'relative',}}>
         {saleInfo.isEbook ? (
-          <Badge sx={{ position: 'absolute' }}>
+          <Badge sx={{ position: 'absolute', right:-20 }}>
             <img
               alt="Static Badge"
               src="https://img.shields.io/badge/Digital%20available-yellow?style=plastic&logo=E-Book&logoColor=yellow&labelColor=navy"
@@ -37,7 +40,7 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
           ''
         )}
         {saleInfo.saleability === 'FREE' ? (
-          <Badge sx={{ position: 'absolute', left: '120px' }}>
+          <Badge sx={{ position: 'absolute', right:-70 }}>
             <img
               alt="Static Badge"
               src="https://img.shields.io/badge/Free-green?style=plastic&logo=E-Book&logoColor=yellow&labelColor=navy"
@@ -51,8 +54,8 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
         src={volumeInfo.imageLinks?.thumbnail}
         alt={volumeInfo.title}
         style={{
-          height: '47%',
-          width: '100%',
+          height: '210px',
+          width: '150px',
           boxShadow:
             'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px',
           borderRadius: '10px',
@@ -62,7 +65,7 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
         sx={{
           fontFamily: 'Oswald',
           textAlign: 'center',
-          mt: '1rem',
+          mt: '0.5rem',
           fontSize: '20px',
         }}
       >
@@ -167,17 +170,20 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
       </Box>
       <Grid
         sx={{
-          mt: '10px',
+          mt: '5px',
           textAlign: 'center',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          //border: '1px solid red',
-          minHeight: '90px',
+         // border: '1px solid red',
+          minHeight: '40px',
         }}
       >
         <Typography sx={{ fontFamily: 'Oswald', mb: '5px', fontSize: '18px' }}>
           Author:{titleTrimmer(volumeInfo?.authors[0], 10)}
+        </Typography>
+        <Typography sx={{ fontFamily: 'Oswald', mb: '5px', fontSize: '18px' }}>
+          Category: {titleTrimmer(volumeInfo?.categories[0], 5)}
         </Typography>
         <div>
           {' '}
