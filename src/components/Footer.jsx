@@ -64,7 +64,6 @@ function CustomList(list) {
 }
 
 export default function Footer() {
-
   return (
     <Box
       sx={{
@@ -98,10 +97,12 @@ export default function Footer() {
             <Grid item xs={4}>
               <Typography
                 sx={{
+                  width: { xs: '80px', sm: '200px' },
                   fontFamily: 'Oswald',
                   fontSize: { xs: '14px', sm: '18px' },
                   lineHeight: { xs: '18px', sm: '12px' },
                   textDecoration: 'underLine',
+                  textAlign: { xs: 'center', sm: 'start' },
                 }}
               >
                 SHOPPING WITH US

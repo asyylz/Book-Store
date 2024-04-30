@@ -14,11 +14,31 @@ const theme = createTheme({
       sm1: 800,
       sm2: 856,
       md: 900,
+      md2: 919,
       lg: 990,
-      xl: 1173,
+      xl: 1131,
     },
   },
 });
+
+const links = [
+  {
+    label: 'Dashboard',
+    path: '/',
+  },
+  {
+    label: 'Favorites',
+    path: 'favs',
+  },
+  {
+    label: 'My e-books',
+    path: 'my-e-book',
+  },
+  {
+    label: 'Purchased',
+    path: 'purchased',
+  },
+];
 export default function UserPageNavigation() {
   return (
     <ThemeProvider theme={theme}>
@@ -32,11 +52,12 @@ export default function UserPageNavigation() {
             height: '100vh',
             position: 'absolute',
             top: {
-              sm1: '170px',
-              sm2: '130px',
-              md: '130px',
-              lg: '80px',
-              xl: '80px',
+              sm1: '150px',
+              sm2: '150px',
+              md: '190px',
+              md2: '155px',
+              lg: '150px',
+              xl: '150px',
             },
           },
         }}
@@ -44,8 +65,7 @@ export default function UserPageNavigation() {
       >
         <UserPageMenuList />
       </Drawer>
-
-      {/* <MenuItemCustom menuList={pages} mode="nav" /> */}
+      <MenuItemCustom menuList={links} mode="nav" />
     </ThemeProvider>
   );
 }

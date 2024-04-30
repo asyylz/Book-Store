@@ -14,10 +14,11 @@ function SwiperCustom({ books }) {
   const { favBooksUpdated } = useUserProfileContext();
   const favBookIds = favBooksUpdated?.map((book) => book.id);
   const [spaceBetween, setSpaceBetween] = useState(); // Default space
+
   useEffect(() => {
     const handleResize = () => {
       const currentWidth = window.innerWidth;
-      console.log(currentWidth)
+      console.log(currentWidth);
       if (currentWidth < 439 && currentWidth > 383) {
         setSpaceBetween(110); // Smaller gap for tablets and smaller devices
       } else if (currentWidth < 384) {

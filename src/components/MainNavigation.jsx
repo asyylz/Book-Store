@@ -147,6 +147,7 @@ function MainNavigation() {
             sx={{
               flexGrow: 0,
               textAlign: 'center',
+              mb:'10px'
             }}
           >
             <MenuItemCustom menuList={settings} mode="user" />
