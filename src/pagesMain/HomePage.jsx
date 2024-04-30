@@ -44,13 +44,8 @@ export default function HomePage() {
       {/* --------------------- Top Section -------------------- */}
       <Box
         sx={{
-          // mt: '1rem',
-          // ml: '4rem',
-          //marginRight: { xs: '4rem', sm: '5rem' },
-          // marginLeft: '2rem',
           margin: { xs: ' 3rem' },
           fontFamily: 'Oswald',
-          //backgroundColor:'red',
         }}
       >
         {/* <Grid container spacing={2} sx={{ border: '1px solid red' }}> */}
@@ -88,8 +83,7 @@ export default function HomePage() {
             sx={{
               display: 'flex',
               flexDirection: 'column',
-              alignItems: 'center', // Added to center all content in x-axis
-              //backgroundColor: 'yellow',
+              alignItems: 'center',
               flexGrow: 1,
             }}
           >
@@ -100,7 +94,8 @@ export default function HomePage() {
                 minHeight: { sm: '350px' },
                 flexDirection: 'column',
                 justifyContent: 'center',
-                alignItems: 'center', 
+                alignItems: 'center',
+                border: '1px solid red',
               }}
             >
               {popularBooks?.map((book) => (
@@ -109,16 +104,20 @@ export default function HomePage() {
                   sx={{
                     height: { sm: '300px', md: '400px' },
                     width: { sm: '80%', md: '80%' },
-                    //border: '1px solid green',
-                    ml: '30px',
+                    border: '1px solid green',
+                    m: 'auto',
                     display: 'flex',
                     flexDirection: 'column',
-                    //justifyContent: 'center',
-                    alignItems: 'center', 
+                    alignItems: 'center',
                   }}
                 >
-                  <Typography sx={{ fontFamily: 'Oswald',mb:'10px', fontSize:{sm:'16px'} }}>
-                    
+                  <Typography
+                    sx={{
+                      fontFamily: 'Oswald',
+                      mb: '10px',
+                      fontSize: { sm: '16px' },
+                    }}
+                  >
                     Author Of The Week
                   </Typography>
                   <img
@@ -194,13 +193,11 @@ export default function HomePage() {
 const nodeCache = new Map();
 export async function loaderHomePageBooks() {
   try {
-    //const popularBooksUrl = `${BASE_URL}?q=inauthor:"Roald Dahl"&key=${apiKey}`;
-    //const popularBooksUrl =
-    //'https://www.googleapis.com/books/v1/volumes?q=author:"Jane Austin"&keyAIzaSyDaddmEF_0ZRA03AtTkajNfeMTK1r23Wso';
-    //const newestBooksUrl = `${BASE_URL}?q=subject:fiction&orderBy=newest&key=${apiKey}`;
+    const popularBooksUrl = `${BASE_URL}?q=inauthor:"Roald Dahl"&key=${apiKey}`;
+    const newestBooksUrl = `${BASE_URL}?q=subject:fiction&orderBy=newest&key=${apiKey}`;
 
     const popularBooks = await fetchCachedData(popularBooksUrl, nodeCache);
-    const newestBooks = await fetchCachedData(popularBooksUrl, nodeCache);
+    const newestBooks = await fetchCachedData(newestBooksUrl, nodeCache);
     console.log(popularBooks);
 
     return { newestBooks, popularBooks };
