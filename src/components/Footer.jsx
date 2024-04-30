@@ -64,8 +64,6 @@ function CustomList(list) {
 }
 
 export default function Footer() {
-  const { currentUser } = useAuthContext();
-  const path = window.location.href;
 
   return (
     <Box
