@@ -20,7 +20,6 @@ import { useState } from 'react';
 import { useCartContext } from '../context/CartContext.jsx';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { useUserProgressContext } from '../context/UserProgressContext.jsx';
-import SelectableAvatar from '../componentsUser/SelectableAvatar.jsx';
 import { currencyFormatter } from '../utils/currencyFormatter.js';
 
 /* -------------------- Colour Schema -------------------- */

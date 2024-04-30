@@ -31,6 +31,15 @@ export default function MenuItemCustom({ menuList, mode }) {
         aria-haspopup="true"
         onClick={handleOpenNavMenu}
         color="inherit"
+        sx={{
+          ...(mode === 'user' && {
+            '&:hover': {
+              backgroundColor: '#F29F05',
+              cursor: 'pointer',
+            },
+            mt: '5px',
+          }),
+        }}
       >
         {mode === 'user' ? (
           <Avatar
