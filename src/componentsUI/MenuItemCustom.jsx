@@ -2,48 +2,78 @@ import * as React from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { NavLink } from 'react-router-dom';
-import { Typography } from '@mui/material';
+import { Typography, Box, Avatar } from '@mui/material';
+import { useState } from 'react';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import { useAuthContext } from '../context/AuthContext';
 
-export default function MenuItemCustom({ menuList, anchor, setAnchor, mode }) {
-  //console.log(menuList)
+export default function MenuItemCustom({ menuList, mode }) {
+  const { currentUser } = useAuthContext();
+  const [anchorElNav, setAnchorElNav] = useState(null);
   const handleCloseMenu = () => {
-    setAnchor(null);
+    setAnchorElNav(null);
   };
-
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
   return (
-    <Menu
-      id="menu-appbar"
+    <Box
       sx={{
-        mt: mode === 'user' ? '45px' : undefined,
-        display: {
-          xs: mode === 'nav' ? 'block' : undefined,
-          md: mode === 'nav' ? 'none' : undefined,
-        },
-        
+        flexGrow: 1,
+        display: { xs: mode === 'nav' && 'flex', md: mode === 'nav' && 'none' },
       }}
-      anchorEl={anchor}
-      anchorOrigin={{
-        vertical: mode === 'nav' ? 'bottom' : 'top',
-        horizontal: mode === 'nav' ? 'left' : 'right',
-      }}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: mode === 'user' ? 'right' : 'left',
-      }}
-      open={Boolean(anchor)}
-      onClose={handleCloseMenu}
     >
-      {menuList.map((menu) => (
-        <MenuItem key={menu.label} onClick={handleCloseMenu}>
-          <NavLink
-            to={menu.path}
-            style={{ textDecoration: 'none', color: 'inherit' }}
-          >
-            <Typography textAlign="center">{menu.label}</Typography>
-          </NavLink>
-        </MenuItem>
-      ))}
-    </Menu>
+      <IconButton
+        size="large"
+        aria-label="account of current user"
+        aria-controls="menu-appbar"
+        aria-haspopup="true"
+        onClick={handleOpenNavMenu}
+        color="inherit"
+      >
+        {mode === 'user' ? (
+          <Avatar
+            alt={currentUser.displayName}
+            src="/static/images/avatar/2.jpg"
+          />
+        ) : (
+          <MenuIcon />
+        )}
+      </IconButton>
+      <Menu
+        id="menu-appbar"
+        sx={{
+          mt: mode === 'user' ? '45px' : undefined,
+          display: {
+            xs: mode === 'nav' ? 'block' : undefined,
+            md: mode === 'nav' ? 'none' : undefined,
+          },
+        }}
+        anchorEl={anchorElNav}
+        anchorOrigin={{
+          vertical: mode === 'nav' ? 'bottom' : 'top',
+          horizontal: mode === 'nav' ? 'left' : 'right',
+        }}
+        keepMounted
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: mode === 'user' ? 'right' : 'left',
+        }}
+        open={Boolean(anchorElNav)}
+        onClose={handleCloseMenu}
+      >
+        {menuList.map((menu) => (
+          <MenuItem key={menu.label} onClick={handleCloseMenu}>
+            <NavLink
+              to={menu.path}
+              style={{ textDecoration: 'none', color: 'inherit' }}
+            >
+              <Typography textAlign="center">{menu.label}</Typography>
+            </NavLink>
+          </MenuItem>
+        ))}
+      </Menu>
+    </Box>
   );
 }

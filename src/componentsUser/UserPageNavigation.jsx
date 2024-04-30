@@ -2,6 +2,10 @@ import * as React from 'react';
 import Drawer from '@mui/material/Drawer';
 import UserPageMenuList from './UserPageMenuList';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import MenuItemCustom from '../componentsUI/MenuItemCustom';
+import { Box } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
 const drawerWidth = 240;
 const theme = createTheme({
   breakpoints: {
@@ -40,6 +44,8 @@ export default function UserPageNavigation() {
       >
         <UserPageMenuList />
       </Drawer>
+
+      {/* <MenuItemCustom menuList={pages} mode="nav" /> */}
     </ThemeProvider>
   );
 }

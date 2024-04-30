@@ -85,9 +85,10 @@ function MainNavigation() {
   /* ------------------ navbar functions ------------------ */
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
+
+  // const handleOpenNavMenu = (event) => {
+  //   setAnchorElNav(event.currentTarget);
+  // };
 
   /* -------------------------- - ------------------------- */
 
@@ -109,8 +110,6 @@ function MainNavigation() {
         color: ColourSchema.beige,
         fontFamily: 'Oswald',
         minWidth: { xs: '100vw' },
-        //display:'flex',
-        //justifyContent:'space-between',
       }}
     >
       <Container maxWidth="xl">
@@ -134,25 +133,7 @@ function MainNavigation() {
           </Typography>
 
           {/* ------------------ small screen nav sections------------------ */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <MenuItemCustom
-              menuList={pages}
-              anchor={anchorElNav}
-              setAnchor={setAnchorElNav}
-              mode="nav"
-            />
-          </Box>
-
+          <MenuItemCustom menuList={pages} mode="nav" />
           {/* -------------- large screen sections ------------- */}
           <Box
             sx={{
@@ -187,22 +168,8 @@ function MainNavigation() {
               textAlign: 'center',
             }}
           >
-            <Tooltip title="Open settings">
-              {currentUser && (
-                <SelectableAvatar
-                  user={currentUser}
-                  setAnchorElUser={setAnchorElUser}
-                  anchorElUser={anchorElUser}
-                />
-              )}
-            </Tooltip>
-            {/* ------------------ user settings menu ----------------- */}
-            <MenuItemCustom
-              menuList={settings}
-              anchor={anchorElUser}
-              setAnchor={setAnchorElUser}
-              mode="user"
-            />
+            <MenuItemCustom menuList={settings} mode="user" />
+
             <NavLink
               to={!currentUser && 'auth?mode=login'}
               onClick={() => handleClick(currentUser ? 'logout' : 'login')}
