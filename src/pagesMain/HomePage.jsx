@@ -95,7 +95,6 @@ export default function HomePage() {
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
-                border: '1px solid red',
               }}
             >
               {popularBooks?.map((book) => (
@@ -104,7 +103,6 @@ export default function HomePage() {
                   sx={{
                     height: { sm: '300px', md: '400px' },
                     width: { sm: '80%', md: '80%' },
-                    border: '1px solid green',
                     m: 'auto',
                     display: 'flex',
                     flexDirection: 'column',
