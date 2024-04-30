@@ -66,7 +66,7 @@
     </section>
     <section>
         <h1>Outcome</h1>
-        <p>Reach outcome site <a href="">here</a> </p>
+        <p>Reach outcome site <a href="https://asybook-store.netlify.app/">here</a> </p>
     </section>
     <h2>Architecture</h2>
     <footer>
