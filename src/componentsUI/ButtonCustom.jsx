@@ -33,8 +33,8 @@ export default function ButtonCustom({ buttonName, id, to, side, ...props }) {
         className="style"
         sx={{
           color: 'black',
-          fontSize: { xs: '16px', sm: '20px', md: '1.4rem' },
-          width: { xs: '150px', sm: '200px', xl: '300px' },
+          fontSize: { xs: '16px', sm: '18px', md: '1.4rem' },
+          width: { xs: '150px', sm: '160px',md:'190px', xl: '300px' },
         }}
       >
         {buttonName}

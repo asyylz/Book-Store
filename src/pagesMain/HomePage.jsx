@@ -35,41 +35,30 @@ const Item = styled(Paper)(() => ({
   textAlign: 'center',
 }));
 
-const nodeCache = new Map();
-
-export async function loaderHomePageBooks() {
-  try {
-    const popularBooksUrl = `${BASE_URL}?q=inauthor:"Roald Dahl"&key=${apiKey}`;
-    const newestBooksUrl = `${BASE_URL}?q=subject:fiction&orderBy=newest&key=${apiKey}`;
-
-    const popularBooks = await fetchCachedData(popularBooksUrl, nodeCache);
-    const newestBooks = await fetchCachedData(newestBooksUrl, nodeCache);
-    console.log(newestBooks);
-    return { newestBooks, popularBooks };
-  } catch (error) {
-    console.error('Failed to load book data:', error);
-    return { newestBooks: [], popularBooks: [], error: error.message };
-  }
-}
 export default function HomePage() {
   const { newestBooks, popularBooks } = useLoaderData();
+  console.log(popularBooks);
 
   return (
     <>
       {/* --------------------- Top Section -------------------- */}
       <Box
         sx={{
-         // mt: '1rem',
+          // mt: '1rem',
           // ml: '4rem',
           //marginRight: { xs: '4rem', sm: '5rem' },
           // marginLeft: '2rem',
-          margin: { xs:' 3rem' },
+          margin: { xs: ' 3rem' },
           fontFamily: 'Oswald',
           //backgroundColor:'red',
         }}
       >
         {/* <Grid container spacing={2} sx={{ border: '1px solid red' }}> */}
-        <Grid container spacing={2}>
+        <Grid
+          container
+          spacing={0}
+          sx={{ display: 'flex', justifyContent: 'center' }}
+        >
           {/* ------------------------ Left ------------------------*/}
           <Grid item xs={4}>
             {bookSection
@@ -99,42 +88,52 @@ export default function HomePage() {
             sx={{
               display: 'flex',
               flexDirection: 'column',
+              alignItems: 'center', // Added to center all content in x-axis
+              //backgroundColor: 'yellow',
+              flexGrow: 1,
             }}
           >
-            <Typography
-              variant="h6"
+            <Carousel
               sx={{
-                textAlign: 'center',
-                fontFamily: 'Oswald',
-                display: { xs: 'none', sm: 'block' },
+                display: { xs: 'none', sm: 'flex' },
+                width: { sm: '100%' },
+                minHeight: { sm: '350px' },
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center', 
               }}
             >
-              Author Of The Week
-            </Typography>
-            <Box
-              sx={{
-                height: '330px',
-              }}
-            >
-              <Carousel
-                sx={{
-                  display: { xs: 'none', sm: 'flex' },
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                }}
-              >
-                {popularBooks?.map((book) => (
-                  <Item key={book.volumeInfo.title}>
-                    <img
-                      src={book?.volumeInfo?.imageLinks?.thumbnail}
-                      alt={book.volumeInfo.title}
-                    />
-                    <h2>{book.volumeInfo.title}</h2>
-                  </Item>
-                ))}
-              </Carousel>
-            </Box>
+              {popularBooks?.map((book) => (
+                <Box
+                  key={book.volumeInfo.title}
+                  sx={{
+                    height: { sm: '300px', md: '400px' },
+                    width: { sm: '80%', md: '80%' },
+                    //border: '1px solid green',
+                    ml: '30px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    //justifyContent: 'center',
+                    alignItems: 'center', 
+                  }}
+                >
+                  <Typography sx={{ fontFamily: 'Oswald',mb:'10px', fontSize:{sm:'16px'} }}>
+                    
+                    Author Of The Week
+                  </Typography>
+                  <img
+                    src={book?.volumeInfo?.imageLinks?.thumbnail}
+                    alt={book.volumeInfo.title}
+                    style={{ maxWidth: '100%', height: '100%' }}
+                  />
+                  <h2 style={{ textAlign: 'center' }}>
+                    {book.volumeInfo.title}
+                  </h2>
+                </Box>
+              ))}
+            </Carousel>
           </Grid>
+
           {/* ------------------------ Right ------------------------*/}
           <Grid item xs={4}>
             {bookSection
@@ -190,4 +189,23 @@ export default function HomePage() {
       </Box>
     </>
   );
+}
+
+const nodeCache = new Map();
+export async function loaderHomePageBooks() {
+  try {
+    //const popularBooksUrl = `${BASE_URL}?q=inauthor:"Roald Dahl"&key=${apiKey}`;
+    //const popularBooksUrl =
+    //'https://www.googleapis.com/books/v1/volumes?q=author:"Jane Austin"&keyAIzaSyDaddmEF_0ZRA03AtTkajNfeMTK1r23Wso';
+    //const newestBooksUrl = `${BASE_URL}?q=subject:fiction&orderBy=newest&key=${apiKey}`;
+
+    const popularBooks = await fetchCachedData(popularBooksUrl, nodeCache);
+    const newestBooks = await fetchCachedData(popularBooksUrl, nodeCache);
+    console.log(popularBooks);
+
+    return { newestBooks, popularBooks };
+  } catch (error) {
+    console.error('Failed to load book data:', error);
+    return { newestBooks: [], popularBooks: [], error: error.message };
+  }
 }
