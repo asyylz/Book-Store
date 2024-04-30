@@ -5,18 +5,14 @@ import { NavLink } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItemCustom from '../componentsUI/MenuItemCustom.jsx';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useAuthContext } from '../context/AuthContext';
 import SearchInput from '../componentsUI/SearchInput.jsx';
 import CartButton from '../componentsCart/CartButton.jsx';
-import { useState } from 'react';
 import { useCartContext } from '../context/CartContext.jsx';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { useUserProgressContext } from '../context/UserProgressContext.jsx';
@@ -52,15 +48,11 @@ const bookCategories = [
 // more page section can be added here
 const pages = [
   { label: 'Home', path: '/' },
-  // { label: 'Offers', path: 'offers' },
-  // { label: 'Categories', path: 'category' },
+  { label: 'Offers', path: 'offers' },
+  { label: 'Categories', path: 'category' },
 ];
 
-//const settings = [{ label: 'Account', path: `/${user?.uid}` }];
-
 function MainNavigation() {
-  //const user = JSON.parse(localStorage.getItem('user'));
-
   /* ----------------------- context ---------------------- */
   const { logout, currentUser } = useAuthContext();
   const { items } = useCartContext();
@@ -81,20 +73,11 @@ function MainNavigation() {
     );
   }, 0);
 
-  /* ------------------ navbar functions ------------------ */
-  const [anchorElNav, setAnchorElNav] = useState(null);
-  const [anchorElUser, setAnchorElUser] = useState(null);
-
-  // const handleOpenNavMenu = (event) => {
-  //   setAnchorElNav(event.currentTarget);
-  // };
-
   /* -------------------------- - ------------------------- */
 
   function handleShowCart() {
     showCart();
   }
-
   function handleClick(status) {
     if (status === 'logout') logout();
     return;
@@ -140,7 +123,6 @@ function MainNavigation() {
                 xs: 'none',
                 md: 'flex',
               },
-              //border: '1px solid green',
             }}
           >
             {pages.map((page, index) => (

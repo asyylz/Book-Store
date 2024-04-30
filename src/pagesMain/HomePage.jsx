@@ -12,6 +12,7 @@ import SwiperCustom from '../componentsUI/SwiperCustom';
 
 /* -------------------------- helper actions ------------------------- */
 import { fetchCachedData } from '../utils/helperActions';
+import { titleTrimmer } from '../utils/titleTrimmer';
 
 /* --------------------- url imporst -------------------- */
 const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -123,9 +124,9 @@ export default function HomePage() {
                     alt={book.volumeInfo.title}
                     style={{ maxWidth: '100%', height: '100%' }}
                   />
-                  <h2 style={{ textAlign: 'center' }}>
-                    {book.volumeInfo.title}
-                  </h2>
+                  <Typography sx={{ textAlign: 'center', mb: '20px' }}>
+                    {titleTrimmer(book.volumeInfo.title, 4)}
+                  </Typography>
                 </Box>
               ))}
             </Carousel>
