@@ -18,13 +18,13 @@ function SwiperCustom({ books }) {
     <Box
       sx={{
         width: '98vw',
-        minHeight: '55vh',
-        position: 'absolute',
+        //minHeight: '70vh',
+        //position: 'absolute',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         fontFamily: 'Oswald',
-        //border: '2px solid red',
+        //border: '2px solid green',
         boxShadow:
           'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px',
         borderRadius: '10px',
@@ -33,15 +33,16 @@ function SwiperCustom({ books }) {
       <Swiper
         {...swiperConfig}
         modules={[Navigation, Pagination, Scrollbar, A11y]}
-        spaceBetween={15}
+        spaceBetween={30}
         //slidesPerView={5}
         navigation
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
         style={{
+          marginTop:'20px',
           width: '90vw',
-          height: '50vh',
-          padding: '0 4rem',
+          minHeight: '40vh',
+          padding: '0 5rem',
           zIndex: 1301,
         }}
       >

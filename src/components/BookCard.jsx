@@ -19,7 +19,7 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
     <Box
       container
       sx={{
-        height: '550px',
+        height:{xs:'680px'},
         width: '210px',
         display: 'flex',
         flexDirection: 'column',
@@ -51,7 +51,7 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
         src={volumeInfo.imageLinks?.thumbnail}
         alt={volumeInfo.title}
         style={{
-          height: '55%',
+          height: '47%',
           width: '100%',
           boxShadow:
             'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px',
@@ -66,7 +66,7 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
           fontSize: '20px',
         }}
       >
-        {titleTrimmer(volumeInfo.title, 5)}
+        {titleTrimmer(volumeInfo.title, 4)}
       </Typography>
       <Typography
         sx={{

@@ -22,7 +22,7 @@ export default function UserPageLayout() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ ml: { xs: 0, sm1: `${drawerWidth}px` } }}>
+      <Box sx={{ ml: { xs: 0, sm1: `${drawerWidth}px` }, }}>
         <ListItem>
           <Typography sx={{ fontFamily: 'Oswald' }} variant="h3">
             {`Welcome ${user.username}`}
@@ -31,7 +31,7 @@ export default function UserPageLayout() {
         <Divider variant="inset" />
       </Box>
       <UserPageNavigation />
-      <Box sx={{ ml: { xs: 0, sm1: `${drawerWidth}px` } }}>
+      <Box sx={{ ml: { xs: 0, sm1: `${drawerWidth}px` }, marginBottom:'10rem', minHeight:'50vh'}}>
         <Outlet />
       </Box>
     </ThemeProvider>

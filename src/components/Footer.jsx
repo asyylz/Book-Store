@@ -67,31 +67,16 @@ export default function Footer() {
   const { currentUser } = useAuthContext();
   const path = window.location.href;
 
-  const styleChecker = () => {
-    if (path.includes(currentUser.uid)) {
-      return {
-        display: 'flex',
-        marginTop: '30vh',
-        flexDirection: 'column',
-        zIndex: 1201,
-        //border: '1px solid red',
-        width: '100vw',
-      };
-    } else {
-      return {
+  return (
+    <Box
+      sx={{
         display: 'flex',
         flexDirection: 'column',
-        minHeight: '90vh',
         zIndex: 1201,
         bottom: 0,
         marginTop: '10vh',
-        //border: '1px solid red',
-      };
-    }
-  };
-
-  return (
-    <Box sx={styleChecker()}>
+      }}
+    >
       <Box
         component="footer"
         sx={{

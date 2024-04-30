@@ -177,7 +177,6 @@ export default function HomePage() {
             sx={{
               display: 'flex',
               justifyContent: 'center',
-              //border: '1px solid red',
             }}
           >
             <SwiperCustom books={newestBooks} />
