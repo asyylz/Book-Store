@@ -1,11 +1,9 @@
 import { Outlet } from 'react-router-dom';
 function BooksRootLayout() {
   return (
-    <div>
-      <main>
-        <Outlet />
-      </main>
-    </div>
+    <main>
+      <Outlet />
+    </main>
   );
 }
 export default BooksRootLayout;

@@ -34,7 +34,7 @@ const router = createBrowserRouter([
     path: '/',
     element: <RootLayout />,
     errorElement: <ErrorPage />,
-    id: root,
+    id: 'root',
     children: [
       { index: true, element: <HomePage />, loader: loaderHomePageBooks },
       {
@@ -48,6 +48,7 @@ const router = createBrowserRouter([
           },
           {
             path: ':id',
+            id: 'book',
             element: <BookDetailsPage />,
             loader: loaderBook,
           },

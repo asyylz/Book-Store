@@ -21,7 +21,7 @@ function RootLayout() {
       <MainNavigation />
       <Cart />
       <Checkout />
-      <Box sx={{ paddingTop: '0' }}>
+      <Box>
         {/* Solution-1 for loadin state  */}
         {navigation.state === 'loading' && <p>Loading...</p>}
         <Outlet />

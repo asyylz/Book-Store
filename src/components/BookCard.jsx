@@ -13,7 +13,6 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
   const { currentUser } = useAuthContext();
   const navigate = useNavigate();
   
-
   function handleAddBookToCart(book) {
     addItem(book);
   }
