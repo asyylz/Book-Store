@@ -6,10 +6,13 @@ import ShareIcon from '@mui/icons-material/Share';
 import { titleTrimmer } from '../utils/titleTrimmer.js';
 import { useCartContext } from '../context/CartContext.jsx';
 import { useAuthContext } from '../context/AuthContext.jsx';
+import { useNavigate } from 'react-router-dom';
 export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
   const { addItem } = useCartContext();
   const { handleFavClick } = useUserProfileContext();
   const { currentUser } = useAuthContext();
+  const navigate = useNavigate();
+  
 
   function handleAddBookToCart(book) {
     addItem(book);

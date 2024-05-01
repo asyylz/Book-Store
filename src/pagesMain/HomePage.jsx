@@ -38,7 +38,7 @@ const Item = styled(Paper)(() => ({
 
 export default function HomePage() {
   const { newestBooks, popularBooks } = useLoaderData();
-  console.log(popularBooks);
+  
 
   return (
     <>

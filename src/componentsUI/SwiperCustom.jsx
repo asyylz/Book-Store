@@ -22,9 +22,9 @@ function SwiperCustom({ books }) {
       if (currentWidth < 439 && currentWidth > 383) {
         setSpaceBetween(110); // Smaller gap for tablets and smaller devices
       } else if (currentWidth < 384) {
-        setSpaceBetween(100); // Even smaller gap for very small devices
+        setSpaceBetween(30); // Even smaller gap for very small devices
       } else {
-        setSpaceBetween(200); // Default space for larger devices
+        setSpaceBetween(40); // Default space for larger devices
       }
     };
 
@@ -42,9 +42,10 @@ function SwiperCustom({ books }) {
     <Box
       sx={{
         width: '98vw',
+        height: '110%',
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center',
+        //alignItems: 'center',
         fontFamily: 'Oswald',
         boxShadow:
           'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px',
@@ -62,13 +63,13 @@ function SwiperCustom({ books }) {
         style={{
           marginTop: '20px',
           width: '90vw',
-          minHeight: '55vh',
-          padding: '0 5rem',
+          //minHeight: '45vh',
+          padding: '0 2rem',
           zIndex: 1301,
         }}
       >
         {books.map((book, index) => (
-          <SwiperSlide style={{ zIndex: '-1' }} key={index}>
+          <SwiperSlide style={{ zIndex: '-1', }} key={index}>
             <BookCard
               {...book}
               isFav={favBookIds.some((id) => book.id === id)}
