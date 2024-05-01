@@ -45,8 +45,10 @@ export default function BookList({ searchedBooks, header }) {
               backgroundColor: '#F2F0EB',
               color: 'gray',
               '&:hover': { color: '#F29F05', backgroundColor: 'inherit' },
-              fontSize: { xs: '10px', sm: '14px' },
-              width: { xs: '100px', sm: '200px' },
+              fontSize: { xs: '8px', sm: '14px' },
+              width: { xs: '80px', sm: '200px' },
+              marginTop: {xs:'6rem',sm:'3rem'},
+              marginRight: {xs:'2rem',sm:'3rem'},
             }}
             variant="contained"
           >
