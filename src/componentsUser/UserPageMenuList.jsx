@@ -6,6 +6,7 @@ import ListItemText from '@mui/material/ListItemText';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
+import { Link } from 'react-router-dom';
 
 //const icon = (name) => `/assets/navbar/${name}.svg`;
 
@@ -37,6 +38,7 @@ const iconStyle = {
   color: '#F2F0EB',
   borderRadius: '1rem 0 1rem 0',
   marginTop: 1,
+  fontFamily: 'Oswald',
   '&:hover': {
     backgroundColor: '#F2F0EB',
     color: '#7D898C',
@@ -46,6 +48,7 @@ const selectedStyle = {
   backgroundColor: '#F2F0EB',
   color: '#7D898C',
   borderRadius: '1rem 0 1rem 0',
+  fontFamily: 'Oswald',
   '&:hover': {
     backgroundColor: '#F2F0EB',
     color: '#7D898C',
@@ -59,9 +62,12 @@ const UserPageMenuList = () => {
 
   function handleNavigate(route) {
     // ASK
+    console.log('clicked');
     if (route === '/') {
+      console.log('clicked');
       navigate(`/${currentUser.uid}`);
     } else {
+      console.log('clicked');
       navigate(route);
     }
   }
@@ -84,7 +90,7 @@ const UserPageMenuList = () => {
                   bgcolor: 'currentColor',
                 }}
               />
-              <ListItemText primary={item.title} />
+              {item.title}
             </ListItemButton>
           </ListItem>
         ))}

@@ -1,7 +1,6 @@
 /* -------------------- cache checker ------------------- */
 //const nodeCache = new Map();
 export async function fetchCachedData(url, nodeCache) {
-  console.log(url)
   // Check if the cache already has the data for this URL
   if (nodeCache.has(url)) {
     return nodeCache.get(url);
