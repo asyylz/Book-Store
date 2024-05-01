@@ -73,8 +73,8 @@ export default function Footer() {
         flexDirection: 'column',
         zIndex: 1201,
         bottom: 0,
-        marginTop:'5vh',
-        border: '1px solid red',
+        marginTop:'10vh',
+        //border: '1px solid red',
       }}
     >
       <Box

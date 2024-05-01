@@ -7,8 +7,8 @@ import HomePage from '../pagesMain/HomePage.jsx';
 import RootLayout from '../layouts/RootLayout.jsx';
 import ErrorPage from '../pagesMain/ErrorPage.jsx';
 import { action as logoutAction } from '../pagesMain/Logout.jsx';
-/* ------------------- loader imports ------------------- */
-import { loaderBooks } from '../pagesMain/BooksPage.jsx';
+/* ------------------- loader imports ------------------- */import { loaderBooks } from '../pagesMain/BooksPage.jsx';
+//import { loaderBooks } from '../layouts/BooksRootLayout.jsx';
 import BooksPage from '../pagesMain/BooksPage.jsx';
 
 import { loaderHomePageBooks } from '../pagesMain/HomePage.jsx';
@@ -39,7 +39,9 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage />, loader: loaderHomePageBooks },
       {
         path: 'books',
+        id:'books',
         element: <BooksRootLayout />,
+        //loader: loaderBooks,
         children: [
           {
             index: true,

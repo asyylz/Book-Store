@@ -5,9 +5,15 @@ import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 import BookCard from './BookCard';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+
 export default function BookList({ searchedBooks, header }) {
+  console.log(searchedBooks);
+
+  const location = useLocation();
   return (
-    <Box sx={{ mb: '2rem' }}>
+    <Box sx={{ mb: '2rem' }} key={location.pathname}>
       <Container
         fixed
         sx={{

@@ -7,6 +7,7 @@ import { titleTrimmer } from '../utils/titleTrimmer.js';
 import { useCartContext } from '../context/CartContext.jsx';
 import { useAuthContext } from '../context/AuthContext.jsx';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
   const { addItem } = useCartContext();
   const { handleFavClick } = useUserProfileContext();
@@ -32,7 +33,7 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
     >
       <Box sx={{ display: 'flex', position: 'relative',}}>
         {saleInfo.isEbook ? (
-          <Badge sx={{ position: 'absolute', right:-20 }}>
+          <Badge sx={{ position: 'absolute', right:-30 }}>
             <img
               alt="Static Badge"
               src="https://img.shields.io/badge/Digital%20available-yellow?style=plastic&logo=E-Book&logoColor=yellow&labelColor=navy"
@@ -42,7 +43,7 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
           ''
         )}
         {saleInfo.saleability === 'FREE' ? (
-          <Badge sx={{ position: 'absolute', right:-70 }}>
+          <Badge sx={{ position: 'absolute', right:-80 }}>
             <img
               alt="Static Badge"
               src="https://img.shields.io/badge/Free-green?style=plastic&logo=E-Book&logoColor=yellow&labelColor=navy"
@@ -169,6 +170,7 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
         >
           See details
         </Typography>
+      
       </Box>
       <Grid
         sx={{
@@ -182,10 +184,10 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
         }}
       >
         <Typography sx={{ fontFamily: 'Oswald', mb: '5px', fontSize: '18px' }}>
-          Author:{titleTrimmer(volumeInfo?.authors[0], 10)}
+          Author:{volumeInfo?.authors}
         </Typography>
         <Typography sx={{ fontFamily: 'Oswald', mb: '5px', fontSize: '18px' }}>
-          Category: {titleTrimmer(volumeInfo?.categories[0], 5)}
+          Category: {volumeInfo?.categories}
         </Typography>
         <div>
           {' '}

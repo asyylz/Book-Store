@@ -1,8 +1,5 @@
 import { Box, Grid, Typography, Rating } from '@mui/material';
-import { NavLink } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import { useLoaderData } from 'react-router-dom';
-export default function BookDetail({book}) {
+export default function BookDetail({ book }) {
   return (
     <Box sx={{ border: '1px solid red', minHeight: '60vh' }}>
       <Typography
@@ -29,7 +26,7 @@ export default function BookDetail({book}) {
             </Typography>
             <Typography sx={{ fontFamily: 'Oswald', mb: '5px' }}>
               <strong style={{ fontSize: '18px' }}>Category:</strong>
-              {book.volumeInfo.categories[0]}
+              {book.volumeInfo.categories}
             </Typography>
             <Typography sx={{ fontFamily: 'Oswald', mb: '5px' }}>
               <strong style={{ fontSize: '18px' }}>Publisher:</strong>
