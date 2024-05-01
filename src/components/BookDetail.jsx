@@ -1,7 +1,21 @@
 import { Box, Grid, Typography, Rating } from '@mui/material';
+const bookInfoProperties = [
+  { label: 'Author: ', path: 'authors' },
+  { label: 'Publisher: ', path: 'publisher' },
+  { label: 'Categories: ', path: 'categories' },
+  { label: 'Published date: ', path: 'publishedDate' },
+  { label: 'Page: ', path: 'pageCount' },
+];
+
+function getNestedProperty(obj, path) {
+  return path.split('.').reduce((acc, part) => {
+    return acc && acc[part];
+  }, obj);
+}
+
 export default function BookDetail({ book }) {
   return (
-    <Box sx={{minHeight: '60vh' }}>
+    <Box sx={{ minHeight: '60vh' }}>
       <Typography
         variant="h5"
         sx={{ textAlign: 'center', mb: '20px', fontFamily: 'Oswald' }}
@@ -20,30 +34,15 @@ export default function BookDetail({ book }) {
           <Box
             sx={{ fontFamily: 'Oswald', textAlign: 'start', padding: '5px' }}
           >
-            <Typography sx={{ fontFamily: 'Oswald', mb: '5px' }}>
-              <strong style={{ fontSize: '18px' }}>Author:</strong>
-              {book.volumeInfo.authors[0]}
-            </Typography>
-            <Typography sx={{ fontFamily: 'Oswald', mb: '5px' }}>
-              <strong style={{ fontSize: '18px' }}>Category:</strong>
-              {book.volumeInfo.categories}
-            </Typography>
-            <Typography sx={{ fontFamily: 'Oswald', mb: '5px' }}>
-              <strong style={{ fontSize: '18px' }}>Publisher:</strong>
-              {book.volumeInfo.publisher}
-            </Typography>
-            <Typography sx={{ fontFamily: 'Oswald', mb: '5px' }}>
-              <strong style={{ fontSize: '18px' }}>Page:</strong>
-              {book.volumeInfo.pageCount}
-            </Typography>
-            <Typography sx={{ fontFamily: 'Oswald', mb: '5px' }}>
-              <strong style={{ fontSize: '18px' }}>Published date:</strong>
-              {book.volumeInfo.publishedDate}
-            </Typography>
+            {bookInfoProperties.map(({ label, path }) => (
+              <Typography sx={{ fontFamily: 'Oswald', mb: '5px' }} key={path}>
+                <strong style={{ fontSize: '18px' }}>{label}</strong>
+                {getNestedProperty(book.volumeInfo, path)}
+              </Typography>
+            ))}
 
             {!book.saleInfo.isEbook ? (
               <Typography sx={{ fontFamily: 'Oswald', mb: '5px' }}>
-                {' '}
                 <strong style={{ fontSize: '18px' }}>Digital:</strong>
                 Available
               </Typography>
