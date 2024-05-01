@@ -1,7 +1,7 @@
 import { Box, Grid, Typography, Rating } from '@mui/material';
 export default function BookDetail({ book }) {
   return (
-    <Box sx={{ border: '1px solid red', minHeight: '60vh' }}>
+    <Box sx={{minHeight: '60vh' }}>
       <Typography
         variant="h5"
         sx={{ textAlign: 'center', mb: '20px', fontFamily: 'Oswald' }}
@@ -61,7 +61,7 @@ export default function BookDetail({ book }) {
           xs={7}
           sx={{
             //border: '1px solid green',
-            padding: '10px',
+            padding: '20px',
             fontFamily: 'Oswald',
           }}
         >
