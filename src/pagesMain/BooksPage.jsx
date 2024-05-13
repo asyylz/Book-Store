@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { json, useLoaderData } from 'react-router-dom';
 import BookList from '../components/BooksList';
+import { Outlet } from'react-router-dom';
 import { useUserProfileContext } from '../context/UserProfileContext'; // Ensure you have user context
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -10,7 +11,7 @@ const apiKey = import.meta.env.VITE_APP_apiKeyGoogle;
 import { fetchCachedData } from '../utils/helperActions';
 import { useLocation } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
-//import { useRouteLoaderData } from 'react-router-dom';
+import { useRouteLoaderData } from 'react-router-dom';
 //import { useOutletContext } from 'react-router-dom';
 const nodeCache = new Map();
 
@@ -22,6 +23,7 @@ export default function BooksPage() {
   const { favBooksUpdated } = useUserProfileContext(); //favBookIds removed
   const favBookIds = favBooksUpdated?.map((book) => book.id);
 
+
   const location = useLocation();
   return (
     <div key={location.pathname}>
@@ -32,6 +34,7 @@ export default function BooksPage() {
         }))}
         header={header}
       />
+      <Outlet />
     </div>
   );
 }

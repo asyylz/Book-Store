@@ -9,11 +9,12 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 export default function BookDetailsPage() {
   const { book } = useLoaderData();
   //const { items, header } = useRouteLoaderData('books');
+  //console.log(items);
   //const { id } = useParams();
 
   return (
     <>
-      <Link to=".." relative="path">
+      <Link to={-1} relative="path">
         <Button
           sx={{
             backgroundColor: '#F2F0EB',

@@ -18,10 +18,10 @@ export default BooksRootLayout;
 
 // export async function loaderBooks(request) {
 //   const requestedUrl = request.request.url.split('?');
-//   console.log(requestedUrl[1]);
-//   const splitUrl = request.request.url.split('=');
-//   const search = splitUrl[1];
-//   const field = splitUrl[3];
+//   // console.log(requestedUrl[1]);
+//   // const splitUrl = request.request.url.split('=');
+//   // const search = splitUrl[1];
+//   // const field = splitUrl[3];
 //   const booksUrl = `${BASE_URL}?${requestedUrl[1]}&key${apiKey}`;
 //   console.log(booksUrl);
 //   const books = await fetchCachedData(booksUrl, nodeCache);
