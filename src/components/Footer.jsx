@@ -7,8 +7,6 @@ import * as React from 'react';
 import Link from '@mui/material/Link';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import { useAuthContext } from '../context/AuthContext';
-import { useRouteLoaderData } from 'react-router-dom';
 
 function Copyright() {
   return (
@@ -42,22 +40,17 @@ function CustomList(list) {
         <ListItem
           component={Link}
           key={index}
-          href=""
+          href="#" // will be changed accordinly
           sx={{
             lineHeight: { xs: '18px', sm: '18px' },
             fontFamily: 'Oswald',
             fontSize: { xs: '14px', sm: '18px' },
+            color: 'black',
+            textDecoration: 'none',
+            '&:hover': { color: 'grey' },
           }}
         >
-          <Link
-            sx={{
-              color: 'black',
-              textDecoration: 'none',
-              '&:hover': { color: 'grey' },
-            }}
-          >
-            {item}
-          </Link>
+          {item}
         </ListItem>
       ))}
     </List>
@@ -65,7 +58,6 @@ function CustomList(list) {
 }
 
 export default function Footer() {
- 
   return (
     <Box
       sx={{
@@ -73,7 +65,7 @@ export default function Footer() {
         flexDirection: 'column',
         zIndex: 1201,
         bottom: 0,
-        marginTop:'10vh',
+        marginTop: '10vh',
         //border: '1px solid red',
       }}
     >
@@ -142,10 +134,15 @@ export default function Footer() {
                   flexDirection: 'column',
                   alignItems: 'center',
                   mt: '.3rem',
-                  //border: '1px solid red',
                 }}
               >
-                <List display="flex" flexDirection="column" alignItems="start">
+                <List
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'start',
+                  }}
+                >
                   <ListItem
                     sx={{
                       display: 'flex',

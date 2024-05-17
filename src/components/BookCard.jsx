@@ -7,20 +7,18 @@ import { titleTrimmer } from '../utils/titleTrimmer.js';
 import { useCartContext } from '../context/CartContext.jsx';
 import { useAuthContext } from '../context/AuthContext.jsx';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
   const { addItem } = useCartContext();
   const { handleFavClick } = useUserProfileContext();
   const { currentUser } = useAuthContext();
   const navigate = useNavigate();
-  
+
   function handleAddBookToCart(book) {
     addItem(book);
   }
 
   return (
     <Box
-      container
       sx={{
         minHeight: { xs: '400px' },
         width: '300px',
@@ -31,9 +29,9 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
         justifyContent: 'center',
       }}
     >
-      <Box sx={{ display: 'flex', position: 'relative',}}>
+      <Box sx={{ display: 'flex', position: 'relative' }}>
         {saleInfo.isEbook ? (
-          <Badge sx={{ position: 'absolute', right:-30 }}>
+          <Badge sx={{ position: 'absolute', right: -30 }}>
             <img
               alt="Static Badge"
               src="https://img.shields.io/badge/Digital%20available-yellow?style=plastic&logo=E-Book&logoColor=yellow&labelColor=navy"
@@ -43,7 +41,7 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
           ''
         )}
         {saleInfo.saleability === 'FREE' ? (
-          <Badge sx={{ position: 'absolute', right:-80 }}>
+          <Badge sx={{ position: 'absolute', right: -80 }}>
             <img
               alt="Static Badge"
               src="https://img.shields.io/badge/Free-green?style=plastic&logo=E-Book&logoColor=yellow&labelColor=navy"
@@ -170,7 +168,6 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
         >
           See details
         </Typography>
-      
       </Box>
       <Grid
         sx={{
@@ -179,7 +176,7 @@ export default function BookCard({ volumeInfo, id, isFav, saleInfo }) {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-         // border: '1px solid red',
+          // border: '1px solid red',
           minHeight: '40px',
         }}
       >

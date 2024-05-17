@@ -11,6 +11,7 @@ import { useAuthContext } from '../context/AuthContext';
 export default function MenuItemCustom({ menuList, mode }) {
   const { currentUser } = useAuthContext();
   const [anchorElNav, setAnchorElNav] = useState(null);
+  
   const handleCloseMenu = () => {
     setAnchorElNav(null);
   };

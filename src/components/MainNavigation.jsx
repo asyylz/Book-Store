@@ -116,6 +116,7 @@ function MainNavigation() {
 
           {/* ------------------ small screen nav sections------------------ */}
           <MenuItemCustom menuList={pages} mode="nav" />
+          
           {/* -------------- large screen sections ------------- */}
           <Box
             sx={{
