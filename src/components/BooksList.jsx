@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 export default function BookList({ searchedBooks, header }) {
-  console.log(searchedBooks);
+  //console.log(searchedBooks);
 
   const location = useLocation();
   return (

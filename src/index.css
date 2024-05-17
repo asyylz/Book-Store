@@ -9,9 +9,10 @@ body {
     --yellow: #ffcc00;
     --mustard: #ffaa00;
 
-  }
+}
 
 .progress-bar {
+
     position: fixed;
     top: 0;
     left: 0;
@@ -19,5 +20,5 @@ body {
     height: 10px;
     background: var(--mustard);
     transform-origin: 0%;
-  }
-  
+    z-index: 100;
+}

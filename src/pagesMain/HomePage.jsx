@@ -1,15 +1,12 @@
 /* ------------------ react-router-dom-imports ------------------ */
 import { useLoaderData } from 'react-router-dom';
 import * as React from 'react';
-import Carousel from 'react-material-ui-carousel';
-
 /* ----------------- material ui imports ---------------- */
 import { Typography, Box, Grid, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import ButtonCustom from '../componentsUI/ButtonCustom';
 import SwiperCustom from '../componentsUI/SwiperCustom';
-/* -------------------- react imports ------------------- */
-
+import Carousel from 'react-material-ui-carousel';
 /* -------------------------- helper actions ------------------------- */
 import { fetchCachedData } from '../utils/helperActions';
 import { titleTrimmer } from '../utils/titleTrimmer';
@@ -39,6 +36,7 @@ const Item = styled(Paper)(() => ({
 export default function HomePage() {
   const { newestBooks, popularBooks } = useLoaderData();
   
+ 
 
   return (
     <>
@@ -49,7 +47,6 @@ export default function HomePage() {
           fontFamily: 'Oswald',
         }}
       >
-        {/* <Grid container spacing={2} sx={{ border: '1px solid red' }}> */}
         <Grid
           container
           spacing={0}

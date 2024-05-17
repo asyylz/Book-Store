@@ -12,6 +12,7 @@ import { useLocation } from 'react-router-dom';
 const nodeCache = new Map();
 
 export default function BooksPage() {
+  
   const location = useLocation();
   const { items, header } = useLoaderData();
   const { favBooksUpdated } = useUserProfileContext(); //favBookIds removed
