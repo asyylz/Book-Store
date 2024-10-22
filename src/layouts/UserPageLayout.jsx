@@ -17,6 +17,7 @@ const theme = createTheme({
     },
   },
 });
+
 export default function UserPageLayout() {
   const { user } = useLoaderData();
 
