@@ -4,6 +4,8 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 /* --------------------- Route Pages -------------------- */
 import BooksRootLayout from '../layouts/BooksRootLayout.jsx';
 import HomePage from '../pagesMain/HomePage.jsx';
+import OffersPage from '../pagesMain/OffersPage.jsx';
+import CategoriesPage from '../pagesMain/CategoriesPage.jsx';
 import RootLayout from '../layouts/RootLayout.jsx';
 import ErrorPage from '../pagesMain/ErrorPage.jsx';
 import { action as logoutAction } from '../pagesMain/Logout.jsx';
@@ -38,6 +40,8 @@ const router = createBrowserRouter([
     id: 'root',
     children: [
       { index: true, element: <HomePage />, loader: loaderHomePageBooks },
+      { path: 'offers', element: <OffersPage /> },
+      { path: 'category', element: <CategoriesPage /> },
       {
         path: 'books',
         id: 'books',

@@ -7,6 +7,7 @@ import { Box } from '@mui/material';
 import Footer from '../components/Footer';
 import Checkout from '../componentsCart/Checkout';
 import { motion, useScroll } from 'framer-motion';
+
 function RootLayout() {
   const { scrollYProgress } = useScroll();
   const navigation = useNavigation();

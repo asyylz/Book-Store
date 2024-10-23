@@ -186,6 +186,7 @@ export default function HomePage() {
 }
 
 const nodeCache = new Map();
+
 export async function loaderHomePageBooks() {
   try {
     const popularBooksUrl = `${BASE_URL}?q=inauthor:"Roald Dahl"&key=${apiKey}`;
